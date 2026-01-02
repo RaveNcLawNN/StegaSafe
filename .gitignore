@@ -1,0 +1,15 @@
+__pychache__/
+*.py[cod]
+.venv/
+env/
+
+.vscode/
+.idea/
+
+*.key
+*.pem
+*.der
+
+*.encrypted
+*.decrypted
+*.sig
