@@ -1,6 +1,13 @@
 import sys
+from pathlib import Path
+
+# Add project root to Python path so imports work
+# This allows "from src.stegasafe..." imports to work
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
 from PyQt6.QtWidgets import QApplication
-from gui.controllers.main_window_controller import MainWindowController
+from src.stegasafe.gui.controllers.main_window_controller import MainWindowController
 
 
 def main():
