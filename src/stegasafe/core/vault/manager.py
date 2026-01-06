@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-from stegasafe.utils import read_bytes, write_bytes
+from src.stegasafe.utils import read_bytes, write_bytes
 from .protection import encrypt_json_bytes, decrypt_json_bytes
 
 

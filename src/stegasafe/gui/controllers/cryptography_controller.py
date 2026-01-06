@@ -15,6 +15,9 @@ class CryptoTabController:
         self._populate_keys()
         self._wire_events()
 
+    def refresh_keys(self):
+        self._populate_keys()
+
     def _populate_algorithms(self):
         # Minimal for demo: only AES-GCM
         for cb in (self.ui.cbChooseEncAlgorithm, self.ui.cbChooseDecAlgorithm):

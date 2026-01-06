@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import QApplication
-from gui.controllers.main_window_controller import MainWindowController
+from src.stegasafe.gui.controllers.main_window_controller import MainWindowController
 
 
 def main():
