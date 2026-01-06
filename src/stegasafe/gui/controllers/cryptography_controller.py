@@ -125,3 +125,4 @@ class CryptoTabController:
 
         except Exception as e:
             self._show_error("Decryption failed", str(e))
+# test something
