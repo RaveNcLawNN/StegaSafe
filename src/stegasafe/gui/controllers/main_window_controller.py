@@ -43,4 +43,3 @@ class MainWindowController(QMainWindow):
     def _keys_changed(self):
         if hasattr(self, "crypto_controller"):
             self.crypto_controller.refresh_keys()
-# test something

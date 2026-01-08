@@ -6,14 +6,13 @@ from src.stegasafe.core.crypto.keygen import SymmetricKeyGen, AsymmetricKeyGen, 
 class KeyGenController:
     def __init__(self, ui, key_vault_controller, on_keys_changed=None):
         self.ui = ui
-        self.kv = key_vault_controller          # has .vault and .vault_password
-        self.on_keys_changed = on_keys_changed  # callback to refresh other tabs
+        self.kv = key_vault_controller
+        self.on_keys_changed = on_keys_changed
 
         self._populate_algorithm_boxes()
         self._wire_events()
 
     def _populate_algorithm_boxes(self):
-        # Symmetric: keep it explicit
         self.ui.cbSymmKeyAlgSelect.clear()
         self.ui.cbSymmKeyAlgSelect.addItems(["AES-128", "AES-192", "AES-256"])
 

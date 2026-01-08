@@ -41,7 +41,7 @@ class KeyVaultController:
             self._show_unlocked_ui()
             self.refresh_keys()
             
-            # Show info message if vault was auto-reset
+
             if was_reset:
                 QMessageBox.information(
                     self.ui,
@@ -54,10 +54,8 @@ class KeyVaultController:
             self._error("Vault unlock failed", str(e))
 
     def _show_unlocked_ui(self):
-        # switch stacked widget page
         self.ui.swKeyVault.setCurrentWidget(self.ui.pgeUnlocked)
 
-    # ---------- key listing ----------
     def refresh_keys(self):
         try:
             keys = self.vault.list_keys()
@@ -79,7 +77,6 @@ class KeyVaultController:
             item.setData(0, Qt.ItemDataRole.UserRole, k["id"])
             tree.addTopLevelItem(item)
 
-    # ---------- helpers ----------
     def _error(self, title, message):
         QMessageBox.critical(self.ui, title, message)
 
@@ -102,7 +99,6 @@ class KeyVaultController:
         self._show_details(meta)
 
     def _show_details(self, meta: dict):
-        # Top line - make it editable so user can rename
         self.ui.leSelectedKey.setEnabled(True)
         self.ui.leSelectedKey.setReadOnly(False)
         self.ui.leSelectedKey.setText(meta.get("name", ""))
@@ -126,8 +122,7 @@ class KeyVaultController:
         self.ui.lblKeyID.setText("-")
         self.ui.lblKeyLength.setText("-")
         self.ui.lblKeySize.setText("-")
-    
-    # ---------- key actions ----------
+
     def _get_selected_key_id(self):
         """Get the ID of the currently selected key, or None if none selected."""
         items = self.ui.twKeys.selectedItems()
@@ -141,8 +136,7 @@ class KeyVaultController:
         if not key_id:
             self._error("No key selected", "Please select a key to delete.")
             return
-        
-        # Confirm deletion
+
         reply = QMessageBox.question(
             self.ui,
             "Confirm Delete",
@@ -175,8 +169,7 @@ class KeyVaultController:
         if not key_id:
             self._error("No key selected", "Please select a key to rename.")
             return
-        
-        # Get new name from the text field
+
         new_name = self.ui.leSelectedKey.text().strip()
         if not new_name:
             self._error("Invalid name", "Please enter a new name for the key.")

@@ -19,13 +19,11 @@ class CryptoTabController:
         self._populate_keys()
 
     def _populate_algorithms(self):
-        # Minimal for demo: only AES-GCM
         for cb in (self.ui.cbChooseEncAlgorithm, self.ui.cbChooseDecAlgorithm):
             cb.clear()
             cb.addItem("GCM")
 
     def _populate_keys(self):
-        # Filter: symmetric AES keys only
         keys = self.key_provider.list_keys(kind="symmetric")
         keys = [k for k in keys if k.get("algorithm") == "AES"]
 
@@ -100,7 +98,6 @@ class CryptoTabController:
             mode = self.ui.cbChooseDecAlgorithm.currentText()
             key = self._selected_key_bytes(self.ui.cbChooseDecKey)
 
-            # default output path suggestion
             if in_path.suffix == ".enc":
                 default_out = in_path.with_suffix("")  # keeps .pdf, removes only .enc
             else:
@@ -128,4 +125,3 @@ class CryptoTabController:
 
         except Exception as e:
             self._show_error("Decryption failed", str(e))
-# test something
