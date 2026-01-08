@@ -1,6 +1,6 @@
 import hashlib
 
-from stegasafe.utils import read_bytes
+from src.stegasafe.utils import read_bytes
 
 
 def hash_bytes(data: bytes, algorithm: str = "sha256") -> str:
