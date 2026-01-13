@@ -7,6 +7,7 @@ from src.stegasafe.gui.controllers.key_vault_controller import KeyVaultControlle
 from src.stegasafe.gui.controllers.keygen_controller import KeyGenController
 from src.stegasafe.gui.controllers.hash_controller import HashTabController
 from src.stegasafe.gui.controllers.mock_key_provider import MockKeyProvider
+from src.stegasafe.gui.controllers.steganography_controller import SteganographyTabController
 
 
 class MainWindowController(QMainWindow):
@@ -39,6 +40,8 @@ class MainWindowController(QMainWindow):
         )
         
         self.hash_controller = HashTabController(ui=self)
+
+        self.stego_controller = SteganographyTabController(ui=self)
 
     def _keys_changed(self):
         if hasattr(self, "crypto_controller"):

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1112</width>
-    <height>882</height>
+    <width>1102</width>
+    <height>812</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -422,39 +422,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QWidget" name="rowCover" native="true">
-             <layout class="QHBoxLayout" name="horizontalLayout">
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="lblCover">
-                <property name="text">
-                 <string>Cover File:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="leCoverPath">
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-                <property name="placeholderText">
-                 <string>Select or Drop a File</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnBrowseCover">
-                <property name="text">
-                 <string>Browse</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
             <widget class="QWidget" name="colSettings" native="true">
              <layout class="QVBoxLayout" name="verticalLayout_22">
               <property name="spacing">
@@ -466,6 +433,39 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <property name="bottomMargin">
                <number>0</number>
               </property>
+              <item>
+               <widget class="QWidget" name="rowCover" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <property name="bottomMargin">
+                  <number>9</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lblCover">
+                   <property name="text">
+                    <string>Cover File:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leCoverPath">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Select or Drop a File</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnBrowseCover">
+                   <property name="text">
+                    <string>Browse</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
               <item>
                <widget class="QWidget" name="rowSettings_2" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_33">
@@ -521,16 +521,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="leEmbedCustomDelimiter">
-                   <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines a custom string appended to your data to mark its end. This acts as a stop-signal for the receiver to prevent reading random data after the actual message.&lt;/p&gt;&lt;p&gt;Default: The system calculates the hidden message length and stores it within the first 32 bits of the image. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                   </property>
-                   <property name="placeholderText">
-                    <string>Enter a Custom Delimiter</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <widget class="QCheckBox" name="chkCleanMetadata">
                    <property name="toolTip">
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Strips&lt;/span&gt; all &lt;span style=&quot; font-weight:700;&quot;&gt;existing metadata&lt;/span&gt; (such as GPS coordinates, camera model, and timestamps) from the cover image. Use this to ensure maximum privacy and anonymity for the resulting image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -540,6 +530,39 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <property name="checked">
                     <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>300</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leEmbedSeed">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initializes the pseudo-random number generator for non-sequential pixel selection.&lt;/p&gt;&lt;p&gt;This scatters your message randomly across the image pixels instead of filling them linearly, making the hidden data significantly harder to detect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter Secret / Seed</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leEmbedCustomDelimiter">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines a custom string appended to your data to mark its end. This acts as a stop-signal for the receiver to prevent reading random data after the actual message.&lt;/p&gt;&lt;p&gt;Default: The system calculates the hidden message length and stores it within the first 32 bits of the image. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter a Custom Delimiter</string>
                    </property>
                   </widget>
                  </item>
@@ -662,7 +685,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <number>0</number>
               </property>
               <property name="bottomMargin">
-               <number>9</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QWidget" name="rowChooseStego" native="true">
@@ -746,9 +769,42 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QCheckBox" name="chkAutoSave">
+                  <widget class="QCheckBox" name="chkDebugDump">
                    <property name="text">
-                    <string>Autosave .txt</string>
+                    <string>Debug Dump</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkAutoSave">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically saves the extracted content to a .txt file immediately after processing. Useful for archiving messages or handling text that is too long for the preview window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Save as .txt</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>300</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leExtractSeed">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Requires the exact seed value used during the embedding process. The system needs this to reconstruct the specific non-sequential pixel path to correctly locate and reassemble the hidden message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter Secret / Seed</string>
                    </property>
                   </widget>
                  </item>
@@ -779,6 +835,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <property name="spacing">
                <number>10</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
               </property>
               <item>
                <spacer name="spcExtractLeft">
@@ -813,10 +875,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <widget class="QWidget" name="rowExtractedMessage" native="true">
              <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
               <item>
                <widget class="QLabel" name="lblExtractedMessage">
                 <property name="text">
-                 <string>Extracted Text:</string>
+                 <string>Extracted Message:</string>
                 </property>
                </widget>
               </item>
@@ -1244,7 +1309,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1112</width>
+     <width>1102</width>
      <height>22</height>
     </rect>
    </property>
@@ -1253,4 +1318,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
  </widget>
  <resources/>
  <connections/>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
 </ui>
