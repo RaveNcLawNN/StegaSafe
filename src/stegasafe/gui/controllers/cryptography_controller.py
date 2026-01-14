@@ -19,21 +19,30 @@ class CryptoTabController:
         self._populate_keys()
 
     def _populate_algorithms(self):
+        modes = ["GCM", "CBC", "CTR", "CFB", "OFB", "ECB"]
+
         for cb in (self.ui.cbChooseEncAlgorithm, self.ui.cbChooseDecAlgorithm):
             cb.clear()
-            cb.addItem("GCM")
+            cb.addItems(modes)
+            # Set GCM as default since it's the most secure
+            cb.setCurrentText("GCM")
 
     def _populate_keys(self):
-        keys = self.key_provider.list_keys(kind="symmetric")
-        keys = [k for k in keys if k.get("algorithm") == "AES"]
+        # Check if the provider's vault is actually open before asking for keys
+        if hasattr(self.key_provider, 'kv_controller') and self.key_provider.kv_controller.vault.is_unlocked:
+            keys = self.key_provider.list_keys(kind="symmetric")
+            keys = [k for k in keys if k.get("algorithm") == "AES"]
 
-        for cb in (self.ui.cbChooseEncKey, self.ui.cbChooseDecKey):
-            cb.clear()
-            for k in keys:
-                label = k["name"]
-                if k.get("bits"):
-                    label += f" ({k['bits']} bit)"
-                cb.addItem(label, k["id"])  # store key_id as item data
+            for cb in (self.ui.cbChooseEncKey, self.ui.cbChooseDecKey):
+                cb.clear()
+                for k in keys:
+                    label = f"{k['name']} ({k.get('bits', '-')} bit)"
+                    cb.addItem(label, k["id"])
+        else:
+            # Graceful handling for the 'Locked' state at startup
+            for cb in (self.ui.cbChooseEncKey, self.ui.cbChooseDecKey):
+                cb.clear()
+                cb.addItem("Unlock Vault to see keys...")
 
     def _wire_events(self):
         self.ui.btnChooseFileToEncrypt.clicked.connect(

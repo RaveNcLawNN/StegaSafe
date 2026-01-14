@@ -27,6 +27,11 @@ class KeyVault:
         # Simple safety flag: you must unlock() before listing/adding keys.
         self._unlocked = False
 
+    @property
+    def is_unlocked(self) -> bool:
+        """Returns the current lock status of the vault."""
+        return self._unlocked
+
     def create_new(self, password: str) -> None:
         """Create a new empty vault file encrypted with the given password."""
         self._data = {"version": 1, "keys": []}
