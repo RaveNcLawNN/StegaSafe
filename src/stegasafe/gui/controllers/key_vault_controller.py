@@ -40,6 +40,9 @@ class KeyVaultController:
             self.ui.leVaultPassword.clear()
             self._show_unlocked_ui()
             self.refresh_keys()
+
+            if self.on_keys_changed:
+                self.on_keys_changed()
             
 
             if was_reset:

@@ -7,19 +7,13 @@ from src.stegasafe.gui.controllers.cryptography_controller import CryptoTabContr
 from src.stegasafe.gui.controllers.key_vault_controller import KeyVaultController
 from src.stegasafe.gui.controllers.keygen_controller import KeyGenController
 from src.stegasafe.gui.controllers.hash_controller import HashTabController
-from src.stegasafe.gui.controllers.mock_key_provider import MockKeyProvider
+from src.stegasafe.gui.controllers.vault_key_provider import VaultKeyProvider
 from src.stegasafe.gui.controllers.steganography_controller import SteganographyTabController
+from src.stegasafe.gui.controllers.signatures_controller import SignatureTabController
 
 
 class MainWindowController(QMainWindow):
     def __init__(self):
-        """
-        Orchestrates UI loading and controller dependencies.
-        - Loads 'main_window.ui' to build the interface dynamically.
-        - Initializes KeyVaultController with a local path (~/.stegasafe/vault.dat).
-        - Connects KeyGenController to the Vault
-        - Establishes a shared KeyProvider to bridge the Vault and Feature tabs.
-        """
         super().__init__()
 
         # Dynamic UI loading via PyQt6
@@ -41,17 +35,12 @@ class MainWindowController(QMainWindow):
         )
 
         # Shared interface for cryptographic modules to access key material
-        self.key_provider = MockKeyProvider()
+        self.key_provider = VaultKeyProvider(self.key_vault_controller)
 
         # Finalize initialization of consumer tabs (Crypto, Stegano, etc.)
         self._init_tab_controllers()
 
     def _init_tab_controllers(self):
-        """
-        Sub-module Setup: Hooks specialized logic into the main UI.
-        - Separated to ensure backend providers are fully ready before injection.
-        - Injects key_provider into CryptoTabController to allow decryption/encryption.
-        """
         self.crypto_controller = CryptoTabController(
             ui=self,
             key_provider=self.key_provider
@@ -61,11 +50,14 @@ class MainWindowController(QMainWindow):
 
         self.stego_controller = SteganographyTabController(ui=self)
 
+        self.signature_controller = SignatureTabController(
+            ui=self,
+            key_provider=self.key_provider
+        )
+
     def _keys_changed(self):
-        """
-        Observer Callback: Synchronizes state across all application tabs.
-        - Triggered by KeyGen or Vault controllers whenever the key list changes.
-        - Forces the Cryptography tab to refresh its dropdowns/views immediately.
-        """
         if hasattr(self, "crypto_controller"):
             self.crypto_controller.refresh_keys()
+
+        if hasattr(self, "signature_controller"):
+            self.signature_controller.refresh_keys()

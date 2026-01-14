@@ -25,7 +25,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="tabHome">
        <attribute name="title">
@@ -98,7 +98,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QLineEdit" name="leVaultPassword">
                     <property name="echoMode">
-                     <enum>QLineEdit::Normal</enum>
+                     <enum>QLineEdit::EchoMode::Normal</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Enter Password</string>
@@ -125,7 +125,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QTreeWidget" name="twKeys">
                     <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
+                     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                     </property>
                     <property name="alternatingRowColors">
                      <bool>true</bool>
@@ -303,6 +303,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_12">
               <item>
                <spacer name="spcGenSymmKeyLeft">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>318</width>
@@ -320,6 +323,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcGenSymmKeyRight">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -377,6 +383,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_23">
               <item>
                <spacer name="spcAsymmKeyGenLeft">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>312</width>
@@ -394,6 +403,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcAsymmKeyGenRight">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -536,7 +548,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_2">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -594,10 +606,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
+                    <enum>QSizePolicy::Policy::Fixed</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -641,6 +653,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <item>
                <spacer name="spcEmbedLeft">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -658,6 +673,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcEmbedRight">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -788,7 +806,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_3">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -844,6 +862,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
               <item>
                <spacer name="spcExtractLeft">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -861,6 +882,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcExtractRight">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -974,6 +998,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_19">
               <item>
                <spacer name="spcEncryptLeft">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -991,6 +1018,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcEncryptRight">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1078,6 +1108,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_15">
               <item>
                <spacer name="spcDecryptLeft">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1095,6 +1128,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcDecryptRight">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1170,6 +1206,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_26">
               <item>
                <spacer name="spcHashActionRight">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1187,6 +1226,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcHascActionLeft">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1299,6 +1341,257 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <attribute name="title">
         <string>Signatures</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_24">
+        <item>
+         <widget class="QGroupBox" name="gbSigning">
+          <property name="title">
+           <string>Sign a file</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_25">
+           <item>
+            <widget class="QWidget" name="rowChooseFileToSign" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_38">
+              <item>
+               <widget class="QLabel" name="lblChooseFileToSign">
+                <property name="text">
+                 <string>File to Sign</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leChooseFileToSign">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Select a File</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseFileToSign">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowSigPrivKSelection" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_37">
+              <item>
+               <widget class="QLabel" name="lblSigPrivKSelection">
+                <property name="text">
+                 <string>Private Key:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbSigPrivKSelection">
+                <property name="minimumSize">
+                 <size>
+                  <width>400</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcSigPrivKSelection">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnSigPrivKSelection">
+                <property name="text">
+                 <string>Generate</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowSignProgress" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_27">
+              <item>
+               <widget class="QProgressBar" name="pbSign">
+                <property name="value">
+                 <number>24</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowShowSignature" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_42">
+              <item>
+               <widget class="QLabel" name="lblShowSignature">
+                <property name="text">
+                 <string>File Signature:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leShowSignature"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnCopySignature">
+                <property name="text">
+                 <string>Copy to Clipboard</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbVerification">
+          <property name="title">
+           <string>Verify a Signature</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_26">
+           <item>
+            <widget class="QWidget" name="rowChooseFileToVerify" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_43">
+              <item>
+               <widget class="QLabel" name="lblChooseFileToVerify">
+                <property name="text">
+                 <string>File to Verify</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leChooseFileToVerify">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Select a File</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseFileToVerify">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowShowSignature_2" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_44">
+              <item>
+               <widget class="QLabel" name="lblShowSignature_2">
+                <property name="text">
+                 <string>Signature:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leShowSignature_2"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowSigPubKSelection" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_45">
+              <item>
+               <widget class="QLabel" name="lblSigPubKSelection">
+                <property name="text">
+                 <string>Public Key:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbSigPubKSelection">
+                <property name="minimumSize">
+                 <size>
+                  <width>400</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcSigPubKSelection">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnSigPubKSelection">
+                <property name="text">
+                 <string>Check</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowVerificationProgress" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_28">
+              <item>
+               <widget class="QProgressBar" name="pbVerification">
+                <property name="value">
+                 <number>24</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowShowFileValidity" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_46">
+              <item>
+               <widget class="QLabel" name="lblFileValidityText">
+                <property name="text">
+                 <string>File Validity:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblFileValiditShow">
+                <property name="text">
+                 <string>Choose File, Signature, and Public Key, then press &quot;Check&quot; to show Signature Validity.</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -1310,7 +1603,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1102</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
