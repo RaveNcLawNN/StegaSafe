@@ -33,22 +33,43 @@ class KeyVault:
         self._unlocked = True
         self._save(password)
 
-    def unlock(self, password: str) -> None:
+    def unlock(self, password: str) -> bool:
         """
         Load vault from disk and decrypt it using the password.
         If the vault file doesn't exist yet, automatically creates a new empty vault.
+        If the vault version is unsupported, automatically resets to a new vault.
         If the password is wrong or the file is corrupt, decrypt_json_bytes raises ValueError.
+        
+        Returns:
+            True if vault was auto-reset (old version), False otherwise
         """
         # If vault file doesn't exist, create a new empty one automatically.
         if not Path(self.vault_path).exists():
             self.create_new(password)
-            return
+            return False
 
-        # Otherwise, load and decrypt the existing vault.
-        blob = read_bytes(self.vault_path)
-        plaintext = decrypt_json_bytes(blob, password)
-        self._data = json.loads(plaintext.decode("utf-8"))
-        self._unlocked = True
+        # Try to load and decrypt the existing vault.
+        try:
+            blob = read_bytes(self.vault_path)
+            plaintext = decrypt_json_bytes(blob, password)
+            self._data = json.loads(plaintext.decode("utf-8"))
+            self._unlocked = True
+            return False  # Normal unlock, no reset
+        except ValueError as e:
+            error_msg = str(e)
+            # If it's a version mismatch, automatically reset the vault
+            if "Unsupported vault version" in error_msg or "Vault file is too small" in error_msg:
+                # Delete the old vault file and create a new one
+                try:
+                    Path(self.vault_path).unlink()  # Delete old vault
+                except Exception:
+                    pass  # Ignore if deletion fails
+                # Create a fresh vault with the same password
+                self.create_new(password)
+                return True  # Indicate that vault was reset
+            else:
+                # For other errors (wrong password, etc.), re-raise as-is
+                raise
 
     def lock(self) -> None:
         """Lock the vault (prevents list/add/get until unlock() is called again)."""

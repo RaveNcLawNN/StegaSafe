@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
-    <height>587</height>
+    <width>1102</width>
+    <height>812</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item alignment="Qt::AlignmentFlag::AlignHCenter">
+    <item>
      <widget class="QLabel" name="lblTitle">
       <property name="text">
        <string>StegaSafe</string>
@@ -25,7 +25,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tabHome">
        <attribute name="title">
@@ -98,7 +98,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QLineEdit" name="leVaultPassword">
                     <property name="echoMode">
-                     <enum>QLineEdit::EchoMode::Password</enum>
+                     <enum>QLineEdit::Normal</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Enter Password</string>
@@ -125,7 +125,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QTreeWidget" name="twKeys">
                     <property name="editTriggers">
-                     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                     <set>QAbstractItemView::NoEditTriggers</set>
                     </property>
                     <property name="alternatingRowColors">
                      <bool>true</bool>
@@ -303,9 +303,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_12">
               <item>
                <spacer name="spcGenSymmKeyLeft">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>318</width>
@@ -323,9 +320,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcGenSymmKeyRight">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -383,9 +377,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_23">
               <item>
                <spacer name="spcAsymmKeyGenLeft">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>312</width>
@@ -403,9 +394,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcAsymmKeyGenRight">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -422,9 +410,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabSteganography">
+      <widget class="QWidget" name="tabLSBSteganography">
        <attribute name="title">
-        <string>Steganography</string>
+        <string>Steganography [LSB]</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
@@ -434,30 +422,151 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QWidget" name="rowCover" native="true">
-             <layout class="QHBoxLayout" name="horizontalLayout">
+            <widget class="QWidget" name="colSettings" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_22">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
-               <widget class="QLabel" name="lblCover">
-                <property name="text">
-                 <string>Cover File:</string>
-                </property>
+               <widget class="QWidget" name="rowCover" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <property name="bottomMargin">
+                  <number>9</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lblCover">
+                   <property name="text">
+                    <string>Cover File:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leCoverPath">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Select or Drop a File</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnBrowseCover">
+                   <property name="text">
+                    <string>Browse</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="leCoverPath">
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-                <property name="placeholderText">
-                 <string>Select or Drop a File</string>
-                </property>
+               <widget class="QWidget" name="rowSettings_2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_33">
+                 <property name="topMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lblInputFormat">
+                   <property name="text">
+                    <string>Choose the input format:</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="btnBrowseCover">
-                <property name="text">
-                 <string>Browse</string>
-                </property>
+               <widget class="QWidget" name="rowSettings" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_32">
+                 <property name="topMargin">
+                  <number>3</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="cbInputFormat">
+                   <item>
+                    <property name="text">
+                     <string>UTF-8</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Base64</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Hex</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkCompress">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Reduces&lt;/span&gt; the &lt;span style=&quot; font-weight:700;&quot;&gt;size&lt;/span&gt; of your &lt;span style=&quot; font-weight:700;&quot;&gt;payload&lt;/span&gt; using &lt;span style=&quot; font-weight:700;&quot;&gt;zlib compression&lt;/span&gt; before embedding. This allows you to hide larger amounts of data within the same cover image, though it may &lt;span style=&quot; font-weight:700;&quot;&gt;slightly increase processing time&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Compress Data (Zlib)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkCleanMetadata">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Strips&lt;/span&gt; all &lt;span style=&quot; font-weight:700;&quot;&gt;existing metadata&lt;/span&gt; (such as GPS coordinates, camera model, and timestamps) from the cover image. Use this to ensure maximum privacy and anonymity for the resulting image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Remove Image Metadata (Exif)</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>300</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leEmbedSeed">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initializes the pseudo-random number generator for non-sequential pixel selection.&lt;/p&gt;&lt;p&gt;This scatters your message randomly across the image pixels instead of filling them linearly, making the hidden data significantly harder to detect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter Secret / Seed</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leEmbedCustomDelimiter">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines a custom string appended to your data to mark its end. This acts as a stop-signal for the receiver to prevent reading random data after the actual message.&lt;/p&gt;&lt;p&gt;Default: The system calculates the hidden message length and stores it within the first 32 bits of the image. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter a Custom Delimiter</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -466,18 +575,62 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <widget class="QWidget" name="rowEmbedMessage" native="true">
              <layout class="QVBoxLayout" name="verticalLayout_11">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
               <item>
-               <widget class="QLabel" name="lblMessage">
-                <property name="text">
-                 <string>Message:</string>
-                </property>
+               <widget class="QWidget" name="colEmbedMessage_2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_34">
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lblMessage">
+                   <property name="text">
+                    <string>Message:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>800</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lblUsage">
+                   <property name="text">
+                    <string>Usage: 0 / 0 Bytes</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
               <item>
-               <widget class="QPlainTextEdit" name="pteEmbedMessage">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
+               <widget class="QWidget" name="colEmbedMessage" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_31">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QPlainTextEdit" name="pteEmbedMessage">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -488,9 +641,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <item>
                <spacer name="spcEmbedLeft">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -508,9 +658,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcEmbedRight">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -532,30 +679,152 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <item>
-            <widget class="QWidget" name="rowChooseStego" native="true">
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <widget class="QWidget" name="rowExtractSettings" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_23">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
-               <widget class="QLabel" name="lblStego">
-                <property name="text">
-                 <string>Stego File:</string>
-                </property>
+               <widget class="QWidget" name="rowChooseStego" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_35">
+                 <item>
+                  <widget class="QLabel" name="lblStego">
+                   <property name="text">
+                    <string>Stego File:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leStegoPath">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Select or Drop a File</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnBrowseStego">
+                   <property name="text">
+                    <string>Browse</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="leStegoPath">
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-                <property name="placeholderText">
-                 <string>Select or Drop a File</string>
-                </property>
+               <widget class="QWidget" name="rowChooseStego2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_36">
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lbOutputFormat">
+                   <property name="text">
+                    <string>Choose the output format:</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="btnBrowseStego">
-                <property name="text">
-                 <string>Browse</string>
-                </property>
+               <widget class="QWidget" name="colChooseStegoSettings" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <property name="topMargin">
+                  <number>3</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="cbExtractFormat">
+                   <item>
+                    <property name="text">
+                     <string>UTF-8</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Hex</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Base64</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkExtractCompress">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reverses the zlib compression, if it was applied during the embedding process. You must enable this if the original data was compressed; otherwise, the output will remain unreadable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Decompress Data (Zlib)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkDebugDump">
+                   <property name="text">
+                    <string>Debug Dump</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkAutoSave">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically saves the extracted content to a .txt file immediately after processing. Useful for archiving messages or handling text that is too long for the preview window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Save as .txt</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>300</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leExtractSeed">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Requires the exact seed value used during the embedding process. The system needs this to reconstruct the specific non-sequential pixel path to correctly locate and reassemble the hidden message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter Secret / Seed</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leExtractCustomDelimiter">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the custom delimiter used during embedding. The extraction process will stop immediately upon finding this sequence, ensuring a clean ouput without garbage data.&lt;/p&gt;&lt;p&gt;Default: The system attempts to extract the hidden message length from the first 32 bits of the image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="inputMask">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter a Custom Delimiter</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -564,11 +833,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <widget class="QWidget" name="rowExtract" native="true">
              <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="spacing">
+               <number>10</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
                <spacer name="spcExtractLeft">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -586,9 +861,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcExtractRight">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -603,10 +875,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <widget class="QWidget" name="rowExtractedMessage" native="true">
              <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
               <item>
                <widget class="QLabel" name="lblExtractedMessage">
                 <property name="text">
-                 <string>Extracted Text:</string>
+                 <string>Extracted Message:</string>
                 </property>
                </widget>
               </item>
@@ -699,9 +974,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_19">
               <item>
                <spacer name="spcEncryptLeft">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -719,9 +991,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcEncryptRight">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -809,9 +1078,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_15">
               <item>
                <spacer name="spcDecryptLeft">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -829,9 +1095,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcDecryptRight">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -907,9 +1170,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_26">
               <item>
                <spacer name="spcHashActionRight">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -927,9 +1187,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcHascActionLeft">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1052,8 +1309,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>739</width>
-     <height>20</height>
+     <width>1102</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -1061,4 +1318,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
  </widget>
  <resources/>
  <connections/>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
 </ui>

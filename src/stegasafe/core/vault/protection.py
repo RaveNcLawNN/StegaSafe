@@ -58,10 +58,20 @@ def decrypt_json_bytes(blob: bytes, password: str) -> bytes:
     if not blob.startswith(MAGIC):
         raise ValueError("Not a StegaSafe vault file")
 
+    # Check if file is too small (old format or corrupted)
+    if len(blob) < 38:  # MAGIC(9) + VERSION(1) + SALT(16) + NONCE(12) = minimum 38 bytes
+        raise ValueError("Vault file is too small or corrupted. Please delete it and create a new vault.")
+
     # MAGIC is 9 bytes long, then 1 byte version.
     version = blob[9:10]
     if version != VERSION:
-        raise ValueError("Unsupported vault version")
+        # Show what version was found for debugging
+        found_version = version.hex() if version else "empty"
+        expected_version = VERSION.hex()
+        raise ValueError(
+            f"Unsupported vault version. Found: {found_version}, Expected: {expected_version}. "
+            f"Please delete the old vault file and create a new one."
+        )
 
     salt = blob[10:26]
     nonce = blob[26:38]
