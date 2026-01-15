@@ -4,23 +4,32 @@ from stegasafe.utils.converter import DataConverter
 from . import common
 from . import protocol
 
-"""Creates a list of indices that determine which pixels are overwritten - default without seed [0, 1, 2, 3, ...]"""
-def _get_pixel_indices(total_pixels, required_bits, seed=None):
-    indices = list(range(total_pixels))
+"""Creates a list of indices based on the selected channel mode that determine which pixels are overwritten"""
+def _get_pixel_indices(total_pixels, required_bits, seed=None, channel_mode="all"):
+    if channel_mode == "red":
+        indices = list(range(0, total_pixels, 3))
+    elif channel_mode == "green":
+        indices = list(range(1, total_pixels, 3))
+    elif channel_mode == "blue":
+        indices = list(range(2, total_pixels, 3))
+    else:
+        indices = list(range(total_pixels))
 
     if seed is not None:
         random.seed(seed)
         random.shuffle(indices)
 
     if required_bits is not None:
+        if required_bits > len(indices):
+            raise ValueError("not enough pixels in selected channel mode")
         selected_indices = []
         for i in range(required_bits):
             selected_indices.append(indices[i])
         return selected_indices
     return indices
 
-"""Embeds the payload within the selected image"""
-def encode_text(image_path, output_path, text, input_format="utf-8", use_compression=False, custom_delimiter=None, seed=None):
+"""Embeds the payload within the selected image and channel"""
+def encode_text(image_path, output_path, text, input_format="utf-8", use_compression=False, custom_delimiter=None, seed=None, channel_mode="all"):
     preparation_result = protocol.prepare_payload(text, input_format, use_compression, custom_delimiter)
     full_message_bytes = preparation_result[0]
     payload_len = preparation_result[1]
@@ -29,10 +38,7 @@ def encode_text(image_path, output_path, text, input_format="utf-8", use_compres
     number_of_bits = len(binary_message_string)
     img, pixels, flat_pixels = common.load_image_data(image_path)
 
-    if number_of_bits > flat_pixels.size:
-        raise ValueError("The provided payload is too large for the selected image. Try compressing the payload, or select a different image")
-
-    target_indices = _get_pixel_indices(flat_pixels.size, number_of_bits, seed)
+    target_indices = _get_pixel_indices(flat_pixels.size, number_of_bits, seed, channel_mode)
 
     for i in range(number_of_bits):
         current_bit = int(binary_message_string[i])
@@ -52,10 +58,10 @@ def encode_text(image_path, output_path, text, input_format="utf-8", use_compres
     print(f"Saved image to {output_path}. Mode: {mode_info}. Payload: {payload_len} bytes.")
 
 """Extracts the payload out of the selected image"""
-def decode_text(image_path, output_format="utf-8", use_compression=False, custom_delimiter=None, seed=None):
+def decode_text(image_path, output_format="utf-8", use_compression=False, custom_delimiter=None, seed=None, channel_mode="all"):
     _, _, flat_pixels = common.load_image_data(image_path)
 
-    indices = _get_pixel_indices(flat_pixels.size, None, seed)
+    indices = _get_pixel_indices(flat_pixels.size, None, seed, channel_mode)
 
     extracted_bits_string = ""
     raw_data = b""
@@ -73,7 +79,6 @@ def decode_text(image_path, output_format="utf-8", use_compression=False, custom
             if len(collected_bits) % 8 == 0:
                 try:
                     current_bytes = DataConverter.bits_to_bytes(collected_bits)
-
                     found_index = current_bytes.find(delimiter_bytes)
 
                     if found_index != -1:
