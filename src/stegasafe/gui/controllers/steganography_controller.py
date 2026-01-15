@@ -3,11 +3,11 @@ import time
 from pathlib import Path
 from PyQt6.QtWidgets import QFileDialog, QMessageBox
 
-from src.stegasafe.core.stego import lsb, capacity, metadata_cleaner
+from src.stegasafe.core.stego import lsb, capacity, metadata_cleaner, metadata_stego
 from src.stegasafe.utils.converter import DataConverter
 from src.stegasafe.utils.compressor import Compressor
 
-"""Main controller for LSB steganography"""
+"""Controller for LSB & Metadata steganography"""
 
 class SteganographyTabController:
     def __init__(self, ui):
@@ -24,8 +24,23 @@ class SteganographyTabController:
         if hasattr(self.ui, 'cbExtractFormat') and self.ui.cbExtractFormat.count() == 0:
             self.ui.cbExtractFormat.addItems(["UTF-8", "Hex", "Base64"])
 
+        if hasattr(self.ui, 'cbChannel') and self.ui.cbChannel.count() == 0:
+            self.ui.cbChannel.addItems(["RGB (All Channels)", "Red Channel Only", "Green Channel Only", "Blue Channel Only"])
+
+        if hasattr(self.ui, 'cbExtractChannel') and self.ui.cbExtractChannel.count() == 0:
+            self.ui.cbExtractChannel.addItems(["RGB (All Channels)", "Red Channel Only", "Green Channel Only", "Blue Channel Only"])
+
+        if hasattr(self.ui, 'cbEmbedMethod') and self.ui.cbEmbedMethod.count() == 0:
+            self.ui.cbEmbedMethod.addItems(["LSB (Pixel Manipulation)", "Metadata (Header Injection)"])
+
+        if hasattr(self.ui, 'cbExtractMethod') and self.ui.cbExtractMethod.count() == 0:
+            self.ui.cbExtractMethod.addItems(["LSB (Pixel Manipulation)", "Metadata (Header Injection)"])
+
         self.ui.chkCleanMetadata.setChecked(True)
         self.ui.lblUsage.setText("Usage: - / -")
+
+        self._toggle_ui_mode(is_extract=False)
+        self._toggle_ui_mode(is_extract=True)
 
     """Connects actions to functions"""
     def _wire_events(self):
@@ -42,8 +57,51 @@ class SteganographyTabController:
         if hasattr(self.ui, 'leEmbedSeed'):
             self.ui.leEmbedSeed.textChanged.connect(self._update_usage_display)
 
+        if hasattr(self.ui, 'cbChannel'):
+            self.ui.cbChannel.currentIndexChanged.connect(self._update_usage_display)
+
+        if hasattr(self.ui, 'cbEmbedMethod'):
+            self.ui.cbEmbedMethod.currentIndexChanged.connect(lambda: self._toggle_ui_mode(is_extract=False))
+            self.ui.cbEmbedMethod.currentIndexChanged.connect(self._update_usage_display)
+
+        if hasattr(self.ui, 'cbExtractMethod'):
+            self.ui.cbExtractMethod.currentIndexChanged.connect(lambda: self._toggle_ui_mode(is_extract=True))
+
         self.ui.btnBrowseStego.clicked.connect(lambda: self._choose_file(self.ui.leStegoPath))
         self.ui.btnExtract.clicked.connect(self._extract_message)
+
+    """Activates/Deactivates UI elements based on the method used"""
+    def _toggle_ui_mode(self, is_extract):
+        if is_extract:
+            combo = getattr(self.ui, 'cbExtractMethod', None)
+            is_metadata = combo and "Metadata" in combo.currentText()
+
+            elements_to_toggle = [
+                getattr(self.ui, 'cbExtractChannel', None),
+                getattr(self.ui, 'leExtractSeed', None),
+                getattr(self.ui, 'leExtractCustomDelimiter', None),
+                getattr(self.ui, 'cbExtractFormat', None),
+                getattr(self.ui, 'chkExtractCompress', None)
+            ]
+        else:
+            combo = getattr(self.ui, 'cbEmbedMethod', None)
+            is_metadata = combo and "Metadata" in combo.currentText()
+
+            elements_to_toggle = [
+                getattr(self.ui, 'cbChannel', None),
+                getattr(self.ui, 'leEmbedSeed', None),
+                getattr(self.ui, 'leEmbedCustomDelimiter', None),
+                getattr(self.ui, 'chkCleanMetadata', None),
+                getattr(self.ui, 'cbInputFormat', None),
+                getattr(self.ui, 'chkCompress', None)
+            ]
+
+        for el in elements_to_toggle:
+            if el:
+                el.setEnabled(not is_metadata)
+
+        if not is_extract and is_metadata and hasattr(self.ui, 'chkCleanMetadata'):
+            self.ui.chkCleanMetadata.setChecked(False)
 
     """Opens file explorer to choose carrying image - for now .png, .jpg, .jpeg and .tiff"""
     def _choose_file(self, line_edit):
@@ -64,11 +122,34 @@ class SteganographyTabController:
         else:
             return f"{size_in_bytes / (1024 * 1024):.2f} MB"
 
+    """Helper to get the channel mode setting"""
+    def _get_channel_mode(self, is_extract=False):
+        combo = None
+        if is_extract:
+            combo = getattr(self.ui, 'cbExtractChannel', None)
+        else:
+            combo = getattr(self.ui, 'cbChannel', None)
+
+        if not combo:
+            return "all"
+
+        txt = combo.currentText().lower()
+        if "red" in txt: return "red"
+        if "green" in txt: return "green"
+        if "blue" in txt: return "blue"
+        return "all"
+
+    """Helper for Embed Method check"""
+    def _is_metadata_mode(self, is_extract=False):
+        combo = getattr(self.ui, 'cbExtractMethod' if is_extract else 'cbEmbedMethod', None)
+        return combo and "Metadata" in combo.currentText()
+
     """Calls choose file and calculates maximum capacity automatically"""
     def _on_browse_cover(self):
         path = self._choose_file(self.ui.leCoverPath)
         if path:
             try:
+                mode = self._get_channel_mode(is_extract=False)
                 self.current_max_bytes = capacity.get_max_bytes_pure(path)
                 self._update_usage_display()
             except Exception:
@@ -107,9 +188,20 @@ class SteganographyTabController:
 
     """Runs everytime the payload changes. Checks whether image is loaded, simulates compression, adds overhead, calculates current size / max capacity and updates visuals"""
     def _update_usage_display(self):
+        if self._is_metadata_mode(is_extract=False):
+            self.ui.lblUsage.setText("Mode: Metadata Header (No Size Limit displayed")
+            return
+
         if self.current_max_bytes == 0:
             self.ui.lblUsage.setText("Please select an image first.")
             return
+
+        cover_path = self.ui.leCoverPath.text()
+        if cover_path:
+            mode = self._get_channel_mode(is_extract=False)
+            try:
+                self.current_max_bytes = capacity.get_max_bytes_pure(cover_path, mode)
+            except: pass
 
         text = self.ui.pteEmbedMessage.toPlainText()
         input_format = self.ui.cbInputFormat.currentText().lower()
@@ -148,7 +240,7 @@ class SteganographyTabController:
             self.ui.lblUsage.setText("Invalid Input Format")
             self.ui.lblUsage.setStyleSheet("color: red;")
 
-    """Runs upon embedding the payload - validates path, reads settings, checks capacity, calls lsb.encode_text"""
+    """Runs upon embedding the payload"""
     def _embed_message(self):
         try:
             cover_path = self._require_file(self.ui.leCoverPath.text())
@@ -156,64 +248,78 @@ class SteganographyTabController:
             if not message:
                 raise ValueError("Message cannot be empty.")
 
-            input_format = self.ui.cbInputFormat.currentText().lower()
-            use_compression = self.ui.chkCompress.isChecked()
-            should_clean_metadata = self.ui.chkCleanMetadata.isChecked()
+            if self._is_metadata_mode(is_extract=False):
+                p = Path(cover_path)
+                default_out = str(p.with_stem(p.stem + "_meta"))
 
-            delimiter = self._get_delimiter(is_extract=False)
-            seed = self._get_seed(is_extract=False)
+                output_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Stego (Metadata) Image", default_out, "JPEG Image (*.jpg *.jpeg);;TIFF Image (*.tiff *.tif)")
 
-            capacity.validate_capacity(
-                cover_path, message, input_format, use_compression, custom_delimiter=delimiter
-            )
+                if not output_path: return
 
-            p = Path(cover_path)
-            default_out = str(p.with_stem(p.stem + "_payload").with_suffix(".png"))
+                success, msg = metadata_stego.MetadataStego.embed(cover_path, output_path, message)
 
-            output_path, _ = QFileDialog.getSaveFileName(
-                self.ui, "Save Stego Image", default_out, "PNG Image (*.png)"
-            )
-            if not output_path:
+                self.ui.pteEmbedMessage.clear()
+                self._show_info("Success", msg)
                 return
 
-            if not output_path.lower().endswith(".png"):
-                output_path = output_path + ".png"
-
-            if should_clean_metadata:
-                if not metadata_cleaner.clean_metadata(cover_path, output_path):
-                    raise RuntimeError("Failed to clean metadata.")
             else:
-                try:
-                    shutil.copy2(cover_path, output_path)
-                except Exception as e:
-                    raise RuntimeError(f"Failed to copy original file: {str(e)}")
+                input_format = self.ui.cbInputFormat.currentText().lower()
+                use_compression = self.ui.chkCompress.isChecked()
+                should_clean_metadata = self.ui.chkCleanMetadata.isChecked()
 
-            lsb.encode_text(
-                image_path=output_path,
-                output_path=output_path,
-                text=message,
-                input_format=input_format,
-                use_compression=use_compression,
-                custom_delimiter=delimiter,
-                seed=seed
-            )
+                delimiter = self._get_delimiter(is_extract=False)
+                seed = self._get_seed(is_extract=False)
+                channel_mode = self._get_channel_mode(is_extract=False)
 
-            if seed:
-                mode_info = "Non-Sequential LSB (Seed set)"
-            else:
-                mode_info = "Sequential LSB (Default Header set)"
+                capacity.validate_capacity(cover_path, message, input_format, use_compression, custom_delimiter=delimiter, channel_mode=channel_mode)
 
-            self.ui.pteEmbedMessage.clear()
-            self._show_info("Success", f"Message hidden ({mode_info}) in:\n{output_path}")
+                p = Path(cover_path)
+                default_out = str(p.with_stem(p.stem + "_payload").with_suffix(".png"))
 
-            self._update_usage_display()
+                output_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Stego (LSB) Image", default_out, "PNG Image (*.png)")
+
+                if not output_path:
+                    return
+
+                if not output_path.lower().endswith(".png"):
+                    output_path = output_path + ".png"
+
+                if should_clean_metadata:
+                    if not metadata_cleaner.clean_metadata(cover_path, output_path):
+                        raise RuntimeError("Failed to clean metadata.")
+                else:
+                    try:
+                        shutil.copy2(cover_path, output_path)
+                    except Exception as e:
+                        raise RuntimeError(f"Failed to copy original file: {str(e)}")
+
+                lsb.encode_text(
+                    image_path=output_path,
+                    output_path=output_path,
+                    text=message,
+                    input_format=input_format,
+                    use_compression=use_compression,
+                    custom_delimiter=delimiter,
+                    seed=seed,
+                    channel_mode=channel_mode
+                )
+
+                if seed:
+                    mode_info = "Non-Sequential LSB (Seed set)"
+                else:
+                    mode_info = "Sequential LSB (Default Header set)"
+
+                self.ui.pteEmbedMessage.clear()
+                self._show_info("Success", f"Message hidden ({mode_info}) in:\n{output_path}")
+
+                self._update_usage_display()
 
         except ValueError as ve:
             self._show_error("Validation Error", str(ve))
         except Exception as e:
             self._show_error("Process Failed", f"An error occurred: {str(e)}")
 
-    """Runs upon extracting the payload - reads settings, calls lsb.decode_text"""
+    """Runs upon extracting the payload"""
     def _extract_message(self):
         try:
             stego_path = self._require_file(self.ui.leStegoPath.text())
@@ -223,38 +329,52 @@ class SteganographyTabController:
                     self._perform_debug_dump(stego_path)
                     return
 
-            extract_format = "utf-8"
-            if hasattr(self.ui, 'cbExtractFormat'):
-                extract_format = self.ui.cbExtractFormat.currentText().lower()
+            if self._is_metadata_mode(is_extract=True):
+                result = metadata_stego.MetadataStego.extract(stego_path)
 
-            extract_compression = False
-            if hasattr(self.ui, 'chkExtractCompress'):
-                extract_compression = self.ui.chkExtractCompress.isChecked()
-
-            delimiter = self._get_delimiter(is_extract=True)
-            seed = self._get_seed(is_extract=True)
-
-            result = lsb.decode_text(
-                image_path=stego_path,
-                output_format=extract_format,
-                use_compression=extract_compression,
-                custom_delimiter=delimiter,
-                seed=seed
-            )
-
-            if result:
-                self.ui.tbExtractedMessage.setText(result)
-                if hasattr(self.ui, 'chkAutoSave'):
-                    if self.ui.chkAutoSave.isChecked():
+                if result:
+                    self.ui.tbExtractedMessage.setText(result)
+                    if hasattr(self.ui, 'chkAutoSave') and self.ui.chkAutoSave.isChecked():
                         self._save_text_with_dialog(result, stego_path)
+                else:
+                    self.ui.tbExtractedMessage.clear()
+                    self._show_error("Extraction Failed", "No description metadata found in this file.")
+
             else:
-                self.ui.tbExtractedMessage.clear()
-                msg = "No hidden payload found."
-                if delimiter:
-                    msg = f"Custom Delimiter '{delimiter}' not found."
-                if seed:
-                    msg = msg + " (Make sure the correct seed is used!)"
-                self._show_error("Extraction Failed", msg)
+                extract_format = "utf-8"
+                if hasattr(self.ui, 'cbExtractFormat'):
+                    extract_format = self.ui.cbExtractFormat.currentText().lower()
+
+                extract_compression = False
+                if hasattr(self.ui, 'chkExtractCompress'):
+                    extract_compression = self.ui.chkExtractCompress.isChecked()
+
+                delimiter = self._get_delimiter(is_extract=True)
+                seed = self._get_seed(is_extract=True)
+                channel_mode = self._get_channel_mode(is_extract=True)
+
+                result = lsb.decode_text(
+                    image_path=stego_path,
+                    output_format=extract_format,
+                    use_compression=extract_compression,
+                    custom_delimiter=delimiter,
+                    seed=seed,
+                    channel_mode=channel_mode
+                )
+
+                if result:
+                    self.ui.tbExtractedMessage.setText(result)
+                    if hasattr(self.ui, 'chkAutoSave'):
+                        if self.ui.chkAutoSave.isChecked():
+                            self._save_text_with_dialog(result, stego_path)
+                else:
+                    self.ui.tbExtractedMessage.clear()
+                    msg = "No hidden payload found."
+                    if delimiter:
+                        msg = f"Custom Delimiter '{delimiter}' not found."
+                    if seed:
+                        msg = msg + " (Make sure the correct seed is used!)"
+                    self._show_error("Extraction Failed", msg)
 
         except Exception as e:
             self._show_error("Error", str(e))

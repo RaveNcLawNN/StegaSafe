@@ -17,10 +17,15 @@ def save_image_from_pixels(pixels_array, original_shape, output_path):
     encoded_img = Image.fromarray(encoded_pixels.astype('uint8'), 'RGB')
     encoded_img.save(output_path, "PNG")
 
-"""Calculates the maximum capacity of bytes that can be used to hide something"""
-def get_max_bytes_pure(image_path):
+"""Calculates the maximum capacity of bytes that can be used to hide something - channel_count: 3 for full RGB, 1 for single channel"""
+def get_max_bytes_pure(image_path, channel_count=3):
     with Image.open(image_path) as image:
         width, height = image.size
-        maximum_bits = width * height * 3
+
+        if channel_count == 1:
+            maximum_bits = width * height * 1
+        else:
+            maximum_bits = width * height * 3
+
         maximum_bytes = maximum_bits // 8
         return maximum_bytes
