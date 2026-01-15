@@ -19,6 +19,7 @@ def _get_pixel_indices(total_pixels, required_bits, seed=None):
         return selected_indices
     return indices
 
+"""Embeds the payload within the selected image"""
 def encode_text(image_path, output_path, text, input_format="utf-8", use_compression=False, custom_delimiter=None, seed=None):
     preparation_result = protocol.prepare_payload(text, input_format, use_compression, custom_delimiter)
     full_message_bytes = preparation_result[0]
@@ -29,7 +30,7 @@ def encode_text(image_path, output_path, text, input_format="utf-8", use_compres
     img, pixels, flat_pixels = common.load_image_data(image_path)
 
     if number_of_bits > flat_pixels.size:
-        raise ValueError("Message too large for this image")
+        raise ValueError("The provided payload is too large for the selected image. Try compressing the payload, or select a different image")
 
     target_indices = _get_pixel_indices(flat_pixels.size, number_of_bits, seed)
 
@@ -44,12 +45,13 @@ def encode_text(image_path, output_path, text, input_format="utf-8", use_compres
     common.save_image_from_pixels(flat_pixels, pixels.shape, output_path)
 
     if seed:
-        mode_info = f"Random (Seed: {seed})"
+        mode_info = f"Non-Sequential LSB (Seed: {seed})"
     else:
-        mode_info = "Sequential"
+        mode_info = "Sequential LSB"
 
-    print(f"Saved to {output_path}. Mode: {mode_info}. Payload: {payload_len} bytes.")
+    print(f"Saved image to {output_path}. Mode: {mode_info}. Payload: {payload_len} bytes.")
 
+"""Extracts the payload out of the selected image"""
 def decode_text(image_path, output_format="utf-8", use_compression=False, custom_delimiter=None, seed=None):
     _, _, flat_pixels = common.load_image_data(image_path)
 
@@ -81,7 +83,7 @@ def decode_text(image_path, output_format="utf-8", use_compression=False, custom
                     pass
 
         if raw_data == b"":
-            return "Delimiter not found (Wrong Seed?)."
+            return "Custom delimiter could not be located. Make sure you are using the correct delimiter / seed."
 
     else:
         header_bits = ""
@@ -95,7 +97,7 @@ def decode_text(image_path, output_format="utf-8", use_compression=False, custom
 
         max_possible_bytes = (flat_pixels.size - 32) // 8
         if payload_length < 0 or payload_length > max_possible_bytes:
-            return "No valid header found (Wrong Seed?)."
+            return "A valid header could not be located. Make sure you are using the correct seed."
 
         payload_bits_needed = payload_length * 8
         payload_bits_string = ""
@@ -115,6 +117,7 @@ def decode_text(image_path, output_format="utf-8", use_compression=False, custom
     except Exception as e:
         return str(e)
 
+"""Reads and dumps content of the entire image file"""
 def debug_dump_raw(image_path, limit_bytes=None):
     _, _, flat_pixels = common.load_image_data(image_path)
 
