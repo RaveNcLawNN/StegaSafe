@@ -7,6 +7,8 @@ from src.stegasafe.core.stego import lsb, capacity, metadata_cleaner
 from src.stegasafe.utils.converter import DataConverter
 from src.stegasafe.utils.compressor import Compressor
 
+"""Main controller for LSB steganography"""
+
 class SteganographyTabController:
     def __init__(self, ui):
         self.ui = ui
@@ -14,6 +16,7 @@ class SteganographyTabController:
         self._init_ui_defaults()
         self._wire_events()
 
+    """Sets the initial window state"""
     def _init_ui_defaults(self):
         if self.ui.cbInputFormat.count() == 0:
             self.ui.cbInputFormat.addItems(["UTF-8", "Base64", "Hex"])
@@ -24,6 +27,7 @@ class SteganographyTabController:
         self.ui.chkCleanMetadata.setChecked(True)
         self.ui.lblUsage.setText("Usage: - / -")
 
+    """Connects actions to functions"""
     def _wire_events(self):
         self.ui.btnBrowseCover.clicked.connect(self._on_browse_cover)
         self.ui.btnEmbed.clicked.connect(self._embed_message)
@@ -41,15 +45,17 @@ class SteganographyTabController:
         self.ui.btnBrowseStego.clicked.connect(lambda: self._choose_file(self.ui.leStegoPath))
         self.ui.btnExtract.clicked.connect(self._extract_message)
 
+    """Opens file explorer to choose carrying image - for now .png, .jpg, .jpeg and .tiff"""
     def _choose_file(self, line_edit):
         path, _ = QFileDialog.getOpenFileName(
-            self.ui, "Select Image", "", "Images (*.png *.jpg *.jpeg *.bmp);;All Files (*)"
+            self.ui, "Select Image", "", "Images (*.png *.jpg *.jpeg *.tiff *.bmp);;All Files (*)"
         )
         if path:
             line_edit.setText(path)
             return path
         return None
 
+    """Automatically converts bytes into KB or MB"""
     def _format_size(self, size_in_bytes):
         if size_in_bytes < 1024:
             return f"{size_in_bytes} B"
@@ -58,6 +64,7 @@ class SteganographyTabController:
         else:
             return f"{size_in_bytes / (1024 * 1024):.2f} MB"
 
+    """Calls choose file and calculates maximum capacity automatically"""
     def _on_browse_cover(self):
         path = self._choose_file(self.ui.leCoverPath)
         if path:
@@ -68,6 +75,7 @@ class SteganographyTabController:
                 self.current_max_bytes = 0
                 self.ui.lblUsage.setText("Error reading image")
 
+    """Reads custom delimiter from leExtractCustomDelimiter / leEmbedCustomDelimiter"""
     def _get_delimiter(self, is_extract=False):
         if is_extract:
             field = getattr(self.ui, 'leExtractCustomDelimiter', None)
@@ -81,6 +89,7 @@ class SteganographyTabController:
             return None
         return None
 
+    """Reads custom seed / password from leExtractSeed / leEmbedSeed"""
     def _get_seed(self, is_extract=False):
         if is_extract:
             field = getattr(self.ui, 'leExtractSeed', None)
@@ -96,6 +105,7 @@ class SteganographyTabController:
                     return hash(val)
         return None
 
+    """Runs everytime the payload changes. Checks whether image is loaded, simulates compression, adds overhead, calculates current size / max capacity and updates visuals"""
     def _update_usage_display(self):
         if self.current_max_bytes == 0:
             self.ui.lblUsage.setText("Please select an image first.")
@@ -138,6 +148,7 @@ class SteganographyTabController:
             self.ui.lblUsage.setText("Invalid Input Format")
             self.ui.lblUsage.setStyleSheet("color: red;")
 
+    """Runs upon embedding the payload - validates path, reads settings, checks capacity, calls lsb.encode_text"""
     def _embed_message(self):
         try:
             cover_path = self._require_file(self.ui.leCoverPath.text())
@@ -157,7 +168,7 @@ class SteganographyTabController:
             )
 
             p = Path(cover_path)
-            default_out = str(p.with_stem(p.stem + "_stego").with_suffix(".png"))
+            default_out = str(p.with_stem(p.stem + "_payload").with_suffix(".png"))
 
             output_path, _ = QFileDialog.getSaveFileName(
                 self.ui, "Save Stego Image", default_out, "PNG Image (*.png)"
@@ -188,9 +199,9 @@ class SteganographyTabController:
             )
 
             if seed:
-                mode_info = "Random (Seed set)"
+                mode_info = "Non-Sequential LSB (Seed set)"
             else:
-                mode_info = "Sequential"
+                mode_info = "Sequential LSB (Default Header set)"
 
             self.ui.pteEmbedMessage.clear()
             self._show_info("Success", f"Message hidden ({mode_info}) in:\n{output_path}")
@@ -202,6 +213,7 @@ class SteganographyTabController:
         except Exception as e:
             self._show_error("Process Failed", f"An error occurred: {str(e)}")
 
+    """Runs upon extracting the payload - reads settings, calls lsb.decode_text"""
     def _extract_message(self):
         try:
             stego_path = self._require_file(self.ui.leStegoPath.text())
@@ -237,24 +249,25 @@ class SteganographyTabController:
                         self._save_text_with_dialog(result, stego_path)
             else:
                 self.ui.tbExtractedMessage.clear()
-                msg = "No hidden message found."
+                msg = "No hidden payload found."
                 if delimiter:
-                    msg = f"Delimiter '{delimiter}' not found."
+                    msg = f"Custom Delimiter '{delimiter}' not found."
                 if seed:
-                    msg = msg + " (Did you use the correct Seed?)"
+                    msg = msg + " (Make sure the correct seed is used!)"
                 self._show_error("Extraction Failed", msg)
 
         except Exception as e:
             self._show_error("Error", str(e))
 
+    """Calls lsb.debug_dump_raw"""
     def _perform_debug_dump(self, image_path):
         try:
             raw_bytes = lsb.debug_dump_raw(image_path)
             formatted_dump = self._format_hexdump(raw_bytes)
 
-            display_text = formatted_dump[:50000]
-            if len(formatted_dump) > 50000:
-                display_text = display_text + "\n\n... [Display truncated for performance. Enable Autosave to get full dump] ..."
+            display_text = formatted_dump[:20000]
+            if len(formatted_dump) > 20000:
+                display_text = display_text + "\n\n Maximum display size (20.000 characters) reached. Enable Autosave to get full dump"
 
             self.ui.tbExtractedMessage.setText(display_text)
 
@@ -262,16 +275,17 @@ class SteganographyTabController:
                 if self.ui.chkAutoSave.isChecked():
                     self._save_text_with_dialog(formatted_dump, image_path)
             else:
-                self._show_info("Debug Dump", "Raw bits extracted to text field.\n(Enable 'Autosave' to save the full dump to a file)")
+                self._show_info("Debug Dump", "Raw bits extracted to text field.\n(Enable Autosave to save the full dump to a file)")
 
         except Exception as e:
             raise e
 
+    """Formats the debug dump into a classic hex-editor view (Offset | Hex | ASCII)"""
     def _format_hexdump(self, data):
         lines = []
         chunk_size = 16
         lines.append(f"{'OFFSET':<8}  {'HEX BYTES':<48}  {'ASCII'}")
-        lines.append("-" * 70)
+        lines.append("-" * 76)
         for i in range(0, len(data), chunk_size):
             chunk = data[i:i + chunk_size]
             hex_part = " ".join(f"{b:02X}" for b in chunk)
@@ -279,6 +293,7 @@ class SteganographyTabController:
             lines.append(f"{i:08X}  {hex_part:<48}  {ascii_part}")
         return "\n".join(lines)
 
+    """Saves the output into a .txt when Autosave is enabled"""
     def _save_text_with_dialog(self, text_data, source_image_path):
         try:
             p = Path(source_image_path)
@@ -293,6 +308,7 @@ class SteganographyTabController:
         except Exception as e:
             self._show_error("Save Error", str(e))
 
+    """A helper that checks whether a file path is valid."""
     def _require_file(self, path_str: str) -> str:
         if not path_str:
             raise ValueError("No file selected.")
