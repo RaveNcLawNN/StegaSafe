@@ -303,6 +303,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_12">
               <item>
                <spacer name="spcGenSymmKeyLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>318</width>
@@ -320,6 +323,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcGenSymmKeyRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -377,6 +383,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_23">
               <item>
                <spacer name="spcAsymmKeyGenLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>312</width>
@@ -394,6 +403,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcAsymmKeyGenRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -412,7 +424,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
       <widget class="QWidget" name="tabLSBSteganography">
        <attribute name="title">
-        <string>Steganography [LSB]</string>
+        <string>Steganography</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
@@ -476,11 +488,40 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QLabel" name="lblInputFormat">
-                   <property name="text">
-                    <string>Choose the input format:</string>
+                  <widget class="QComboBox" name="cbEmbedMethod">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
                    </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>LSB (Pixel Manipulation)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Metadata (Header Injection)</string>
+                    </property>
+                   </item>
                   </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                 </layout>
                </widget>
@@ -493,6 +534,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </property>
                  <item>
                   <widget class="QComboBox" name="cbInputFormat">
+                   <property name="currentText">
+                    <string>UTF-8</string>
+                   </property>
                    <item>
                     <property name="text">
                      <string>UTF-8</string>
@@ -506,6 +550,30 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <item>
                     <property name="text">
                      <string>Hex</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="cbChannel">
+                   <item>
+                    <property name="text">
+                     <string>RGB (All Channels)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Red Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Green Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Blue Channel Only</string>
                     </property>
                    </item>
                   </widget>
@@ -641,6 +709,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <item>
                <spacer name="spcEmbedLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -658,6 +729,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcEmbedRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -724,11 +798,34 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QLabel" name="lbOutputFormat">
-                   <property name="text">
-                    <string>Choose the output format:</string>
+                  <widget class="QComboBox" name="cbExtractMethod">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
                    </property>
+                   <item>
+                    <property name="text">
+                     <string>LSB (Pixel Manipulation)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Metadata (Header Injection)</string>
+                    </property>
+                   </item>
                   </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                 </layout>
                </widget>
@@ -754,6 +851,36 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <item>
                     <property name="text">
                      <string>Base64</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="cbExtractChannel">
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>RGB (All Channels)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Red Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Green Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Blue Channel Only</string>
                     </property>
                    </item>
                   </widget>
@@ -844,6 +971,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
               <item>
                <spacer name="spcExtractLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -861,6 +991,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcExtractRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -974,6 +1107,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_19">
               <item>
                <spacer name="spcEncryptLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -991,6 +1127,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcEncryptRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1078,6 +1217,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_15">
               <item>
                <spacer name="spcDecryptLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1095,6 +1237,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcDecryptRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1170,6 +1315,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_26">
               <item>
                <spacer name="spcHashActionRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1187,6 +1335,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcHascActionLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
