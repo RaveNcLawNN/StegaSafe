@@ -7,7 +7,8 @@ from stegasafe.utils.decorators import handle_ui_errors
 
 
 class SignatureTabController:
-    ALGORITHM_FILTER = "Ed25519"
+    # Supported signature algorithms
+    SUPPORTED_ALGORITHMS = ["Ed25519", "RSA"]
     STATUS_STYLE_VALID = "color: green; font-weight: bold;"
     STATUS_STYLE_INVALID = "color: red; font-weight: bold;"
 
@@ -29,7 +30,7 @@ class SignatureTabController:
         self._populate_key_dropdowns()
 
     def _populate_key_dropdowns(self):
-        """Filters and loads Ed25519 keys or shows helpful placeholders based on state."""
+        """Filters and loads signature-capable keys (RSA and Ed25519) or shows helpful placeholders based on state."""
         # 1. Check if the vault is accessible
         is_vault_unlocked = (hasattr(self.key_provider, 'kv_controller') and
                              self.key_provider.kv_controller.vault.is_unlocked)
@@ -38,23 +39,24 @@ class SignatureTabController:
             self._set_ui_placeholders("Unlock Vault to see keys...")
             return
 
-        # 2. Vault is open, fetch and filter keys
+        # 2. Vault is open, fetch and filter keys (RSA and Ed25519 are signature-capable)
         all_keys = self.key_provider.list_keys()
         private_keys = [k for k in all_keys if
-                        k.get("algorithm") == self.ALGORITHM_FILTER and k.get("role") == "private"]
-        public_keys = [k for k in all_keys if k.get("algorithm") == self.ALGORITHM_FILTER and k.get("role") == "public"]
+                        k.get("algorithm") in self.SUPPORTED_ALGORITHMS and k.get("role") == "private"]
+        public_keys = [k for k in all_keys if 
+                       k.get("algorithm") in self.SUPPORTED_ALGORITHMS and k.get("role") == "public"]
 
         # 3. Populate Private Keys or show 'Empty' placeholder
         if not private_keys:
             self.ui.cbSigPrivKSelection.clear()
-            self.ui.cbSigPrivKSelection.addItem(f"Add {self.ALGORITHM_FILTER} private key to enable signing")
+            self.ui.cbSigPrivKSelection.addItem("Add RSA or Ed25519 private key to enable signing")
         else:
             self._update_combo_box(self.ui.cbSigPrivKSelection, private_keys)
 
         # 4. Populate Public Keys or show 'Empty' placeholder
         if not public_keys:
             self.ui.cbSigPubKSelection.clear()
-            self.ui.cbSigPubKSelection.addItem(f"Add {self.ALGORITHM_FILTER} public key to enable verification")
+            self.ui.cbSigPubKSelection.addItem("Add RSA or Ed25519 public key to enable verification")
         else:
             self._update_combo_box(self.ui.cbSigPubKSelection, public_keys)
 
@@ -68,7 +70,12 @@ class SignatureTabController:
         """Helper to clear and fill a specific combo box with key metadata."""
         combo_box.clear()
         for key_metadata in keys:
-            label = f"{key_metadata['name']} ({self.ALGORITHM_FILTER})"
+            algorithm = key_metadata.get("algorithm", "Unknown")
+            # For RSA keys, include bit size if available
+            if algorithm == "RSA" and key_metadata.get("bits"):
+                label = f"{key_metadata['name']} (RSA-{key_metadata['bits']})"
+            else:
+                label = f"{key_metadata['name']} ({algorithm})"
             combo_box.addItem(label, key_metadata["id"])
 
     def _wire_events(self):
@@ -106,7 +113,7 @@ class SignatureTabController:
 
         if not target_file or not key_id:
             # The decorator will catch this and show a "System Error" (ValueError)
-            raise ValueError("Both a file and an Ed25519 private key must be selected.")
+            raise ValueError("Both a file and a private key (RSA or Ed25519) must be selected.")
 
         self.ui.pbSign.setValue(30)
         private_key_pem = self.key_provider.get_key_material(key_id)
@@ -129,6 +136,9 @@ class SignatureTabController:
         key_id = self.ui.cbSigPubKSelection.currentData()
 
         if not all([target_file, signature_hex, key_id]):
+            # Reset UI state before raising error
+            self.ui.pbVerification.setValue(0)
+            self.ui.lblFileValiditShow.setText("")
             raise ValueError("Required fields missing: File, Signature, or Public Key.")
 
         self.ui.pbVerification.setValue(40)
@@ -137,6 +147,9 @@ class SignatureTabController:
         try:
             signature_bytes = bytes.fromhex(signature_hex)
         except ValueError:
+            # Reset UI state before raising error
+            self.ui.pbVerification.setValue(0)
+            self.ui.lblFileValiditShow.setText("")
             raise ValueError("The provided signature is not valid hexadecimal text.")
 
         self.ui.pbVerification.setValue(70)
