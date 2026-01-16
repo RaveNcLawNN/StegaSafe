@@ -18,4 +18,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main = QApplication(sys.argv)
+    try:
+        window = MainWindowController()
+        window.show()
+        sys.exit(main.exec())
+    except Exception as e:
+        print(f"CRITICAL APP CRASH: {e}")

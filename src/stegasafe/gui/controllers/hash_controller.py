@@ -3,6 +3,7 @@ from pathlib import Path
 from PyQt6.QtWidgets import QFileDialog, QMessageBox, QApplication
 
 from src.stegasafe.core.crypto.hashing import hash_file, verify_file_hash
+from stegasafe.utils.decorators import handle_ui_errors
 
 
 class HashTabController:
@@ -54,71 +55,58 @@ class HashTabController:
         if not p.exists() or not p.is_file():
             raise ValueError("Selected file does not exist.")
         return p
-    
-    def _show_error(self, title: str, message: str):
-        """Display an error message dialog."""
-        QMessageBox.critical(self.ui, title, message)
-    
-    def _show_info(self, title: str, message: str):
-        """Display an information message dialog."""
-        QMessageBox.information(self.ui, title, message)
-    
-    def _compute_hash(self):
+
+    @handle_ui_errors
+    def _compute_hash(self, *args):
         """Compute hash of selected file, display it, and copy to clipboard."""
-        try:
-            file_path = self._require_file(self.ui.leHashFile.text())
-            algorithm_display = self.ui.cbHashAlgo.currentText()  # "SHA-256", "SHA-512", etc.
-            algorithm = algorithm_display.lower().replace("-", "")  # "SHA-256" -> "sha256"
-            
-            # Compute hash
-            hash_value = hash_file(str(file_path), algorithm=algorithm)
-            
-            # Copy hash to clipboard automatically
-            clipboard = QApplication.clipboard()
-            clipboard.setText(hash_value)
-            
-            # Also sync the validation algorithm dropdown to match (so user doesn't forget)
-            self.ui.cbValidationHashAlgo.setCurrentText(algorithm_display)
-            
-            # Show result in a message box (hash is already copied to clipboard)
-            self._show_info(
-                "Hash Computed",
-                f"Algorithm: {algorithm_display}\n\nHash:\n{hash_value}\n\n(Copied to clipboard - Validation algorithm set to match)"
-            )
-        
-        except Exception as e:
-            self._show_error("Hash Computation Failed", str(e))
-    
-    def _validate_hash(self):
+        file_path = self._require_file(self.ui.leHashFile.text())
+        algorithm_display = self.ui.cbHashAlgo.currentText()  # "SHA-256", "SHA-512", etc.
+        algorithm = algorithm_display.lower().replace("-", "")  # "SHA-256" -> "sha256"
+
+        # Compute hash - errors here are now IntegrityError
+        hash_value = hash_file(str(file_path), algorithm=algorithm)
+
+        # Copy hash to clipboard automatically
+        clipboard = QApplication.clipboard()
+        clipboard.setText(hash_value)
+
+        # Sync the validation algorithm dropdown
+        self.ui.cbValidationHashAlgo.setCurrentText(algorithm_display)
+
+        # Show success result
+        QMessageBox.information(
+            self.ui,
+            "Hash Computed",
+            f"Algorithm: {algorithm_display}\n\nHash:\n{hash_value}\n\n(Copied to clipboard - Validation algorithm set to match)"
+        )
+
+    @handle_ui_errors
+    def _validate_hash(self, *args):
         """Validate file hash against expected hash."""
-        try:
-            file_path = self._require_file(self.ui.leValidationHashFile.text())
-            algorithm_display = self.ui.cbValidationHashAlgo.currentText()  # "SHA-256", "SHA-512", etc.
-            algorithm = algorithm_display.lower().replace("-", "")  # "SHA-256" -> "sha256"
-            expected_hash = self.ui.leExpectedHash.text().strip()
-            
-            if not expected_hash:
-                raise ValueError("Please enter an expected hash value.")
-            
-            # Verify hash
-            is_valid = verify_file_hash(str(file_path), expected_hash, algorithm=algorithm)
-            
-            # Update result label
-            if is_valid:
-                self.ui.lblResult.setText(f"✓ Valid - Hash matches! (Algorithm: {algorithm_display})")
-                self.ui.lblResult.setStyleSheet("color: green; font-weight: bold;")
-            else:
-                # Compute actual hash to show what it should be (for debugging)
-                actual_hash = hash_file(str(file_path), algorithm=algorithm)
-                self.ui.lblResult.setText(f"✗ Invalid - Hash does not match! (Algorithm: {algorithm_display})")
-                self.ui.lblResult.setStyleSheet("color: red; font-weight: bold;")
-                # Show helpful error with actual hash
-                self._show_error(
-                    "Hash Validation Failed",
-                    f"Hash does not match!\n\nAlgorithm: {algorithm_display}\nExpected: {expected_hash}\nActual:   {actual_hash}\n\nMake sure you're using the same algorithm for both compute and validate."
-                )
-        
-        except Exception as e:
-            self.ui.lblResult.setText("Error")
-            self.ui.lblResult.setStyleSheet("color: red;")
-            self._show_error("Hash Validation Failed", str(e))
+        file_path = self._require_file(self.ui.leValidationHashFile.text())
+        algorithm_display = self.ui.cbValidationHashAlgo.currentText() # "SHA-256", "SHA-512", etc.
+        algorithm = algorithm_display.lower().replace("-", "") # "SHA-256" -> "sha256"
+        expected_hash = self.ui.leExpectedHash.text().strip()
+
+        if not expected_hash:
+            raise ValueError("Please enter an expected hash value.")
+
+        # Verify hash
+        is_valid = verify_file_hash(str(file_path), expected_hash, algorithm=algorithm)
+
+        # Update result label styling
+        if is_valid:
+            self.ui.lblResult.setText(f"✓ Valid - Hash matches! (Algorithm: {algorithm_display})")
+            self.ui.lblResult.setStyleSheet("color: green; font-weight: bold;")
+        else:
+            # Compute actual hash to show what it should be
+            actual_hash = hash_file(str(file_path), algorithm=algorithm)
+            self.ui.lblResult.setText(f"✗ Invalid - Hash does not match! (Algorithm: {algorithm_display})")
+            self.ui.lblResult.setStyleSheet("color: red; font-weight: bold;")
+
+            # Show the mismatch error manually as it is a specific functional outcome
+            QMessageBox.critical(
+                self.ui,
+                "Hash Validation Failed",
+                f"Hash does not match!\n\nAlgorithm: {algorithm_display}\nExpected: {expected_hash}\nActual:   {actual_hash}\n\nMake sure you're using the same algorithm for both compute and validate."
+            )

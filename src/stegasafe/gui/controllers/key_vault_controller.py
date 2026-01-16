@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QMessageBox, QTreeWidgetItem
 from PyQt6.QtCore import Qt
 
 from src.stegasafe.core.vault.manager import KeyVault
+from stegasafe.utils.decorators import handle_ui_errors
 
 
 class KeyVaultController:
@@ -27,47 +28,39 @@ class KeyVaultController:
         self.ui.btnDelete.clicked.connect(self._delete_key)
         self.ui.btnRename.clicked.connect(self._rename_key)
 
-    def _unlock_vault(self):
+    @handle_ui_errors
+    def _unlock_vault(self, *args):
         password = self.ui.leVaultPassword.text()
         if not password:
-            self._error("Missing password", "Please enter a vault password.")
-            return
+            raise ValueError("Please enter a vault password.")
 
-        try:
-            was_reset = self.vault.unlock(password)
-            self.vault_password = password
+        was_reset = self.vault.unlock(password)
+        self.vault_password = password
 
-            self.ui.leVaultPassword.clear()
-            self._show_unlocked_ui()
-            self.refresh_keys()
+        self.ui.leVaultPassword.clear()
+        self._show_unlocked_ui()
+        self.refresh_keys()
 
-            if self.on_keys_changed:
-                self.on_keys_changed()
-            
+        if self.on_keys_changed:
+            self.on_keys_changed()
 
-            if was_reset:
-                QMessageBox.information(
-                    self.ui,
-                    "Vault Reset",
-                    "Your vault file was from an older version and has been automatically reset.\n\n"
-                    "A new empty vault has been created. You can now add keys again."
-                )
-
-        except Exception as e:
-            self._error("Vault unlock failed", str(e))
+        if was_reset:
+            QMessageBox.information(
+                self.ui,
+                "Vault Reset",
+                "Your vault file was from an older version and has been automatically reset.\n\n"
+                "A new empty vault has been created. You can now add keys again."
+            )
 
     def _show_unlocked_ui(self):
         self.ui.swKeyVault.setCurrentWidget(self.ui.pgeUnlocked)
 
-    def refresh_keys(self):
-        try:
-            keys = self.vault.list_keys()
-            self._keys_cache = {k["id"]: k for k in keys}
-            self._populate_tree(keys)
-            self._clear_details()
-
-        except Exception as e:
-            self._error("Vault error", str(e))
+    @handle_ui_errors
+    def refresh_keys(self, *args):
+        keys = self.vault.list_keys()
+        self._keys_cache = {k["id"]: k for k in keys}
+        self._populate_tree(keys)
+        self._clear_details()
 
     def _populate_tree(self, keys):
         tree = self.ui.twKeys
@@ -79,9 +72,6 @@ class KeyVaultController:
             item = QTreeWidgetItem([label])
             item.setData(0, Qt.ItemDataRole.UserRole, k["id"])
             tree.addTopLevelItem(item)
-
-    def _error(self, title, message):
-        QMessageBox.critical(self.ui, title, message)
 
     def _on_key_selected(self):
         items = self.ui.twKeys.selectedItems()
@@ -132,13 +122,13 @@ class KeyVaultController:
         if not items:
             return None
         return items[0].data(0, Qt.ItemDataRole.UserRole)
-    
-    def _delete_key(self):
+
+    @handle_ui_errors
+    def _delete_key(self, *args):
         """Delete the currently selected key."""
         key_id = self._get_selected_key_id()
         if not key_id:
-            self._error("No key selected", "Please select a key to delete.")
-            return
+            raise ValueError("Please select a key to delete.")
 
         reply = QMessageBox.question(
             self.ui,
@@ -147,49 +137,36 @@ class KeyVaultController:
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             QMessageBox.StandardButton.No
         )
-        
+
         if reply != QMessageBox.StandardButton.Yes:
             return
-        
-        try:
-            if not self.vault_password:
-                raise RuntimeError("Vault is locked.")
-            
-            self.vault.delete_key(key_id, self.vault_password)
-            self.refresh_keys()
-            
-            if self.on_keys_changed:
-                self.on_keys_changed()
-            
-            QMessageBox.information(self.ui, "Key Deleted", "Key has been deleted successfully.")
-        
-        except Exception as e:
-            self._error("Delete Failed", str(e))
-    
-    def _rename_key(self):
+
+        # If vault_password is None, manager.py will now throw a VaultError
+        # which the decorator catches.
+        self.vault.delete_key(key_id, self.vault_password)
+        self.refresh_keys()
+
+        if self.on_keys_changed:
+            self.on_keys_changed()
+
+        QMessageBox.information(self.ui, "Key Deleted", "Key has been deleted successfully.")
+
+    @handle_ui_errors
+    def _rename_key(self, *args):
         """Rename the currently selected key."""
         key_id = self._get_selected_key_id()
         if not key_id:
-            self._error("No key selected", "Please select a key to rename.")
-            return
+            raise ValueError("Please select a key to rename.")
 
         new_name = self.ui.leSelectedKey.text().strip()
         if not new_name:
-            self._error("Invalid name", "Please enter a new name for the key.")
-            return
-        
-        try:
-            if not self.vault_password:
-                raise RuntimeError("Vault is locked.")
-            
-            self.vault.rename_key(key_id, new_name, self.vault_password)
-            self.refresh_keys()
-            
-            if self.on_keys_changed:
-                self.on_keys_changed()
-            
-            QMessageBox.information(self.ui, "Key Renamed", "Key has been renamed successfully.")
-        
-        except Exception as e:
-            self._error("Rename Failed", str(e))
+            raise ValueError("Please enter a new name for the key.")
+
+        self.vault.rename_key(key_id, new_name, self.vault_password)
+        self.refresh_keys()
+
+        if self.on_keys_changed:
+            self.on_keys_changed()
+
+        QMessageBox.information(self.ui, "Key Renamed", "Key has been renamed successfully.")
  

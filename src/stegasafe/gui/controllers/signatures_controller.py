@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QFileDialog, QMessageBox, QApplication
 from PyQt6.QtCore import Qt
 
 from src.stegasafe.core.crypto.signatures import sign_file, verify_file_signature
+from stegasafe.utils.decorators import handle_ui_errors
 
 
 class SignatureTabController:
@@ -96,57 +97,53 @@ class SignatureTabController:
             QApplication.clipboard().setText(signature_text)
             QMessageBox.information(self.ui, "Clipboard", "Signature successfully copied.")
 
-    def _execute_signing_process(self):
-        """Orchestrates the file signing workflow."""
+    @handle_ui_errors
+    def _execute_signing_process(self, *args):
+        self.ui.pbSign.setValue(10)
+
+        target_file = self.ui.leChooseFileToSign.text()
+        key_id = self.ui.cbSigPrivKSelection.currentData()
+
+        if not target_file or not key_id:
+            # The decorator will catch this and show a "System Error" (ValueError)
+            raise ValueError("Both a file and an Ed25519 private key must be selected.")
+
+        self.ui.pbSign.setValue(30)
+        private_key_pem = self.key_provider.get_key_material(key_id)
+
+        self.ui.pbSign.setValue(60)
+        # If sign_file fails, it raises a SignatureError which the decorator
+        # displays with the title "Signature Error".
+        signature_bytes = sign_file(target_file, private_key_pem)
+
+        # Update UI with the resulting hex string
+        self.ui.leShowSignature.setText(signature_bytes.hex())
+        self.ui.pbSign.setValue(100)
+
+    @handle_ui_errors
+    def _execute_verification_process(self, *args):
+        self.ui.pbVerification.setValue(10)
+
+        target_file = self.ui.leChooseFileToVerify.text()
+        signature_hex = self.ui.leShowSignature_2.text().strip()
+        key_id = self.ui.cbSigPubKSelection.currentData()
+
+        if not all([target_file, signature_hex, key_id]):
+            raise ValueError("Required fields missing: File, Signature, or Public Key.")
+
+        self.ui.pbVerification.setValue(40)
+        public_key_pem = self.key_provider.get_key_material(key_id)
+
         try:
-            self.ui.pbSign.setValue(10)
-
-            target_file = self.ui.leChooseFileToSign.text()
-            key_id = self.ui.cbSigPrivKSelection.currentData()
-
-            if not target_file or not key_id:
-                raise ValueError("Both a file and an Ed25519 private key must be selected.")
-
-            self.ui.pbSign.setValue(30)
-            private_key_pem = self.key_provider.get_key_material(key_id)
-
-            self.ui.pbSign.setValue(60)
-            signature_bytes = sign_file(target_file, private_key_pem)
-
-            # Update UI with the resulting hex string
-            self.ui.leShowSignature.setText(signature_bytes.hex())
-            self.ui.pbSign.setValue(100)
-
-        except Exception as error:
-            self.ui.pbSign.setValue(0)
-            QMessageBox.critical(self.ui, "Signing Failed", str(error))
-
-    def _execute_verification_process(self):
-        """Orchestrates the signature verification workflow."""
-        try:
-            self.ui.pbVerification.setValue(10)
-
-            target_file = self.ui.leChooseFileToVerify.text()
-            signature_hex = self.ui.leShowSignature_2.text().strip()
-            key_id = self.ui.cbSigPubKSelection.currentData()
-
-            if not all([target_file, signature_hex, key_id]):
-                raise ValueError("Required fields missing: File, Signature, or Public Key.")
-
-            self.ui.pbVerification.setValue(40)
-            public_key_pem = self.key_provider.get_key_material(key_id)
             signature_bytes = bytes.fromhex(signature_hex)
+        except ValueError:
+            raise ValueError("The provided signature is not valid hexadecimal text.")
 
-            self.ui.pbVerification.setValue(70)
-            is_authentic = verify_file_signature(target_file, signature_bytes, public_key_pem)
+        self.ui.pbVerification.setValue(70)
+        is_authentic = verify_file_signature(target_file, signature_bytes, public_key_pem)
 
-            self._display_verification_result(is_authentic)
-            self.ui.pbVerification.setValue(100)
-
-        except Exception as error:
-            self.ui.pbVerification.setValue(0)
-            self.ui.lblFileValiditShow.setText("Verification Error")
-            QMessageBox.critical(self.ui, "Verification Failed", str(error))
+        self._display_verification_result(is_authentic)
+        self.ui.pbVerification.setValue(100)
 
     def _display_verification_result(self, is_authentic):
         """Updates the result label with appropriate text and styling."""

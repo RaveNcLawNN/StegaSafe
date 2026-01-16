@@ -1,16 +1,14 @@
 from pathlib import Path
-
 from PyQt6.QtWidgets import QFileDialog, QMessageBox
-
 from src.stegasafe.core.crypto.aes import AESCipher
 from src.stegasafe.utils.file_adapter import read_bytes, write_bytes
-
+from stegasafe.utils.decorators import handle_ui_errors
+from stegasafe.utils.exceptions import ValidationError
 
 class CryptoTabController:
     def __init__(self, ui, key_provider):
         self.ui = ui
         self.key_provider = key_provider
-
         self._populate_algorithms()
         self._populate_keys()
         self._wire_events()
@@ -20,26 +18,21 @@ class CryptoTabController:
 
     def _populate_algorithms(self):
         modes = ["GCM", "CBC", "CTR", "CFB", "OFB", "ECB"]
-
         for cb in (self.ui.cbChooseEncAlgorithm, self.ui.cbChooseDecAlgorithm):
             cb.clear()
             cb.addItems(modes)
-            # Set GCM as default since it's the most secure
             cb.setCurrentText("GCM")
 
     def _populate_keys(self):
-        # Check if the provider's vault is actually open before asking for keys
         if hasattr(self.key_provider, 'kv_controller') and self.key_provider.kv_controller.vault.is_unlocked:
             keys = self.key_provider.list_keys(kind="symmetric")
             keys = [k for k in keys if k.get("algorithm") == "AES"]
-
             for cb in (self.ui.cbChooseEncKey, self.ui.cbChooseDecKey):
                 cb.clear()
                 for k in keys:
                     label = f"{k['name']} ({k.get('bits', '-')} bit)"
                     cb.addItem(label, k["id"])
         else:
-            # Graceful handling for the 'Locked' state at startup
             for cb in (self.ui.cbChooseEncKey, self.ui.cbChooseDecKey):
                 cb.clear()
                 cb.addItem("Unlock Vault to see keys...")
@@ -51,7 +44,6 @@ class CryptoTabController:
         self.ui.btnChooseFileToDecrypt.clicked.connect(
             lambda: self._choose_input_file(self.ui.leChooseFileToDecrypt)
         )
-
         self.ui.btnEncrypt.clicked.connect(self._encrypt)
         self.ui.btnDecrypt.clicked.connect(self._decrypt)
 
@@ -63,74 +55,56 @@ class CryptoTabController:
     def _selected_key_bytes(self, combo_box) -> bytes:
         key_id = combo_box.currentData()
         if not key_id:
-            raise ValueError("No key selected.")
+            raise ValidationError("No key selected.")
         return self.key_provider.get_key_material(key_id)
 
-    def _require_file(self, path_str: str, title: str) -> Path:
+    def _require_file(self, path_str: str) -> Path:
         if not path_str:
-            raise ValueError("No file selected.")
+            raise ValidationError("No file selected.")
         p = Path(path_str)
         if not p.exists() or not p.is_file():
-            raise ValueError("Selected file does not exist.")
+            raise ValidationError("Selected file does not exist.")
         return p
 
-    def _show_error(self, title: str, message: str):
-        QMessageBox.critical(self.ui, title, message)
+    @handle_ui_errors
+    def _encrypt(self, *args):
+        in_path = self._require_file(self.ui.leChooseFileToEncrypt.text())
+        mode = self.ui.cbChooseEncAlgorithm.currentText()
+        key = self._selected_key_bytes(self.ui.cbChooseEncKey)
 
-    def _show_info(self, title: str, message: str):
-        QMessageBox.information(self.ui, title, message)
+        default_out = str(in_path.with_suffix(in_path.suffix + ".enc"))
+        out_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Encrypted File", default_out)
 
-    def _encrypt(self):
-        try:
-            in_path = self._require_file(self.ui.leChooseFileToEncrypt.text(), "Encrypt")
-            mode = self.ui.cbChooseEncAlgorithm.currentText()
-            key = self._selected_key_bytes(self.ui.cbChooseEncKey)
+        if not out_path:
+            return
 
-            default_out = str(in_path.with_suffix(in_path.suffix + ".enc"))
-            out_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Encrypted File", default_out)
-            if not out_path:
-                return
+        plaintext = read_bytes(str(in_path))
+        cipher = AESCipher(key)
+        encrypted = cipher.encrypt(plaintext, mode=mode)
 
-            plaintext = read_bytes(str(in_path))
-            cipher = AESCipher(key)
-            encrypted = cipher.encrypt(plaintext, mode=mode)
+        write_bytes(out_path, encrypted)
+        QMessageBox.information(self.ui, "Encryption complete", f"Saved to:\n{out_path}")
 
-            write_bytes(out_path, encrypted)
-            self._show_info("Encryption complete", f"Saved to:\n{out_path}")
+    @handle_ui_errors
+    def _decrypt(self, *args):
+        in_path = self._require_file(self.ui.leChooseFileToDecrypt.text())
+        mode = self.ui.cbChooseDecAlgorithm.currentText()
+        key = self._selected_key_bytes(self.ui.cbChooseDecKey)
 
-        except Exception as e:
-            self._show_error("Encryption failed", str(e))
+        if in_path.suffix == ".enc":
+            default_out = in_path.with_suffix("")
+        else:
+            default_out = in_path.with_suffix(in_path.suffix + ".dec")
 
-    def _decrypt(self):
-        try:
-            in_path = self._require_file(self.ui.leChooseFileToDecrypt.text(), "Decrypt")
-            mode = self.ui.cbChooseDecAlgorithm.currentText()
-            key = self._selected_key_bytes(self.ui.cbChooseDecKey)
+        out_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Decrypted File", str(default_out))
 
-            if in_path.suffix == ".enc":
-                default_out = in_path.with_suffix("")  # keeps .pdf, removes only .enc
-            else:
-                default_out = in_path.with_suffix(in_path.suffix + ".dec")
+        if not out_path:
+            return
 
-            out_path, _ = QFileDialog.getSaveFileName(
-                self.ui,
-                "Save Decrypted File",
-                str(default_out),
-                "All Files (*)"
-            )
-            if not out_path:
-                return
+        ciphertext = read_bytes(str(in_path))
+        cipher = AESCipher(key)
+        # decryption fails here if key is wrong, raising CryptographyError
+        plaintext = cipher.decrypt(ciphertext, mode=mode)
 
-            chosen = Path(out_path)
-            if chosen.suffix == "":
-                out_path = str(chosen.with_suffix(default_out.suffix))
-
-            ciphertext = read_bytes(str(in_path))
-            cipher = AESCipher(key)
-            plaintext = cipher.decrypt(ciphertext, mode=mode)
-
-            write_bytes(out_path, plaintext)
-            self._show_info("Decryption complete", f"Saved to:\n{out_path}")
-
-        except Exception as e:
-            self._show_error("Decryption failed", str(e))
+        write_bytes(out_path, plaintext)
+        QMessageBox.information(self.ui, "Decryption complete", f"Saved to:\n{out_path}")
