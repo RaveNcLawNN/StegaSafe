@@ -8,18 +8,8 @@ class MetadataStego:
     def embed(image_path, output_path, text):
         try:
             img = Image.open(image_path)
-
-            # EXIF-Daten laden (oder leeres Objekt erstellen, falls keine da sind)
             exif = img.getexif()
-
-            # Text in das Description-Feld schreiben
-            # Hinweis: EXIF erwartet Strings oder Bytes.
             exif[MetadataStego.TAG_ID] = text
-
-            # Speichern
-            # WICHTIG: exif=exif muss übergeben werden.
-            # Bei JPG/TIFF bleiben die Pixel erhalten (ggf. neu komprimiert bei JPG),
-            # aber der Header wird aktualisiert.
             img.save(output_path, exif=exif)
             print(exif)
 
@@ -34,9 +24,8 @@ class MetadataStego:
             exif = img.getexif()
 
             if exif and MetadataStego.TAG_ID in exif:
-                # Den Inhalt des Tags zurückgeben
                 return str(exif[MetadataStego.TAG_ID])
 
-            return None  # Nichts gefunden
+            return None
         except Exception as e:
             raise SteganographyError(f"Metadata Extraction Error: {str(e)}")

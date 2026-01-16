@@ -38,11 +38,9 @@ def process_raw_data(raw_data, output_format, use_compression):
         try:
             raw_data = Compressor.decompress(raw_data)
         except Exception as e:
-            # Specific feedback if decompression fails during extraction
             raise ProcessingError(f"Decompression failed: {str(e)}. Data corrupted or settings mismatch.")
 
     try:
         return DataConverter.from_bytes(raw_data, output_format)
     except Exception as e:
-        # Handle conversion errors during extraction
         raise ProcessingError(f"Data conversion failed: {str(e)}")

@@ -10,5 +10,4 @@ def clean_metadata(image_path, output_path):
         image_without_exif.save(output_path, "PNG")
         return True
     except Exception as e:
-        # Raise a domain error with context instead of returning False
         raise SteganographyError(f"Metadata cleaning failed: {str(e)}")
