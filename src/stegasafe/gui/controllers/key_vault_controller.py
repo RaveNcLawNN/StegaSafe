@@ -1,4 +1,5 @@
-from PyQt6.QtWidgets import QMessageBox, QTreeWidgetItem
+from pathlib import Path
+from PyQt6.QtWidgets import QMessageBox, QTreeWidgetItem, QLineEdit
 from PyQt6.QtCore import Qt
 
 from stegasafe.core.vault.manager import KeyVault
@@ -11,17 +12,44 @@ class KeyVaultController:
         self.vault = KeyVault(vault_path)
         self.vault_password = None
         self.on_keys_changed = on_keys_changed
+        self.vault_path = vault_path
+
+        # Set password field to password mode (obfuscate input)
+        self.ui.leVaultPassword.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.ui.swKeyVault.setCurrentWidget(self.ui.pgePassword)
 
-        DEMO_DEFAULT_PASSWORD = True
-        if DEMO_DEFAULT_PASSWORD:
-            self.ui.leVaultPassword.setText("123")
+        # Set up the status label to show welcome message if vault doesn't exist
+        self._update_status_message()
 
         self._wire_events()
 
         self.ui.twKeys.itemSelectionChanged.connect(self._on_key_selected)
         self._keys_cache = {}
+
+    def _update_status_message(self):
+        """Update the status label to show welcome message if vault doesn't exist, or locked message if it does."""
+        if not Path(self.vault_path).exists():
+            # First-time use - show welcome message
+            welcome_text = (
+                "Welcome to StegaSafe Key Vault!\n\n"
+                "This is your first time using the Key Vault. Please enter a master password below.\n\n"
+                "This password will be used to:\n"
+                "• Encrypt and protect all your cryptographic keys\n"
+                "• Unlock the vault each time you start the application\n\n"
+                "⚠️ Important: Remember this password! If you forget it, you will not be able to access your keys.\n\n"
+                "The vault will be created automatically when you click 'Unlock'."
+            )
+            self.ui.lblVaultStatus.setText(welcome_text)
+            self.ui.lblVaultStatus.setWordWrap(True)  # Enable word wrap for multi-line text
+        else:
+            # Existing vault - show standard locked message
+            self.ui.lblVaultStatus.setText("The Key Vault is locked. Enter Password to unlock.")
+            self.ui.lblVaultStatus.setWordWrap(False)
+    
+    def on_tab_selected(self):
+        """Called when the Key Vault tab is selected. Updates status message if needed."""
+        self._update_status_message()
 
     def _wire_events(self):
         self.ui.btnUnlockVault.clicked.connect(self._unlock_vault)
@@ -44,11 +72,20 @@ class KeyVaultController:
         if self.on_keys_changed:
             self.on_keys_changed()
 
+        # Show message if vault was reset (corrupted) or newly created
         if was_reset:
             QMessageBox.information(
                 self.ui,
                 "Vault Reset",
                 f"{message}\n\nYou can now add keys to the new vault."
+            )
+        elif "New vault created" in message:
+            QMessageBox.information(
+                self.ui,
+                "Vault Created",
+                "Your Key Vault has been created successfully!\n\n"
+                "You can now generate and store cryptographic keys.\n\n"
+                "Remember: You'll need to enter this password each time you unlock the vault."
             )
 
     def _show_unlocked_ui(self):
