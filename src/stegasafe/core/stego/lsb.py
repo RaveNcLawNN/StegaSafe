@@ -22,10 +22,8 @@ def _get_pixel_indices(total_pixels, required_bits, seed=None, channel_mode="all
     if required_bits is not None:
         if required_bits > len(indices):
             raise ValueError("not enough pixels in selected channel mode")
-        selected_indices = []
-        for i in range(required_bits):
-            selected_indices.append(indices[i])
-        return selected_indices
+        return indices[:required_bits]
+
     return indices
 
 """Embeds the payload within the selected image and channel"""
@@ -36,19 +34,17 @@ def encode_text(image_path, output_path, text, input_format="utf-8", use_compres
 
     binary_message_string = DataConverter.bytes_to_bits(full_message_bytes)
     number_of_bits = len(binary_message_string)
-    img, pixels, flat_pixels = common.load_image_data(image_path)
+
+    original_shape, flat_pixels = common.load_image_data(image_path)
 
     target_indices = _get_pixel_indices(flat_pixels.size, number_of_bits, seed, channel_mode)
 
     for i in range(number_of_bits):
         current_bit = int(binary_message_string[i])
         pixel_index = target_indices[i]
-        current_pixel_value = flat_pixels[pixel_index]
-        pixel_without_lsb = current_pixel_value & 254
-        new_pixel_value = pixel_without_lsb | current_bit
-        flat_pixels[pixel_index] = new_pixel_value
+        flat_pixels[pixel_index] = (flat_pixels[pixel_index] & 254) | current_bit
 
-    common.save_image_from_pixels(flat_pixels, pixels.shape, output_path)
+    common.save_image_from_pixels(flat_pixels, original_shape, output_path)
 
     if seed:
         mode_info = f"Non-Sequential LSB (Seed: {seed})"
@@ -59,7 +55,7 @@ def encode_text(image_path, output_path, text, input_format="utf-8", use_compres
 
 """Extracts the payload out of the selected image"""
 def decode_text(image_path, output_format="utf-8", use_compression=False, custom_delimiter=None, seed=None, channel_mode="all"):
-    _, _, flat_pixels = common.load_image_data(image_path)
+    _, flat_pixels = common.load_image_data(image_path)
 
     indices = _get_pixel_indices(flat_pixels.size, None, seed, channel_mode)
 
@@ -122,20 +118,17 @@ def decode_text(image_path, output_format="utf-8", use_compression=False, custom
     except Exception as e:
         return str(e)
 
-"""Reads and dumps content of the entire image file"""
+"""Reads and dumps LSB content of the entire image file"""
 def debug_dump_raw(image_path, limit_bytes=None):
-    _, _, flat_pixels = common.load_image_data(image_path)
-
-    bits_string = ""
+    _, flat_pixels = common.load_image_data(image_path)
 
     if limit_bytes:
         limit_bits = limit_bytes * 8
     else:
         limit_bits = len(flat_pixels)
 
-    for i in range(limit_bits):
-        val = flat_pixels[i]
-        lsb = val & 1
-        bits_string = bits_string + str(lsb)
+    relevant_pixels = flat_pixels[:limit_bits]
 
-    return np.packbits(np.array(list(bits_string), dtype=int)).tobytes()
+    extracted_bits = relevant_pixels & 1
+
+    return np.packbits(extracted_bits).tobytes()

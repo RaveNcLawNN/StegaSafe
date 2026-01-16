@@ -489,6 +489,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </property>
                  <item>
                   <widget class="QComboBox" name="cbEmbedMethod">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Steganography Method:&lt;br/&gt;&lt;/span&gt;Choose the technique used to embed your data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Uses the Least Significant Bit to hide data inside the pixels themselves.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Hides text in the file attribute &amp;quot;Description&amp;quot; (EXIF tag).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="sizeAdjustPolicy">
                     <enum>QComboBox::AdjustToContents</enum>
                    </property>
@@ -534,6 +537,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </property>
                  <item>
                   <widget class="QComboBox" name="cbInputFormat">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Input Interpretation:&lt;/span&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;Determines how the text in the message box is converted to bytes before embedding.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UTF-8&lt;/span&gt;: &lt;br/&gt;Use for standard text messages. The text is hidden exactly as written.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Base64 / Hex&lt;/span&gt;:&lt;br/&gt;Use if your input is already an encoded string (e.g., a file or key). The app will decode this string into raw binary data before hiding it.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="currentText">
                     <string>UTF-8</string>
                    </property>
@@ -556,6 +562,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </item>
                  <item>
                   <widget class="QComboBox" name="cbChannel">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Target Channel:&lt;br/&gt;&lt;/span&gt;Selects which color channel(s) will carry the hidden data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RGB (All Channels):&lt;br/&gt;&lt;/span&gt;Maximum capacity. Hides data in Red, Green, and Blue pixels.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Blue Channel Only: &lt;br/&gt;&lt;/span&gt;Best stealth. The human eye is least sensitive to changes in blue, making the steganography harder to detect visually. But reduces capacity by 66%.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Red / Green Channel Only: &lt;br/&gt;&lt;/span&gt;Hides data exclusively in that specific color channel. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <item>
                     <property name="text">
                      <string>RGB (All Channels)</string>
@@ -581,7 +590,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QCheckBox" name="chkCompress">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Reduces&lt;/span&gt; the &lt;span style=&quot; font-weight:700;&quot;&gt;size&lt;/span&gt; of your &lt;span style=&quot; font-weight:700;&quot;&gt;payload&lt;/span&gt; using &lt;span style=&quot; font-weight:700;&quot;&gt;zlib compression&lt;/span&gt; before embedding. This allows you to hide larger amounts of data within the same cover image, though it may &lt;span style=&quot; font-weight:700;&quot;&gt;slightly increase processing time&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Compress Data (Zlib):&lt;br/&gt;&lt;/span&gt;Reduces the size of your payload using zlib compression (level=9) before embedding. This allows you to hide larger amounts of data within the same cover image, though it may slightly increase processing time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="text">
                     <string>Compress Data (Zlib)</string>
@@ -591,10 +600,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QCheckBox" name="chkCleanMetadata">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Strips&lt;/span&gt; all &lt;span style=&quot; font-weight:700;&quot;&gt;existing metadata&lt;/span&gt; (such as GPS coordinates, camera model, and timestamps) from the cover image. Use this to ensure maximum privacy and anonymity for the resulting image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Remove Image Metadata (EXIF):&lt;br/&gt;&lt;/span&gt;Strips all existing metadata (such as GPS coordinates, camera model, and timestamps) from the cover image. Use this to ensure maximum privacy and anonymity for the resulting image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="text">
-                    <string>Remove Image Metadata (Exif)</string>
+                    <string>Remove Image Metadata (EXIF)</string>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -608,7 +617,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>300</width>
+                     <width>150</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -617,7 +626,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLineEdit" name="leEmbedSeed">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initializes the pseudo-random number generator for non-sequential pixel selection.&lt;/p&gt;&lt;p&gt;This scatters your message randomly across the image pixels instead of filling them linearly, making the hidden data significantly harder to detect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Custom Secret / Seed:&lt;br/&gt;&lt;/span&gt;Initializes the pseudo-random number generator for non-sequential pixel selection.&lt;br/&gt;This scatters your message randomly across the image pixels instead of filling them linearly, making the hidden data significantly harder to detect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="placeholderText">
                     <string>Enter Secret / Seed</string>
@@ -627,7 +636,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLineEdit" name="leEmbedCustomDelimiter">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines a custom string appended to your data to mark its end. This acts as a stop-signal for the receiver to prevent reading random data after the actual message.&lt;/p&gt;&lt;p&gt;Default: The system calculates the hidden message length and stores it within the first 32 bits of the image. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Custom Delimiter:&lt;br/&gt;&lt;/span&gt;Defines a custom string appended to your data to mark its end. This acts as a stop-signal for the receiver to prevent reading random data after the actual message.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Default&lt;/span&gt;: The system calculates the hidden message length and stores it within the first 32 bits of the image. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="placeholderText">
                     <string>Enter a Custom Delimiter</string>
@@ -799,6 +808,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </property>
                  <item>
                   <widget class="QComboBox" name="cbExtractMethod">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Extraction Method:&lt;br/&gt;&lt;/span&gt;Selects where the application should look for hidden data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Scans the pixel values (bits) of the image. &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Reads the file header &amp;quot;Description&amp;quot; (EXIF tags).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="sizeAdjustPolicy">
                     <enum>QComboBox::AdjustToContents</enum>
                    </property>
@@ -838,6 +850,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </property>
                  <item>
                   <widget class="QComboBox" name="cbExtractFormat">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Output Presentation:&lt;/span&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;Determines how the raw data found in the image is converted for display.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UTF-8&lt;/span&gt;: &lt;br/&gt;Tries to display the data as readable text.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Base64 / Hex&lt;/span&gt;:&lt;br/&gt;Encodes the raw data into a safe text string. Ideal for extracting binary data (files, keys) to copy-paste without formatting errors.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <item>
                     <property name="text">
                      <string>UTF-8</string>
@@ -862,6 +877,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <width>0</width>
                      <height>0</height>
                     </size>
+                   </property>
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Source Channel:&lt;br/&gt;&lt;/span&gt;Selects which color channel to scan for hidden data.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Important&lt;/span&gt;: You must select the exact same channel mode that was used when the message was embedded. If the channels do not match, the extracted data will be unreadable random noise.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <item>
                     <property name="text">
@@ -888,7 +906,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QCheckBox" name="chkExtractCompress">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reverses the zlib compression, if it was applied during the embedding process. You must enable this if the original data was compressed; otherwise, the output will remain unreadable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decompress Data (Zlib):&lt;br/&gt;&lt;/span&gt;Reverses the zlib compression, if it was applied during the embedding process. You must enable this if the original data was compressed; otherwise, the output will remain unreadable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="text">
                     <string>Decompress Data (Zlib)</string>
@@ -897,6 +915,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </item>
                  <item>
                   <widget class="QCheckBox" name="chkDebugDump">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Debug Dump:&lt;br/&gt;&lt;/span&gt;Bypasses all protocol checks (headers, length, delimiters) and blindly extracts the raw Least Significant Bit (LSB) from the entire pixel sequence. &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use this to:&lt;br/&gt;&lt;/span&gt;Inspect the raw binary content of an image (Stegananalysis). Troubleshoot failed extractions (e.g., to check if any data patterns are visible even if the header is missing). &lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Note&lt;/span&gt;: This produces a large amount of data/noise for large images.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="text">
                     <string>Debug Dump</string>
                    </property>
@@ -905,7 +926,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QCheckBox" name="chkAutoSave">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically saves the extracted content to a .txt file immediately after processing. Useful for archiving messages or handling text that is too long for the preview window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Save as .txt:&lt;br/&gt;&lt;/span&gt;Automatically saves the extracted content to a .txt file immediately after processing. Useful for archiving messages or handling text that is too long for the preview window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="text">
                     <string>Save as .txt</string>
@@ -919,7 +940,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>300</width>
+                     <width>150</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -928,7 +949,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLineEdit" name="leExtractSeed">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Requires the exact seed value used during the embedding process. The system needs this to reconstruct the specific non-sequential pixel path to correctly locate and reassemble the hidden message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Extraction Secret / Seed:&lt;/span&gt;&lt;br/&gt;Requires the exact seed value used during the embedding process. The system needs this to reconstruct the specific non-sequential pixel path to correctly locate and reassemble the hidden message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="placeholderText">
                     <string>Enter Secret / Seed</string>
@@ -938,7 +959,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLineEdit" name="leExtractCustomDelimiter">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the custom delimiter used during embedding. The extraction process will stop immediately upon finding this sequence, ensuring a clean ouput without garbage data.&lt;/p&gt;&lt;p&gt;Default: The system attempts to extract the hidden message length from the first 32 bits of the image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Custom Delimiter:&lt;/span&gt;&lt;br/&gt;Specify the custom delimiter used during embedding. The extraction process will stop immediately upon finding this sequence, ensuring a clean ouput without garbage data.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Default&lt;/span&gt;: The system attempts to extract the hidden message length from the first 32 bits of the image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="inputMask">
                     <string/>
@@ -1509,9 +1530,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcSigPrivKSelection">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1643,9 +1661,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <spacer name="spcSigPubKSelection">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
