@@ -4,6 +4,7 @@ from PyQt6.QtCore import Qt
 
 from stegasafe.core.crypto.signatures import sign_file, verify_file_signature
 from stegasafe.utils.decorators import handle_ui_errors
+from stegasafe.utils.file_adapter import write_bytes, read_bytes
 
 
 class SignatureTabController:
@@ -90,6 +91,8 @@ class SignatureTabController:
 
         # Utilities
         self.ui.btnCopySignature.clicked.connect(self._copy_signature_to_clipboard)
+        self.ui.btnSaveSignature.clicked.connect(self._save_signature_to_file)
+        self.ui.btnChooseSignatureFile.clicked.connect(self._choose_signature_file)
 
     def _handle_file_browsing(self, path_display_widget):
         """Opens a file dialog and updates the corresponding QLineEdit."""
@@ -103,6 +106,52 @@ class SignatureTabController:
         if signature_text:
             QApplication.clipboard().setText(signature_text)
             QMessageBox.information(self.ui, "Clipboard", "Signature successfully copied.")
+
+    def _save_signature_to_file(self):
+        """Save the generated signature to a .sig file."""
+        signature_text = self.ui.leShowSignature.text().strip()
+        if not signature_text:
+            QMessageBox.warning(self.ui, "No Signature", "No signature to save. Please generate a signature first.")
+            return
+        
+        try:
+            signature_bytes = bytes.fromhex(signature_text)
+        except ValueError:
+            QMessageBox.warning(self.ui, "Invalid Signature", "The signature format is invalid.")
+            return
+        
+        # Get the original file path to suggest a signature filename
+        original_file = self.ui.leChooseFileToSign.text()
+        if original_file:
+            default_path = str(Path(original_file).with_suffix('.sig'))
+        else:
+            default_path = "signature.sig"
+        
+        file_path, _ = QFileDialog.getSaveFileName(
+            self.ui, 
+            "Save Signature File", 
+            default_path,
+            "Signature Files (*.sig);;All Files (*)"
+        )
+        
+        if file_path:
+            if not file_path.lower().endswith('.sig'):
+                file_path += '.sig'
+            write_bytes(file_path, signature_bytes)
+            QMessageBox.information(self.ui, "Success", f"Signature saved to:\n{file_path}")
+
+    def _choose_signature_file(self):
+        """Browse and select a signature file. The file path will be used for verification."""
+        file_path, _ = QFileDialog.getOpenFileName(
+            self.ui,
+            "Select Signature File",
+            "",
+            "Signature Files (*.sig);;All Files (*)"
+        )
+        
+        if file_path:
+            # Set the file path in the field - verification will detect it's a file and load it
+            self.ui.leShowSignature_2.setText(file_path)
 
     @handle_ui_errors
     def _execute_signing_process(self, *args):
@@ -132,10 +181,10 @@ class SignatureTabController:
         self.ui.pbVerification.setValue(10)
 
         target_file = self.ui.leChooseFileToVerify.text()
-        signature_hex = self.ui.leShowSignature_2.text().strip()
+        signature_input = self.ui.leShowSignature_2.text().strip()
         key_id = self.ui.cbSigPubKSelection.currentData()
 
-        if not all([target_file, signature_hex, key_id]):
+        if not all([target_file, signature_input, key_id]):
             # Reset UI state before raising error
             self.ui.pbVerification.setValue(0)
             self.ui.lblFileValiditShow.setText("")
@@ -144,13 +193,25 @@ class SignatureTabController:
         self.ui.pbVerification.setValue(40)
         public_key_pem = self.key_provider.get_key_material(key_id)
 
+        # Try to load signature - check if it's a file path or hex string
         try:
-            signature_bytes = bytes.fromhex(signature_hex)
+            signature_path = Path(signature_input)
+            if signature_path.exists() and signature_path.is_file():
+                # It's a file path - load the signature file
+                signature_bytes = read_bytes(str(signature_path))
+            else:
+                # It's a hex string - convert to bytes
+                signature_bytes = bytes.fromhex(signature_input)
         except ValueError:
             # Reset UI state before raising error
             self.ui.pbVerification.setValue(0)
             self.ui.lblFileValiditShow.setText("")
-            raise ValueError("The provided signature is not valid hexadecimal text.")
+            raise ValueError("The provided signature is not valid hexadecimal text or a valid file path.")
+        except Exception as e:
+            # Reset UI state before raising error
+            self.ui.pbVerification.setValue(0)
+            self.ui.lblFileValiditShow.setText("")
+            raise ValueError(f"Failed to load signature file: {str(e)}")
 
         self.ui.pbVerification.setValue(70)
         is_authentic = verify_file_signature(target_file, signature_bytes, public_key_pem)

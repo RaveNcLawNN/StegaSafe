@@ -1581,6 +1581,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QPushButton" name="btnSaveSignature">
+                <property name="text">
+                 <string>Save Signature File</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -1634,7 +1641,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="leShowSignature_2"/>
+               <widget class="QLineEdit" name="leShowSignature_2">
+                <property name="placeholderText">
+                 <string>Paste hex signature or file path</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseSignatureFile">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
