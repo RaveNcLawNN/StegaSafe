@@ -1,4 +1,5 @@
 from . import common, protocol
+from stegasafe.utils.exceptions import SteganographyError, CapacityError
 
 def get_max_bytes(image_path, channel_mode="all"):
     channel_count = 1 if channel_mode in ["red", "green", "blue"] else 3
@@ -15,7 +16,7 @@ def get_max_bytes_pure(image_path, channel_mode="all"):
 
 def validate_capacity(image_path, text_data, input_format="utf-8", use_compression=False, custom_delimiter=None, channel_mode="all"):
     try:
-        preparation_result = protocol.prepare_payload(image_path, input_format, use_compression, custom_delimiter)
+        preparation_result = protocol.prepare_payload(text_data, input_format, use_compression, custom_delimiter)
         payload_len = preparation_result[1]
         overhead = preparation_result[2]
 
@@ -25,8 +26,14 @@ def validate_capacity(image_path, text_data, input_format="utf-8", use_compressi
         total_available_bytes = common.get_max_bytes_pure(image_path, channel_count)
 
         if required_bytes > total_available_bytes:
-            raise ValueError("Data is too big")
+            # Specific error for when data is too large for the image
+            raise CapacityError(f"The message is too large for the selected carrier. "
+                                f"Required: {required_bytes} bytes, Available: {total_available_bytes} bytes.")
 
         return True, "Capacity OK"
+    except CapacityError:
+        # Re-raise the capacity error for the UI
+        raise
     except Exception as e:
-        raise e
+        # Wrap any other failures
+        raise SteganographyError(f"Capacity validation failed: {str(e)}")

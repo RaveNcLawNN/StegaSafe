@@ -1,4 +1,5 @@
 from PIL import Image
+from stegasafe.utils.exceptions import SteganographyError
 
 def clean_metadata(image_path, output_path):
     try:
@@ -8,5 +9,6 @@ def clean_metadata(image_path, output_path):
         image_without_exif.putdata(data)
         image_without_exif.save(output_path, "PNG")
         return True
-    except Exception:
-        return False
+    except Exception as e:
+        # Raise a domain error with context instead of returning False
+        raise SteganographyError(f"Metadata cleaning failed: {str(e)}")

@@ -1,5 +1,5 @@
 from PIL import Image, ExifTags
-
+from stegasafe.utils.exceptions import SteganographyError
 
 class MetadataStego:
     TAG_ID = 0x010E
@@ -25,7 +25,7 @@ class MetadataStego:
 
             return True, f"Saved to metadata header in {output_path}"
         except Exception as e:
-            raise RuntimeError(f"Metadata Error: {str(e)}")
+            raise SteganographyError(f"Metadata Error: {str(e)}")
 
     @staticmethod
     def extract(image_path):
@@ -39,4 +39,4 @@ class MetadataStego:
 
             return None  # Nichts gefunden
         except Exception as e:
-            raise RuntimeError(f"Metadata Extraction Error: {str(e)}")
+            raise SteganographyError(f"Metadata Extraction Error: {str(e)}")
