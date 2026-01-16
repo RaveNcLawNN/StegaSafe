@@ -2,6 +2,7 @@ import os
 from dataclasses import dataclass
 from typing import Optional
 from cryptography.hazmat.primitives import padding
+from stegasafe.utils.exceptions import CryptographyError
 
 """
 cryptopackage ist ein container, der alle teile der verschlüsselten nachricht beinhaltet
@@ -66,7 +67,7 @@ class IVGenerator:
         elif mode in ["ECB"]:
             return b""
         else:
-            raise ValueError("unbekannter mode")
+            raise CryptographyError(f"IV Generation failed: Unknown mode '{mode}'.")
 
 """
 klasse für erstellung eines paddings für AES
@@ -86,4 +87,4 @@ class PaddingManager:
             unpadder = padding.PKCS7(block_size).unpadder()
             return unpadder.update(data) + unpadder.finalize()
         except ValueError:
-            raise ValueError("padding fehler")
+            raise CryptographyError("Decryption failed: Data padding is incorrect. This usually indicates an incorrect key.")
