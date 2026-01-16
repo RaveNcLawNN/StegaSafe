@@ -3,13 +3,13 @@ from PyQt6.uic import loadUi
 from pathlib import Path
 
 # Importing sub-controllers
-from src.stegasafe.gui.controllers.cryptography_controller import CryptoTabController
-from src.stegasafe.gui.controllers.key_vault_controller import KeyVaultController
-from src.stegasafe.gui.controllers.keygen_controller import KeyGenController
-from src.stegasafe.gui.controllers.hash_controller import HashTabController
-from src.stegasafe.gui.controllers.vault_key_provider import VaultKeyProvider
-from src.stegasafe.gui.controllers.steganography_controller import SteganographyTabController
-from src.stegasafe.gui.controllers.signatures_controller import SignatureTabController
+from stegasafe.gui.controllers.cryptography_controller import CryptoTabController
+from stegasafe.gui.controllers.key_vault_controller import KeyVaultController
+from stegasafe.gui.controllers.keygen_controller import KeyGenController
+from stegasafe.gui.controllers.hash_controller import HashTabController
+from stegasafe.gui.controllers.vault_key_provider import VaultKeyProvider
+from stegasafe.gui.controllers.steganography_controller import SteganographyTabController
+from stegasafe.gui.controllers.signatures_controller import SignatureTabController
 
 
 class MainWindowController(QMainWindow):

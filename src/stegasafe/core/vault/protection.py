@@ -56,16 +56,17 @@ def decrypt_json_bytes(blob: bytes, password: str) -> bytes:
     Decrypt vault file bytes using the provided password.
     Raises VaultError on wrong password, corrupted file, or wrong format.
     """
+    # Check if file is too small (corrupted or incomplete)
+    # MAGIC(10) + VERSION(1) + SALT(16) + NONCE(12) = minimum 39 bytes
+    if len(blob) < 39:
+        raise VaultError("The vault file appears to be corrupted or incomplete. Please check the file and try again.")
+    
     if not blob.startswith(MAGIC):
         # Specific error for invalid file types
         raise VaultError("The selected file is not a valid StegaSafe vault file.")
 
-    # Check if file is too small (old format or corrupted)
-    if len(blob) < 38:  # MAGIC(9) + VERSION(1) + SALT(16) + NONCE(12) = minimum 38 bytes
-        raise VaultError("The vault file appears to be corrupted or incomplete. Please check the file and try again.")
-
-    # MAGIC is 9 bytes long, then 1 byte version.
-    version = blob[9:10]
+    # MAGIC is 10 bytes long ("STEGAVAULT"), then 1 byte version.
+    version = blob[10:11]
     if version != VERSION:
         # Show what version was found for debugging
         found_version = version.hex() if version else "empty"
@@ -75,9 +76,9 @@ def decrypt_json_bytes(blob: bytes, password: str) -> bytes:
             "Please ensure you are using the correct version of StegaSafe."
         )
 
-    salt = blob[10:26]
-    nonce = blob[26:38]
-    ciphertext = blob[38:]
+    salt = blob[11:27]  # 16 bytes after MAGIC(10) + VERSION(1)
+    nonce = blob[27:39]  # 12 bytes after salt
+    ciphertext = blob[39:]  # Rest is ciphertext + tag
 
     key = derive_key(password, salt)
     aesgcm = AESGCM(key)

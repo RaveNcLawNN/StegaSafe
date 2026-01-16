@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QMessageBox, QTreeWidgetItem
 from PyQt6.QtCore import Qt
 
-from src.stegasafe.core.vault.manager import KeyVault
+from stegasafe.core.vault.manager import KeyVault
 from stegasafe.utils.decorators import handle_ui_errors
 
 
@@ -34,7 +34,7 @@ class KeyVaultController:
         if not password:
             raise ValueError("Please enter a vault password.")
 
-        was_reset = self.vault.unlock(password)
+        was_reset, message = self.vault.unlock(password)
         self.vault_password = password
 
         self.ui.leVaultPassword.clear()
@@ -48,8 +48,7 @@ class KeyVaultController:
             QMessageBox.information(
                 self.ui,
                 "Vault Reset",
-                "Your vault file was from an older version and has been automatically reset.\n\n"
-                "A new empty vault has been created. You can now add keys again."
+                f"{message}\n\nYou can now add keys to the new vault."
             )
 
     def _show_unlocked_ui(self):

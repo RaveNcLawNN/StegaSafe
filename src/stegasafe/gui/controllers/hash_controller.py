@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PyQt6.QtWidgets import QFileDialog, QMessageBox, QApplication
 
-from src.stegasafe.core.crypto.hashing import hash_file, verify_file_hash
+from stegasafe.core.crypto.hashing import hash_file, verify_file_hash
 from stegasafe.utils.decorators import handle_ui_errors
 
 

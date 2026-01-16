@@ -1,7 +1,7 @@
 from pathlib import Path
 from PyQt6.QtWidgets import QFileDialog, QMessageBox
-from src.stegasafe.core.crypto.aes import AESCipher
-from src.stegasafe.utils.file_adapter import read_bytes, write_bytes
+from stegasafe.core.crypto.aes import AESCipher
+from stegasafe.utils.file_adapter import read_bytes, write_bytes
 from stegasafe.utils.decorators import handle_ui_errors
 from stegasafe.utils.exceptions import ValidationError
 

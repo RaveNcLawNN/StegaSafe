@@ -1,7 +1,7 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.exceptions import InvalidTag
 from .primitives import CryptoPackage, IVGenerator, PaddingManager
-from src.stegasafe.utils.exceptions import CryptographyError
+from stegasafe.utils.exceptions import CryptographyError
 
 class AESCipher:
 

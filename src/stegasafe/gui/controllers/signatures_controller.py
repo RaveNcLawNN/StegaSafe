@@ -2,7 +2,7 @@ from pathlib import Path
 from PyQt6.QtWidgets import QFileDialog, QMessageBox, QApplication
 from PyQt6.QtCore import Qt
 
-from src.stegasafe.core.crypto.signatures import sign_file, verify_file_signature
+from stegasafe.core.crypto.signatures import sign_file, verify_file_signature
 from stegasafe.utils.decorators import handle_ui_errors
 
 

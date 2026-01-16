@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QMessageBox
 
-from src.stegasafe.core.crypto.keygen import SymmetricKeyGen, AsymmetricKeyGen, KeySerializer
+from stegasafe.core.crypto.keygen import SymmetricKeyGen, AsymmetricKeyGen, KeySerializer
 from stegasafe.utils.decorators import handle_ui_errors
 from stegasafe.utils.exceptions import VaultError
 

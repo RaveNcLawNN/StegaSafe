@@ -1,6 +1,6 @@
 import hashlib
 
-from src.stegasafe.utils import read_bytes
+from stegasafe.utils import read_bytes
 from stegasafe.utils.exceptions import IntegrityError
 
 

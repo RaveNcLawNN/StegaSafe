@@ -3,9 +3,9 @@ import time
 from pathlib import Path
 from PyQt6.QtWidgets import QFileDialog, QMessageBox
 
-from src.stegasafe.core.stego import lsb, capacity, metadata_cleaner, metadata_stego
-from src.stegasafe.utils.converter import DataConverter
-from src.stegasafe.utils.compressor import Compressor
+from stegasafe.core.stego import lsb, capacity, metadata_cleaner, metadata_stego
+from stegasafe.utils.converter import DataConverter
+from stegasafe.utils.compressor import Compressor
 from stegasafe.utils.decorators import handle_ui_errors
 
 """Controller for LSB & Metadata steganography"""

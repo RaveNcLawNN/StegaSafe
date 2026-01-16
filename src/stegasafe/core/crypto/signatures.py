@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives.asymmetric import ed25519
 from cryptography.hazmat.primitives import serialization
 from cryptography.exceptions import InvalidSignature
 
-from src.stegasafe.utils import read_bytes
+from stegasafe.utils import read_bytes
 from stegasafe.utils.exceptions import SignatureError
 
 

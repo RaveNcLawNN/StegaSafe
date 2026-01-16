@@ -1,10 +1,11 @@
 import base64
 import json
 import uuid
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
-from src.stegasafe.utils import read_bytes, write_bytes
+from stegasafe.utils import read_bytes, write_bytes
 from .protection import encrypt_json_bytes, decrypt_json_bytes
 from stegasafe.utils.exceptions import VaultError
 
@@ -39,19 +40,24 @@ class KeyVault:
         self._unlocked = True
         self._save(password)
 
-    def unlock(self, password: str) -> bool:
+    def unlock(self, password: str) -> tuple[bool, str]:
         """
         Load vault from disk and decrypt it using the password.
         If the vault file doesn't exist yet, automatically creates a new empty vault.
-        If the vault version is unsupported, automatically resets to a new vault.
-        If the password is wrong or the file is corrupt, decrypt_json_bytes raises ValueError.
+        If the file is corrupted (wrong format/version), backs up the old file and creates a new one.
+        If the password is wrong, raises VaultError.
+        
         Returns:
-            True if vault was auto-reset (old version), False otherwise
+            tuple[bool, str]: (was_reset, message)
+            - was_reset: True if a corrupted vault was backed up and a new one created
+            - message: Human-readable message explaining what happened
         """
+        vault_path = Path(self.vault_path)
+        
         # If vault file doesn't exist, create a new empty one automatically.
-        if not Path(self.vault_path).exists():
+        if not vault_path.exists():
             self.create_new(password)
-            return False
+            return False, "New vault created"
 
         # Try to load and decrypt the existing vault.
         try:
@@ -59,21 +65,39 @@ class KeyVault:
             plaintext = decrypt_json_bytes(blob, password)
             self._data = json.loads(plaintext.decode("utf-8"))
             self._unlocked = True
-            return False  # Normal unlock, no reset
+            return False, "Vault unlocked successfully"
+            
         except VaultError as e:
             error_msg = str(e)
-            # If it's a version mismatch, automatically reset the vault
-            if "Unsupported vault version" in error_msg or "Vault file is too small" in error_msg:
-                # Delete the old vault file and create a new one
+            
+            # Check if it's a corruption/format issue (not just wrong password)
+            is_corruption = (
+                "not a valid StegaSafe vault file" in error_msg.lower() or
+                "Unsupported vault version" in error_msg or
+                "corrupted or incomplete" in error_msg.lower()
+            )
+            
+            if is_corruption:
+                # Backup the corrupted vault with a timestamp
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                backup_path = vault_path.parent / f"vault.dat.corrupted.{timestamp}"
+                
                 try:
-                    Path(self.vault_path).unlink()  # Delete old vault
+                    shutil.copy2(vault_path, backup_path)
+                    message = f"Corrupted vault backed up to: {backup_path.name}"
                 except Exception:
-                    pass  # Ignore if deletion fails
-                # Create a fresh vault with the same password
+                    # If backup fails, try to rename it
+                    try:
+                        vault_path.rename(backup_path)
+                        message = f"Corrupted vault renamed to: {backup_path.name}"
+                    except Exception:
+                        message = "Warning: Could not backup corrupted vault file"
+                
+                # Create a new empty vault
                 self.create_new(password)
-                return True  # Indicate that vault was reset
+                return True, f"Vault was corrupted. {message}. A new empty vault has been created."
             else:
-                # For other errors (wrong password, etc.), re-raise as-is
+                # Wrong password or other non-corruption errors - re-raise
                 raise
         except Exception as e:
             # Wrap unexpected JSON or system errors
