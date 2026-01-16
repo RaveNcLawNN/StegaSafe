@@ -2,6 +2,7 @@ import os
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from stegasafe.utils.exceptions import VaultError
 
 # Small note on how vault encryption works (beginner-friendly):
 # - The user enters a master password
@@ -53,14 +54,15 @@ def encrypt_json_bytes(plaintext: bytes, password: str) -> bytes:
 def decrypt_json_bytes(blob: bytes, password: str) -> bytes:
     """
     Decrypt vault file bytes using the provided password.
-    Raises ValueError on wrong password, corrupted file, or wrong format.
+    Raises VaultError on wrong password, corrupted file, or wrong format.
     """
     if not blob.startswith(MAGIC):
-        raise ValueError("Not a StegaSafe vault file")
+        # Specific error for invalid file types
+        raise VaultError("The selected file is not a valid StegaSafe vault file.")
 
     # Check if file is too small (old format or corrupted)
     if len(blob) < 38:  # MAGIC(9) + VERSION(1) + SALT(16) + NONCE(12) = minimum 38 bytes
-        raise ValueError("Vault file is too small or corrupted. Please delete it and create a new vault.")
+        raise VaultError("The vault file appears to be corrupted or incomplete. Please check the file and try again.")
 
     # MAGIC is 9 bytes long, then 1 byte version.
     version = blob[9:10]
@@ -68,9 +70,9 @@ def decrypt_json_bytes(blob: bytes, password: str) -> bytes:
         # Show what version was found for debugging
         found_version = version.hex() if version else "empty"
         expected_version = VERSION.hex()
-        raise ValueError(
-            f"Unsupported vault version. Found: {found_version}, Expected: {expected_version}. "
-            f"Please delete the old vault file and create a new one."
+        raise VaultError(
+            f"Unsupported vault version (Found: {found_version}, Expected: {expected_version}). "
+            "Please ensure you are using the correct version of StegaSafe."
         )
 
     salt = blob[10:26]
@@ -83,5 +85,4 @@ def decrypt_json_bytes(blob: bytes, password: str) -> bytes:
     try:
         return aesgcm.decrypt(nonce, ciphertext, None)
     except Exception:
-        # wrong password or file tampered/corrupt
-        raise ValueError("Vault unlock failed (wrong password or corrupted vault)")
+        raise VaultError("Vault unlock failed. Please check your master password and try again.")

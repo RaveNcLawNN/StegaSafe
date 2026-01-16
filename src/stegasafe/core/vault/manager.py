@@ -6,6 +6,7 @@ from pathlib import Path
 
 from src.stegasafe.utils import read_bytes, write_bytes
 from .protection import encrypt_json_bytes, decrypt_json_bytes
+from stegasafe.utils.exceptions import VaultError
 
 
 class KeyVault:
@@ -44,7 +45,6 @@ class KeyVault:
         If the vault file doesn't exist yet, automatically creates a new empty vault.
         If the vault version is unsupported, automatically resets to a new vault.
         If the password is wrong or the file is corrupt, decrypt_json_bytes raises ValueError.
-        
         Returns:
             True if vault was auto-reset (old version), False otherwise
         """
@@ -60,7 +60,7 @@ class KeyVault:
             self._data = json.loads(plaintext.decode("utf-8"))
             self._unlocked = True
             return False  # Normal unlock, no reset
-        except ValueError as e:
+        except VaultError as e:
             error_msg = str(e)
             # If it's a version mismatch, automatically reset the vault
             if "Unsupported vault version" in error_msg or "Vault file is too small" in error_msg:
@@ -75,6 +75,9 @@ class KeyVault:
             else:
                 # For other errors (wrong password, etc.), re-raise as-is
                 raise
+        except Exception as e:
+            # Wrap unexpected JSON or system errors
+            raise VaultError(f"Failed to load or decrypt the vault: {str(e)}")
 
     def lock(self) -> None:
         """Lock the vault (prevents list/add/get until unlock() is called again)."""
@@ -151,21 +154,25 @@ class KeyVault:
 
         Important: ensure the parent directory exists (first run).
         """
-        # Make sure "~/.stegasafe/" exists before writing the vault file.
-        Path(self.vault_path).parent.mkdir(parents=True, exist_ok=True)
+        try:
+            # Make sure "~/.stegasafe/" exists before writing the vault file.
+            Path(self.vault_path).parent.mkdir(parents=True, exist_ok=True)
 
-        plaintext = json.dumps(self._data, indent=2).encode("utf-8")
-        blob = encrypt_json_bytes(plaintext, password)
-        write_bytes(self.vault_path, blob)
+            plaintext = json.dumps(self._data, indent=2).encode("utf-8")
+            blob = encrypt_json_bytes(plaintext, password)
+            write_bytes(self.vault_path, blob)
+        except Exception as e:
+            # Provide clear feedback if file writing fails
+            raise VaultError(f"Failed to save vault to disk: {str(e)}")
 
     def _find(self, key_id: str):
         """Find a key entry dict by its ID."""
         for k in self._data["keys"]:
             if k["id"] == key_id:
                 return k
-        raise KeyError("Key not found")
+        raise VaultError(f"Key lookup failed: No key found with ID '{key_id}'.")
 
     def _require_unlocked(self):
         """Internal guard to prevent using the vault before unlocking."""
         if not self._unlocked:
-            raise RuntimeError("Vault is locked. Call unlock() first.")
+            raise VaultError("The Key Vault is currently locked. Please enter your master password to unlock it.")
