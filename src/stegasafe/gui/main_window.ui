@@ -98,7 +98,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QLineEdit" name="leVaultPassword">
                     <property name="echoMode">
-                     <enum>QLineEdit::EchoMode::Normal</enum>
+                     <enum>QLineEdit::Normal</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Enter Password</string>
@@ -125,7 +125,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QTreeWidget" name="twKeys">
                     <property name="editTriggers">
-                     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                     <set>QAbstractItemView::NoEditTriggers</set>
                     </property>
                     <property name="alternatingRowColors">
                      <bool>true</bool>
@@ -304,7 +304,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcGenSymmKeyLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -324,7 +324,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcGenSymmKeyRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -384,7 +384,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcAsymmKeyGenLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -404,7 +404,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcAsymmKeyGenRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -493,7 +493,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Steganography Method:&lt;br/&gt;&lt;/span&gt;Choose the technique used to embed your data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Uses the Least Significant Bit to hide data inside the pixels themselves.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Hides text in the file attribute &amp;quot;Description&amp;quot; (EXIF tag).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                    <enum>QComboBox::AdjustToContents</enum>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -516,7 +516,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_4">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -613,7 +613,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_2">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -671,10 +671,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeType">
-                    <enum>QSizePolicy::Policy::Fixed</enum>
+                    <enum>QSizePolicy::Fixed</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -719,7 +719,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEmbedLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -739,7 +739,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEmbedRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -812,7 +812,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Extraction Method:&lt;br/&gt;&lt;/span&gt;Selects where the application should look for hidden data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Scans the pixel values (bits) of the image. &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Reads the file header &amp;quot;Description&amp;quot; (EXIF tags).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                    <enum>QComboBox::AdjustToContents</enum>
                    </property>
                    <item>
                     <property name="text">
@@ -829,7 +829,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_5">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -936,7 +936,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_3">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -993,7 +993,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcExtractLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1013,7 +1013,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcExtractRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1061,6 +1061,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <string>Encrypt</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QWidget" name="colChooseEncryptMode" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_39">
+              <item>
+               <widget class="QRadioButton" name="rbModeSym">
+                <property name="text">
+                 <string>Symmetric (AES / ChaCha20)</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbModeAsym">
+                <property name="text">
+                 <string>Hybrid (ECC + AES)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
            <item>
             <widget class="QWidget" name="rowChooseFileToEncrypt" native="true">
              <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -1129,7 +1152,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEncryptLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1149,7 +1172,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEncryptRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1171,6 +1194,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <string>Decrypt</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QWidget" name="colChooseDecryptMode" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_40">
+              <item>
+               <widget class="QRadioButton" name="rbDecModeSym">
+                <property name="text">
+                 <string>Symmetric</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbDecModeAsym">
+                <property name="text">
+                 <string>Hybrid</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
            <item>
             <widget class="QWidget" name="rowChooseFileToDecrypt" native="true">
              <layout class="QHBoxLayout" name="horizontalLayout_14">
@@ -1239,7 +1285,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcDecryptLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1259,7 +1305,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcDecryptRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1337,7 +1383,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcHashActionRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1357,7 +1403,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcHascActionLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1727,7 +1773,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1102</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
