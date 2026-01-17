@@ -16,17 +16,21 @@ class CryptoPackage:
     ciphertext: bytes
     iv: Optional[bytes] = None
     tag: Optional[bytes] = None
+    ephemeral_public_key: Optional[bytes] = None
 
     def to_bytes(self, mode: str) -> bytes:
         mode = mode.upper()
         output = b""
+
+        if self.ephemeral_public_key:
+            output += self.ephemeral_public_key
 
         if self.iv is not None:
             output += self.iv
 
         output += self.ciphertext
 
-        if mode == "GCM" and self.tag is not None:
+        if (mode == "GCM" or mode == "CHACHA20" or mode == "HYBRID") and self.tag is not None:
             output += self.tag
 
         return output
@@ -36,31 +40,37 @@ class CryptoPackage:
         mode = mode.upper()
         iv = None
         tag = None
-        ciphertext = data
+        ephemeral_pub = None
+
+        current_data = data
+
+        if mode == "HYBRID":
+            ephemeral_pub = current_data[:32]
+            current_data = current_data[32:]
+            mode = "GCM"
 
         if mode == "GCM":
             iv_len = 12
             tag_len = 16
 
-            iv = data[:iv_len]
-            tag = data[-tag_len:]
-            ciphertext = data[iv_len:-tag_len]
+            iv = current_data[:iv_len]
+            tag = current_data[-tag_len:]
+            ciphertext = current_data[iv_len:-tag_len]
 
         elif mode in ["CBC", "CTR", "CFB", "OFB"]:
             iv_len = 16
-
-            iv = data[:iv_len]
-            ciphertext = data[iv_len:]
+            iv = current_data[:iv_len]
+            ciphertext = current_data[iv_len:]
 
         elif mode == "ECB":
-            ciphertext = data
+            ciphertext = current_data
 
-        return CryptoPackage(ciphertext=ciphertext, iv=iv, tag=tag)
+        return CryptoPackage(ciphertext=ciphertext, iv=iv, tag=tag, ephemeral_public_key=ephemeral_pub)
 
 class IVGenerator:
     @staticmethod
     def generate(mode: str) -> bytes:
-        if mode == "GCM":
+        if mode in ["GCM", "CHACHA20"]:
             return os.urandom(12)
         elif mode in ["CBC", "CTR", "CFB", "OFB"]:
             return os.urandom(16)
