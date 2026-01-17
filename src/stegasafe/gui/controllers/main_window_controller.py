@@ -40,12 +40,16 @@ class MainWindowController(QMainWindow):
         # Finalize initialization of consumer tabs (Crypto, Stegano, etc.)
         self._init_tab_controllers()
 
+        # WICHTIG: Event-Listener für Tab-Wechsel hinzufügen
+        # Sorgt dafür, dass Listen aktualisiert werden, sobald der User den Tab anklickt
+        self.tabWidget.currentChanged.connect(self._on_tab_changed)
+
     def _init_tab_controllers(self):
         self.crypto_controller = CryptoTabController(
             ui=self,
             key_provider=self.key_provider
         )
-        
+
         self.hash_controller = HashTabController(ui=self)
 
         self.stego_controller = SteganographyTabController(ui=self)
@@ -56,8 +60,32 @@ class MainWindowController(QMainWindow):
         )
 
     def _keys_changed(self):
+        """Callback: Wird gefeuert, wenn ein Key generiert oder importiert wurde."""
         if hasattr(self, "crypto_controller"):
             self.crypto_controller.refresh_keys()
 
         if hasattr(self, "signature_controller"):
             self.signature_controller.refresh_keys()
+
+    def _on_tab_changed(self, index):
+        """
+        Handler für Tab-Wechsel.
+        Zwingt die Controller dazu, ihre UI zu aktualisieren, wenn der User den Tab öffnet.
+        """
+        current_widget = self.tabWidget.widget(index)
+
+        # 1. Wenn User auf "Cryptography" klickt -> Keys neu laden
+        # (Behebt das Problem, dass neue Keys nicht sofort sichtbar waren)
+        if current_widget == getattr(self, 'tabCryptography', None):
+            if hasattr(self, 'crypto_controller'):
+                self.crypto_controller.refresh_keys()
+
+        # 2. Wenn User auf "Signatures" klickt -> Keys neu laden
+        elif current_widget == getattr(self, 'tabSignatures', None):
+            if hasattr(self, 'signature_controller'):
+                self.signature_controller.refresh_keys()
+
+        # 3. Wenn User auf "Key Vault" klickt -> Statusanzeige aktualisieren
+        elif current_widget == getattr(self, 'tabKeyVault', None):
+            if hasattr(self, 'key_vault_controller'):
+                self.key_vault_controller.on_tab_selected()

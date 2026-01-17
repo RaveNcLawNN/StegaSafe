@@ -11,6 +11,7 @@ to_bytes serialisiert diese teile, from_bytes deserialisiert
 optional ermöglicht die felder "leer" zu behalten, da bspw. ECB kein iv und kein tag hat
 """
 
+
 @dataclass
 class CryptoPackage:
     ciphertext: bytes
@@ -30,7 +31,8 @@ class CryptoPackage:
 
         output += self.ciphertext
 
-        if (mode == "GCM" or mode == "CHACHA20" or mode == "HYBRID") and self.tag is not None:
+        # Tag nur anhängen, wenn der Mode auch einen Tag benutzt
+        if (mode in ["GCM", "CHACHA20", "HYBRID"]) and self.tag is not None:
             output += self.tag
 
         return output
@@ -41,6 +43,7 @@ class CryptoPackage:
         iv = None
         tag = None
         ephemeral_pub = None
+        ciphertext = b""
 
         current_data = data
 
@@ -49,30 +52,39 @@ class CryptoPackage:
             current_data = current_data[32:]
             mode = "GCM"
 
-        if mode == "GCM":
+        if mode in ["GCM", "CHACHA20"]:
             iv_len = 12
             tag_len = 16
-
+            if len(current_data) < iv_len + tag_len:
+                raise ValueError("Data too short")
             iv = current_data[:iv_len]
             tag = current_data[-tag_len:]
             ciphertext = current_data[iv_len:-tag_len]
 
-        elif mode in ["CBC", "CTR", "CFB", "OFB"]:
+        elif mode in ["CBC", "CTR", "CFB", "OFB", "CHACHA20-STREAM"]:
             iv_len = 16
+            if len(current_data) < iv_len:
+                raise ValueError("Data too short for IV")
             iv = current_data[:iv_len]
             ciphertext = current_data[iv_len:]
 
         elif mode == "ECB":
             ciphertext = current_data
 
+        else:
+            raise ValueError(f"Unknown mode in from_bytes: {mode}")
+
         return CryptoPackage(ciphertext=ciphertext, iv=iv, tag=tag, ephemeral_public_key=ephemeral_pub)
+
 
 class IVGenerator:
     @staticmethod
     def generate(mode: str) -> bytes:
+        # AEAD Modes (Standard RFC)
         if mode in ["GCM", "CHACHA20"]:
             return os.urandom(12)
-        elif mode in ["CBC", "CTR", "CFB", "OFB"]:
+        # Legacy Block Modes & Raw ChaCha (Library Requirement)
+        elif mode in ["CBC", "CTR", "CFB", "OFB", "CHACHA20-STREAM"]:
             return os.urandom(16)
         elif mode in ["ECB"]:
             return b""
