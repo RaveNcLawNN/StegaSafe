@@ -142,19 +142,19 @@ class KeyVaultController:
         self.ui.lblKeyVisibility.setText(meta.get("role", "symmetric/none") if meta.get("role") else "n/a")
         self.ui.lblKeyID.setText(meta.get("id", "-"))
         self.ui.lblKeyLength.setText(str(meta.get("bits", "-")))
-        self.ui.lblKeySize.setText("-")  # keep placeholder unless you define what “size” means
+        # self.ui.lblKeySize.setText("-")
 
     def _clear_details(self):
         self.ui.leSelectedKey.setReadOnly(True)  # Make read-only when no key selected
         self.ui.leSelectedKey.clear()
 
-        self.ui.lblKeyName.setText("-")
+        # self.ui.lblKeyName.setText("-")
         self.ui.lblKeyType.setText("-")
         self.ui.lblKeyAlgorithms.setText("-")
         self.ui.lblKeyVisibility.setText("-")
         self.ui.lblKeyID.setText("-")
         self.ui.lblKeyLength.setText("-")
-        self.ui.lblKeySize.setText("-")
+        # self.ui.lblKeySize.setText("-")
 
     def _get_selected_key_id(self):
         """Get the ID of the currently selected key, or None if none selected."""
