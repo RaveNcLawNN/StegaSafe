@@ -155,7 +155,6 @@ class SignatureTabController:
 
     @handle_ui_errors
     def _execute_signing_process(self, *args):
-        self.ui.pbSign.setValue(10)
 
         target_file = self.ui.leChooseFileToSign.text()
         key_id = self.ui.cbSigPrivKSelection.currentData()
@@ -178,7 +177,6 @@ class SignatureTabController:
 
     @handle_ui_errors
     def _execute_verification_process(self, *args):
-        self.ui.pbVerification.setValue(10)
 
         target_file = self.ui.leChooseFileToVerify.text()
         signature_input = self.ui.leShowSignature_2.text().strip()
@@ -193,14 +191,11 @@ class SignatureTabController:
         self.ui.pbVerification.setValue(40)
         public_key_pem = self.key_provider.get_key_material(key_id)
 
-        # Try to load signature - check if it's a file path or hex string
         try:
             signature_path = Path(signature_input)
             if signature_path.exists() and signature_path.is_file():
-                # It's a file path - load the signature file
                 signature_bytes = read_bytes(str(signature_path))
             else:
-                # It's a hex string - convert to bytes
                 signature_bytes = bytes.fromhex(signature_input)
         except ValueError:
             # Reset UI state before raising error

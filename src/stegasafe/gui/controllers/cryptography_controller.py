@@ -7,10 +7,13 @@ from stegasafe.core.crypto.hybrid import HybridCipher
 
 from stegasafe.utils.file_adapter import read_bytes, write_bytes
 from stegasafe.utils.decorators import handle_ui_errors
-from stegasafe.utils.exceptions import ValidationError
+from stegasafe.utils.exceptions import ValidationError, CryptographyError
 
 
 class CryptoTabController:
+
+    MAGIC_HEADER = b'STGS'
+
     def __init__(self, ui, key_provider):
         self.ui = ui
         self.key_provider = key_provider
@@ -145,33 +148,32 @@ class CryptoTabController:
     def _selected_key_bytes(self, combo_box) -> bytes:
         key_id = combo_box.currentData()
         if not key_id:
-            raise ValidationError("No key selected (or Vault locked).")
+            raise ValueError("No key selected (or Vault locked).")
         return self.key_provider.get_key_material(key_id)
 
     def _require_file(self, path_str: str) -> Path:
         if not path_str:
-            raise ValidationError("No file selected.")
+            raise ValueError("No file selected.")
         p = Path(path_str)
         if not p.exists() or not p.is_file():
-            raise ValidationError("Selected file does not exist.")
+            raise ValueError("Selected file does not exist.")
         return p
 
     @handle_ui_errors
     def _encrypt(self, *args):
         in_path = self._require_file(self.ui.leChooseFileToEncrypt.text())
-
         is_hybrid = self.ui.rbModeAsym.isChecked()
         key_bytes = self._selected_key_bytes(self.ui.cbChooseEncKey)
         algo_data = self.ui.cbChooseEncAlgorithm.currentData()
 
-        # Dateiendung
         if is_hybrid:
-            extension = ".enc"
-        elif algo_data == "CHACHA20":
-            extension = ".enc"
-        elif algo_data == "CHACHA20-STREAM":
-            extension = ".enc"
+            algo_id = "HYBRID"
+            extension = ".hyb"
+        elif "CHACHA" in str(algo_data).upper():
+            algo_id = algo_data
+            extension = ".cha"
         else:
+            algo_id = algo_data
             extension = ".enc"
 
         default_out = str(in_path.with_suffix(in_path.suffix + extension))
@@ -180,60 +182,107 @@ class CryptoTabController:
             return
 
         plaintext = read_bytes(str(in_path))
-        encrypted_data = b""
 
         if is_hybrid:
             encrypted_data = HybridCipher.encrypt(plaintext, key_bytes)
         elif algo_data == "CHACHA20":
-            cipher = ChaChaCipher(key_bytes)
-            encrypted_data = cipher.encrypt(plaintext)
+            encrypted_data = ChaChaCipher(key_bytes).encrypt(plaintext)
         elif algo_data == "CHACHA20-STREAM":
-            cipher = ChaChaStreamCipher(key_bytes)
-            encrypted_data = cipher.encrypt(plaintext)
+            encrypted_data = ChaChaStreamCipher(key_bytes).encrypt(plaintext)
         elif "AES" in algo_data:
             mode_str = algo_data.split("-")[1]
-            cipher = AESCipher(key_bytes)
-            encrypted_data = cipher.encrypt(plaintext, mode=mode_str)
+            encrypted_data = AESCipher(key_bytes).encrypt(plaintext, mode=mode_str)
         else:
-            raise ValidationError("Unknown encryption algorithm selected.")
+            raise ValidationError("Unknown encryption algorithm.")
 
-        write_bytes(out_path, encrypted_data)
+        algo_bytes = algo_id.encode('utf-8')
+        orig_ext = "".join(in_path.suffixes)
+        orig_ext_bytes = orig_ext.encode('utf-8')
+
+        header = (
+                self.MAGIC_HEADER +
+                len(algo_bytes).to_bytes(1, 'big') +
+                algo_bytes +
+                len(orig_ext_bytes).to_bytes(1, 'big') +
+                orig_ext_bytes
+        )
+
+        write_bytes(out_path, header + encrypted_data)
         QMessageBox.information(self.ui, "Encryption complete", f"Saved to:\n{out_path}")
 
     @handle_ui_errors
     def _decrypt(self, *args):
         in_path = self._require_file(self.ui.leChooseFileToDecrypt.text())
-
         is_hybrid = self.ui.rbDecModeAsym.isChecked()
         key_bytes = self._selected_key_bytes(self.ui.cbChooseDecKey)
         algo_data = self.ui.cbChooseDecAlgorithm.currentData()
 
-        if in_path.suffix in [".enc", ".cha", ".hyb"]:
-            default_out = in_path.with_suffix("")
-        else:
-            default_out = in_path.with_suffix(in_path.suffix + ".dec")
+        expected_algo = "HYBRID" if is_hybrid else algo_data
+        file_content = read_bytes(str(in_path))
 
-        out_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Decrypted File", str(default_out))
-        if not out_path:
+        recovered_extension = ""
+        ciphertext = file_content
+
+        if file_content.startswith(self.MAGIC_HEADER):
+            offset = len(self.MAGIC_HEADER)
+
+            algo_len = int.from_bytes(file_content[offset:offset + 1], 'big')
+            offset += 1
+            file_algo = file_content[offset:offset + algo_len].decode('utf-8')
+            offset += algo_len
+
+            if file_algo != expected_algo:
+                raise ValidationError(f"Algorithm Mismatch! File uses {file_algo}, you selected {expected_algo}.")
+
+            ext_len = int.from_bytes(file_content[offset:offset + 1], 'big')
+            offset += 1
+            recovered_extension = file_content[offset:offset + ext_len].decode('utf-8')
+            offset += ext_len
+
+            ciphertext = file_content[offset:]
+
+        pure_name = in_path.name
+        for crypto_ext in [".enc", ".cha", ".hyb"]:
+            if pure_name.lower().endswith(crypto_ext):
+                pure_name = pure_name[:-len(crypto_ext)]
+                break
+
+        if recovered_extension:
+            if pure_name.lower().endswith(recovered_extension.lower()):
+                default_out = in_path.parent / pure_name
+            else:
+                default_out = in_path.parent / (pure_name + recovered_extension)
+        else:
+            default_out = in_path.parent / (pure_name + ".dec")
+
+        out_path_str, _ = QFileDialog.getSaveFileName(self.ui, "Save Decrypted File", str(default_out))
+        if not out_path_str:
             return
 
-        ciphertext = read_bytes(str(in_path))
-        plaintext = b""
+        out_path = Path(out_path_str)
 
-        if is_hybrid:
-            plaintext = HybridCipher.decrypt(ciphertext, key_bytes)
-        elif algo_data == "CHACHA20":
-            cipher = ChaChaCipher(key_bytes)
-            plaintext = cipher.decrypt(ciphertext)
-        elif algo_data == "CHACHA20-STREAM":
-            cipher = ChaChaStreamCipher(key_bytes)
-            plaintext = cipher.decrypt(ciphertext)
-        elif "AES" in algo_data:
-            mode_str = algo_data.split("-")[1]
-            cipher = AESCipher(key_bytes)
-            plaintext = cipher.decrypt(ciphertext, mode=mode_str)
-        else:
-            raise ValidationError("Unknown decryption algorithm selected.")
+        if recovered_extension:
+            if not out_path.name.lower().endswith(recovered_extension.lower()):
+                out_path = out_path.with_name(out_path.name + recovered_extension)
 
-        write_bytes(out_path, plaintext)
-        QMessageBox.information(self.ui, "Decryption complete", f"Saved to:\n{out_path}")
+        try:
+            if is_hybrid:
+                plaintext = HybridCipher.decrypt(ciphertext, key_bytes)
+            elif algo_data == "CHACHA20":
+                plaintext = ChaChaCipher(key_bytes).decrypt(ciphertext)
+            elif algo_data == "CHACHA20-STREAM":
+                plaintext = ChaChaStreamCipher(key_bytes).decrypt(ciphertext)
+            elif "AES" in algo_data:
+                mode_str = algo_data.split("-")[1]
+                plaintext = AESCipher(key_bytes).decrypt(ciphertext, mode=mode_str)
+            else:
+                raise ValidationError("Unknown decryption algorithm.")
+
+            write_bytes(out_path, plaintext)
+            QMessageBox.information(self.ui, "Decryption complete", f"Saved to:\n{out_path}")
+
+        except Exception as e:
+            p = Path(out_path)
+            if p.exists():
+                p.unlink()
+            raise CryptographyError(f"Decryption failed: {str(e)}")
