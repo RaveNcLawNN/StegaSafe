@@ -73,15 +73,15 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <widget class="QToolBox" name="toolBox">
              <property name="currentIndex">
-              <number>0</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="tbpKeyGen">
               <property name="geometry">
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>536</height>
+                <width>98</width>
+                <height>89</height>
                </rect>
               </property>
               <attribute name="label">
@@ -117,6 +117,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </layout>
              </widget>
              <widget class="QWidget" name="tbpStega">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>98</width>
+                <height>89</height>
+               </rect>
+              </property>
               <attribute name="label">
                <string>Steganography</string>
               </attribute>
@@ -131,12 +139,12 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Steganography is the practice of concealing a secret message within an ordinary fileso that its existence is hidden. Below are the terms and methods used in this tool.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Steganography is the practice of concealing a secret message within an ordinary file so that its existence is hidden. Below are the terms and methods used in this tool.&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Embedding Methods&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Least Significant Bit)&lt;/span&gt;&lt;br /&gt;A technique that hides data by making microscopic changes to individual image pixels.These changes are visually imperceptible.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata Hiding&lt;/span&gt;&lt;br /&gt;Embeds text into hidden metadata fields of a file, such as the description fieldin JPEG or TIFF headers, without altering pixel data.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Least Significant Bit)&lt;/span&gt;&lt;br /&gt;A technique that hides data by making microscopic changes to individual image pixels.These changes are visually imperceptible for the human eye.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata Hiding&lt;/span&gt;&lt;br /&gt;Embeds text into hidden metadata fields of a file (EXIF description field) without altering any pixel data in the process.&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Terms&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cover Image&lt;/span&gt;&lt;br /&gt;The original PNG, JPEG, or TIFF image used as the carrier for the hidden message.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cover Image&lt;/span&gt;&lt;br /&gt;The original PNG, JPG, JPEG, BMP or TIFF image used as the carrier for the hidden message.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Payload&lt;/span&gt;&lt;br /&gt;The secret information (text or binary data) that is embedded inside the image.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Seed / Secret&lt;/span&gt;&lt;br /&gt;A value used to randomize embedding locations across the image,making detection significantly harder.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Custom Delimiter&lt;/span&gt;&lt;br /&gt;A special character sequence marking the end of the hidden message.It prevents extraction from continuing into random image data.&lt;/p&gt;
@@ -150,6 +158,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </layout>
              </widget>
              <widget class="QWidget" name="tbpCrypto">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>98</width>
+                <height>89</height>
+               </rect>
+              </property>
               <attribute name="label">
                <string>Cryptography</string>
               </attribute>
@@ -164,19 +180,22 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Cryptography is the process of transforming information so that only someonewith the correct key can read it. Below are the methods and algorithmsused in this tool.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Cryptography converts readable data into an unreadable format using a secret key. This ensures that only authorized individuals with the correct key can access the information.&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Encryption Methods&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Encryption&lt;/span&gt;&lt;br /&gt;Uses the same secret key for both encryption and decryption.This is the fastest method for protecting personal files.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Hybrid Encryption&lt;/span&gt;&lt;br /&gt;Combines asymmetric and symmetric techniques.A public key is used to securely exchange a temporary secret key,which then encrypts the actual file data.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Encryption&lt;/span&gt;&lt;br /&gt;Uses a single, shared key for both encryption and decryption. It is highly efficient for large files but requires a secure method to exchange the key between parties.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Hybrid Encryption&lt;/span&gt;&lt;br /&gt;Combines the best of both worlds: Asymmetric encryption for secure key exchange and Symmetric encryption for fast data processing. This is the industry standard for secure communication.&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-GCM&lt;/span&gt;&lt;br /&gt;Recommended modern standard.Provides both encryption and built-in integrity protectionto detect tampering or corruption.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20-Poly1305 (AEAD)&lt;/span&gt;&lt;br /&gt;Fast modern alternative to AES.Also includes authentication to ensure data integrity.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CBC / AES-CTR / AES-CFB / AES-OFB&lt;/span&gt;&lt;br /&gt;Classic encryption modes.These do not include integrity checking, meaning corrupted datamay go undetected when using an incorrect key.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-ECB&lt;/span&gt;&lt;br /&gt;Simplest encryption mode.Generally not recommended, as it can reveal patternsin the encrypted data.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20 (Raw Stream)&lt;/span&gt;&lt;br /&gt;High-performance stream cipher without integrity protection.Cannot detect whether encrypted data has been modified.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-GCM&lt;/span&gt;&lt;br /&gt;The modern gold standard for AES. It provides both confidentiality and integrity protection, meaning it instantly detects if the encrypted file has been tampered with.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CBC (Cipher Block Chaining)&lt;/span&gt;&lt;br /&gt;A classic mode where each block depends on the previous one. While secure, it is slower than GCM and does not provide built-in protection against data manipulation.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CTR (Counter Mode)&lt;/span&gt;&lt;br /&gt;Turns the AES block cipher into a stream cipher, allowing for parallel processing and high speed. However, it lacks built-in integrity protection.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CFB (Cipher Feedback)&lt;/span&gt;&lt;br /&gt;Operates simirarly to a stream cipher and it self-synchronizing. Useful for specific data streams, but less commonly used for standard file encryption today compared to GCM or CBC.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-OFB (Output Feedback)&lt;/span&gt;&lt;br /&gt;Generates a keystream independent of the plaintext. It is robust against transmission errors but, like other raw encryption modes, vulnerable to undetected data manipulation.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-ECB&lt;/span&gt;&lt;br /&gt;The simplest and least secure mode. Identical data blocks produce identical ciphertext, leaving patterns visible in the encrypted data.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20-Poly1305&lt;/span&gt;&lt;br /&gt;A modern, extremely fast algorithm with built-in tamper protection (AEAD). It is particurarly efficient on systems without dedicated hardware acceleration (e.g., mobile devices).&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20 (Raw Stream)&lt;/span&gt;&lt;br /&gt;The raw stream cipher variant without the Poly1305 integrity check. While very fast, it offers no protection against manipulation - an attacker could alter data without detection.&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Keys&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Key&lt;/span&gt;&lt;br /&gt;A single secret key used for both encryption and decryption.It must be kept confidential at all times.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Asymmetric Keypair (Public &amp;amp; Private)&lt;/span&gt;&lt;br /&gt;A pair of mathematically linked keys used in RSA or ECC.The public key enables encryption, while the private keyis required to decrypt the data.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Key&lt;/span&gt;&lt;br /&gt;A single code used to both lock (encrypt) and unlock (decrypt) the data. Anyone posessing this key has full access to the file's content.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Asymmetric Keypair (Public &amp;amp; Private)&lt;/span&gt;&lt;br /&gt;Consists of two mathematically linked keys: A Public Key for encryption (shareable) and a Private Key for decryption (kept secret). Enables secure data exchange without sharing a password beforehand.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -187,8 +206,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>516</height>
+                <width>98</width>
+                <height>89</height>
                </rect>
               </property>
               <attribute name="label">
@@ -222,6 +241,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </layout>
              </widget>
              <widget class="QWidget" name="tbpSignatures">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>507</width>
+                <height>518</height>
+               </rect>
+              </property>
               <attribute name="label">
                <string>Signatures</string>
               </attribute>
@@ -306,7 +333,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Master Password:&lt;br/&gt;&lt;/span&gt;This password is the only way to unlock your keys. It is used to derive a 256-bit AES key through PBKDF2 (200,000 iterations), ensuring that even if your vault file is stolen, your keys remain protected against brute-force attacks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="echoMode">
-                     <enum>QLineEdit::EchoMode::Normal</enum>
+                     <enum>QLineEdit::Normal</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Enter Password</string>
@@ -333,7 +360,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QTreeWidget" name="twKeys">
                     <property name="editTriggers">
-                     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                     <set>QAbstractItemView::NoEditTriggers</set>
                     </property>
                     <property name="alternatingRowColors">
                      <bool>false</bool>
@@ -515,7 +542,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcGenSymmKeyLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -535,7 +562,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcGenSymmKeyRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -599,7 +626,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcAsymmKeyGenLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -619,7 +646,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcAsymmKeyGenRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -679,7 +706,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <bool>true</bool>
                    </property>
                    <property name="placeholderText">
-                    <string>Select or Drop a File</string>
+                    <string>Select a File</string>
                    </property>
                   </widget>
                  </item>
@@ -708,7 +735,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Steganography Method:&lt;br/&gt;&lt;/span&gt;Choose the technique used to embed your data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Uses the Least Significant Bit to hide data inside the pixels themselves.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Hides text in the file attribute &amp;quot;Description&amp;quot; (EXIF tag).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                    <enum>QComboBox::AdjustToContents</enum>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -731,7 +758,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_4">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Vertical</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -828,7 +855,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_2">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Vertical</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -886,10 +913,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Vertical</enum>
                    </property>
                    <property name="sizeType">
-                    <enum>QSizePolicy::Policy::Fixed</enum>
+                    <enum>QSizePolicy::Fixed</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -934,7 +961,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEmbedLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -954,7 +981,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEmbedRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1001,7 +1028,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <bool>true</bool>
                    </property>
                    <property name="placeholderText">
-                    <string>Select or Drop a File</string>
+                    <string>Select a File</string>
                    </property>
                   </widget>
                  </item>
@@ -1027,7 +1054,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Extraction Method:&lt;br/&gt;&lt;/span&gt;Selects where the application should look for hidden data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Scans the pixel values (bits) of the image. &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Reads the file header &amp;quot;Description&amp;quot; (EXIF tags).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                    <enum>QComboBox::AdjustToContents</enum>
                    </property>
                    <item>
                     <property name="text">
@@ -1044,7 +1071,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_5">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Vertical</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -1151,7 +1178,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_3">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Vertical</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -1208,7 +1235,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcExtractLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1228,7 +1255,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcExtractRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1381,7 +1408,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEncryptLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1401,7 +1428,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEncryptRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1525,7 +1552,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcDecryptLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1545,7 +1572,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcDecryptRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1627,7 +1654,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcHashActionRight">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1650,7 +1677,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcHascActionLeft">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1834,7 +1861,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcSigPrivKSelection">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1995,7 +2022,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcSigPubKSelection">
                 <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -2063,7 +2090,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1102</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
