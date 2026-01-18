@@ -68,7 +68,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <widget class="QStackedWidget" name="swKeyVault">
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="pgePassword">
               <layout class="QVBoxLayout" name="verticalLayout_14">
@@ -97,8 +97,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </item>
                   <item>
                    <widget class="QLineEdit" name="leVaultPassword">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Master Password:&lt;br/&gt;&lt;/span&gt;This password is the only way to unlock your keys. It is used to derive a 256-bit AES key through PBKDF2 (200,000 iterations), ensuring that even if your vault file is stolen, your keys remain protected against brute-force attacks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
                     <property name="echoMode">
-                     <enum>QLineEdit::Normal</enum>
+                     <enum>QLineEdit::EchoMode::Normal</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Enter Password</string>
@@ -125,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QTreeWidget" name="twKeys">
                     <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
+                     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                     </property>
                     <property name="alternatingRowColors">
                      <bool>true</bool>
@@ -235,6 +238,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <widget class="QPushButton" name="btnExport">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Export Key:&lt;br/&gt;&lt;/span&gt;Saves the selected key to a file. Asymmetric keys are exported in standard PEM format, while symmetric keys can be saved as raw binary or hexadecimal text. &lt;b&gt;Warning:&lt;/b&gt; Exported keys are no longer protected by StegaSafe encryption.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="text">
                  <string>Export</string>
                 </property>
@@ -242,6 +248,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <widget class="QPushButton" name="btnImport">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Import External Key:&lt;br/&gt;&lt;/span&gt;Allows you to add existing cryptographic keys (PEM or raw bytes) into your secure vault. The system automatically detects the algorithm and bit size before encrypting it with your master password.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="text">
                  <string>Import</string>
                 </property>
@@ -284,7 +293,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbSymmKeyAlgSelect"/>
+               <widget class="QComboBox" name="cbSymmKeyAlgSelect">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Symmetric (AES) Selection:&lt;br/&gt;&lt;/span&gt;Generates a single secret key used for both encryption and decryption. Higher bit sizes (e.g., 256-bit) provide maximum security against future computing threats but may be slightly slower on older hardware.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -311,7 +324,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcGenSymmKeyLeft">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -331,7 +344,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcGenSymmKeyRight">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -364,7 +377,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbKeypairAlgSelect"/>
+               <widget class="QComboBox" name="cbKeypairAlgSelect">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Asymmetric Algorithms:&lt;br/&gt;&lt;/span&gt;Choose between RSA and Elliptic Curve (ECC) pairs.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RSA:&lt;/span&gt; Industry standard for compatibility.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;X25519:&lt;/span&gt; Modern ECC used for high-speed secure key exchange.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ed25519:&lt;/span&gt; Specialized for creating fast, secure digital signatures.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -391,7 +408,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcAsymmKeyGenLeft">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -411,7 +428,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcAsymmKeyGenRight">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -500,7 +517,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Steganography Method:&lt;br/&gt;&lt;/span&gt;Choose the technique used to embed your data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Uses the Least Significant Bit to hide data inside the pixels themselves.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Hides text in the file attribute &amp;quot;Description&amp;quot; (EXIF tag).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QComboBox::AdjustToContents</enum>
+                    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -523,7 +540,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_4">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -620,7 +637,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_2">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -678,10 +695,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
+                    <enum>QSizePolicy::Policy::Fixed</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -726,7 +743,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEmbedLeft">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -746,7 +763,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEmbedRight">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -819,7 +836,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Extraction Method:&lt;br/&gt;&lt;/span&gt;Selects where the application should look for hidden data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Scans the pixel values (bits) of the image. &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Reads the file header &amp;quot;Description&amp;quot; (EXIF tags).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QComboBox::AdjustToContents</enum>
+                    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
                    </property>
                    <item>
                     <property name="text">
@@ -836,7 +853,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_5">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -943,7 +960,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <spacer name="horizontalSpacer_3">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -1000,7 +1017,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcExtractLeft">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1020,7 +1037,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcExtractRight">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1073,6 +1090,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QHBoxLayout" name="horizontalLayout_39">
               <item>
                <widget class="QRadioButton" name="rbModeSym">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Symmetric Encryption:&lt;br/&gt;&lt;/span&gt;Uses a single secret key to both lock (encrypt) and unlock (decrypt) your data. It is highly efficient and ideal for securing personal files where you are the only one holding the key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="text">
                  <string>Symmetric (AES / ChaCha20)</string>
                 </property>
@@ -1083,6 +1103,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <widget class="QRadioButton" name="rbModeAsym">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Hybrid Encryption (ECC + AES):&lt;br/&gt;&lt;/span&gt;Combines the security of Elliptic Curves with the speed of AES. It uses a recipient's &lt;b&gt;Public Key&lt;/b&gt; to safely transport a temporary secret key, which then encrypts the actual file. This allows for secure file sharing without needing to exchange a password beforehand.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="text">
                  <string>Hybrid (ECC + AES)</string>
                 </property>
@@ -1132,7 +1155,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbChooseEncAlgorithm"/>
+               <widget class="QComboBox" name="cbChooseEncAlgorithm">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Algorithm Selection:&lt;br/&gt;&lt;/span&gt;Choose the mathematical method for encryption.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-GCM:&lt;/span&gt; Recommended. High security with built-in tamper detection (Authenticated Encryption).&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20-Poly1305:&lt;/span&gt; A modern, fast alternative to AES.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CBC / CFB / OFB:&lt;/span&gt; Classic modes that require padding to process data blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1148,7 +1175,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbChooseEncKey"/>
+               <widget class="QComboBox" name="cbChooseEncKey">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Key Selection:&lt;br/&gt;&lt;/span&gt;Select a compatible key from your Vault. For Symmetric mode, use an AES secret key. For Hybrid mode, you must select the &lt;b&gt;Public Key&lt;/b&gt; belonging to the intended recipient.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1159,7 +1190,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEncryptLeft">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1179,7 +1210,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcEncryptRight">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1256,6 +1287,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </item>
            <item>
             <widget class="QWidget" name="rowChooseDecAlgorithm" native="true">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decryption Algorithm:&lt;br/&gt;&lt;/span&gt;&lt;b&gt;CRITICAL:&lt;/b&gt; You must select the identical algorithm used for encryption. While modes like AES-GCM will warn you if the selection is wrong, legacy modes like CBC will produce a corrupted file without warning if mismatched.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <layout class="QHBoxLayout" name="horizontalLayout_20">
               <item>
                <widget class="QLabel" name="lblChooseDecAlgorithm">
@@ -1265,7 +1299,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbChooseDecAlgorithm"/>
+               <widget class="QComboBox" name="cbChooseDecAlgorithm">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decryption Algorithm:&lt;br/&gt;&lt;/span&gt;You must select the &lt;b&gt;exact same&lt;/b&gt; algorithm and mode used when the file was encrypted. If the algorithm or mode (like GCM vs. CBC) does not match, the decryption will fail to protect your data.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1281,7 +1319,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbChooseDecKey"/>
+               <widget class="QComboBox" name="cbChooseDecKey">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decryption Key:&lt;br/&gt;&lt;/span&gt;Select the key required to unlock the file. In Hybrid mode, this must be your own &lt;b&gt;Private Key&lt;/b&gt; that matches the Public Key the sender used to encrypt the file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1292,7 +1334,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcDecryptLeft">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1312,7 +1354,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcDecryptRight">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1379,7 +1421,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbHashAlgo"/>
+               <widget class="QComboBox" name="cbHashAlgo">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Hashing Algorithms:&lt;br/&gt;&lt;/span&gt;Select the mathematical 'fingerprint' method. StegaSafe supports all standard FIPS 180-4 and FIPS 202 algorithms.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-256:&lt;/span&gt; The current industry standard.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-3:&lt;/span&gt; The newest generation of hashing, offering maximum security.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1390,7 +1436,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcHashActionRight">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1402,6 +1448,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <widget class="QPushButton" name="pushButton">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Compute Hash:&lt;br/&gt;&lt;/span&gt;Generates a unique digital fingerprint of the selected file. The result is automatically copied to your clipboard so you can easily share it or use it for validation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="text">
                  <string>Compute Hash</string>
                 </property>
@@ -1410,7 +1459,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <spacer name="spcHascActionLeft">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1470,7 +1519,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="cbValidationHashAlgo"/>
+               <widget class="QComboBox" name="cbValidationHashAlgo">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Hashing Algorithms:&lt;br/&gt;&lt;/span&gt;Select the mathematical 'fingerprint' method. StegaSafe supports all standard FIPS 180-4 and FIPS 202 algorithms.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-256:&lt;/span&gt; The current industry standard.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-3:&lt;/span&gt; The newest generation of hashing, offering maximum security.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1487,6 +1540,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <widget class="QLineEdit" name="leExpectedHash">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Expected Hash:&lt;br/&gt;&lt;/span&gt;Paste the hash value provided by the file's creator here. The system will compare it bit-by-bit against your file to ensure it hasn't been modified or corrupted.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="placeholderText">
                  <string>Paste expected Hash here</string>
                 </property>
@@ -1579,10 +1635,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <height>20</height>
                  </size>
                 </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Private Key Selection:&lt;br/&gt;&lt;/span&gt;Choose your private RSA or Ed25519 key to 'sign' the file. This creates a digital seal that only you can produce, proving the file's authenticity.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                </widget>
               </item>
               <item>
                <spacer name="spcSigPrivKSelection">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1593,6 +1655,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <widget class="QPushButton" name="btnSigPrivKSelection">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Sign File:&lt;br/&gt;&lt;/span&gt;Calculates a hash of your file and encrypts it with your private key. This produces a detached signature string that proves you are the sender.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="text">
                  <string>Generate</string>
                 </property>
@@ -1695,6 +1760,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <widget class="QLineEdit" name="leShowSignature_2">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Signature to Verify:&lt;br/&gt;&lt;/span&gt;Paste the hexadecimal signature string here, or click 'Browse' to select a .sig file. The system will use this to verify if the file is original.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="placeholderText">
                  <string>Paste hex signature or file path</string>
                 </property>
@@ -1728,10 +1796,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <height>20</height>
                  </size>
                 </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Public Key Selection:&lt;br/&gt;&lt;/span&gt;Select the Public Key belonging to the person who signed the file. This key is used to mathematically verify that the signature matches the file content.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                </widget>
               </item>
               <item>
                <spacer name="spcSigPubKSelection">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>40</width>
@@ -1798,7 +1872,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1102</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
