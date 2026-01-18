@@ -187,7 +187,6 @@ class SteganographyTabController:
         return None
 
     """Runs everytime the payload changes. Checks whether image is loaded, simulates compression, adds overhead, calculates current size / max capacity and updates visuals"""
-
     def _update_usage_display(self):
         if self._is_metadata_mode(is_extract=False):
             self.ui.lblUsage.setText("Mode: Metadata Header (No Size Limit displayed)")
@@ -202,7 +201,7 @@ class SteganographyTabController:
             mode = self._get_channel_mode(is_extract=False)
             try:
                 self.current_max_bytes = capacity.get_max_bytes_pure(cover_path, mode)
-            except:
+            except Exception:
                 pass
 
         text = self.ui.pteEmbedMessage.toPlainText()
@@ -218,12 +217,17 @@ class SteganographyTabController:
                 if use_compression:
                     payload = Compressor.compress(payload)
 
-                overhead = len(delimiter.encode('utf-8')) if delimiter else 4
+                if delimiter:
+                    overhead = len(delimiter.encode('utf-8'))
+                else:
+                    overhead = 4
+
                 self.current_payload_bytes = len(payload) + overhead
 
             curr_str = self._format_size(self.current_payload_bytes)
             max_str = self._format_size(self.current_max_bytes)
-            percent = (self.current_payload_bytes / self.current_max_bytes) * 100
+
+            percent = (self.current_payload_bytes / self.current_max_bytes) * 100 if self.current_max_bytes > 0 else 0
 
             self.ui.lblUsage.setText(f"Usage: {curr_str} / {max_str} ({percent:.1f}%)")
 
@@ -238,7 +242,6 @@ class SteganographyTabController:
             self.ui.lblUsage.setText("Invalid Input Format")
             self.ui.lblUsage.setStyleSheet("color: red;")
 
-    """Runs upon embedding the payload"""
     @handle_ui_errors
     def _embed_message(self, *args):
         cover_path = self._require_file(self.ui.leCoverPath.text())
@@ -246,13 +249,22 @@ class SteganographyTabController:
         if not message:
             raise ValueError("Message cannot be empty.")
 
+        if not self._is_metadata_mode(is_extract=False):
+            if self.current_payload_bytes > self.current_max_bytes:
+                QMessageBox.critical(
+                    self.ui,
+                    "Capacity Exceeded",
+                    f"The message is too large for this image.\n\n"
+                    f"Payload: {self._format_size(self.current_payload_bytes)}\n"
+                    f"Capacity: {self._format_size(self.current_max_bytes)}"
+                )
+                return
+
         if self._is_metadata_mode(is_extract=False):
             p = Path(cover_path)
             default_out = str(p.with_stem(p.stem + "_meta"))
             output_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Stego (Metadata) Image", default_out, "JPEG Image (*.jpg *.jpeg);;TIFF Image (*.tiff *.tif)")
-
             if not output_path: return
-
             success, msg = metadata_stego.MetadataStego.embed(cover_path, output_path, message)
             self.ui.pteEmbedMessage.clear()
             QMessageBox.information(self.ui, "Success", msg)
@@ -260,24 +272,21 @@ class SteganographyTabController:
         else:
             input_format = self.ui.cbInputFormat.currentText().lower()
             use_compression = self.ui.chkCompress.isChecked()
-            should_clean_metadata = self.ui.chkCleanMetadata.isChecked()
             delimiter = self._get_delimiter(is_extract=False)
-            seed = self._get_seed(is_extract=False)
             channel_mode = self._get_channel_mode(is_extract=False)
 
             capacity.validate_capacity(
-                cover_path,
-                message,
-                input_format,
-                use_compression,
+                image_path=cover_path,
+                text_data=message,
+                input_format=input_format,
+                use_compression=use_compression,
                 custom_delimiter=delimiter,
                 channel_mode=channel_mode
             )
 
             p = Path(cover_path)
             default_out = str(p.with_stem(p.stem + "_payload").with_suffix(".png"))
-            output_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Stego (LSB) Image", default_out,
-                                                         "PNG Image (*.png)")
+            output_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Stego (LSB) Image", default_out, "PNG Image (*.png)")
 
             if not output_path:
                 return
@@ -285,7 +294,7 @@ class SteganographyTabController:
             if not output_path.lower().endswith(".png"):
                 output_path = output_path + ".png"
 
-            if should_clean_metadata:
+            if self.ui.chkCleanMetadata.isChecked():
                 metadata_cleaner.clean_metadata(cover_path, output_path)
             else:
                 shutil.copy2(cover_path, output_path)
@@ -297,7 +306,7 @@ class SteganographyTabController:
                 input_format=input_format,
                 use_compression=use_compression,
                 custom_delimiter=delimiter,
-                seed=seed,
+                seed=self._get_seed(is_extract=False),
                 channel_mode=channel_mode
             )
 
@@ -306,7 +315,6 @@ class SteganographyTabController:
             self._update_usage_display()
 
     """Runs upon extracting the payload"""
-
     @handle_ui_errors
     def _extract_message(self, *args):
         stego_path = self._require_file(self.ui.leStegoPath.text())
