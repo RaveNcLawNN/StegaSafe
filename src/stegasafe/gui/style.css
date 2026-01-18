@@ -1,0 +1,305 @@
+/* =========================================================
+   Colors:
+   #0C1E29 (background)
+   #126063 (secondary)
+   #43B273 (accent)
+   ========================================================= */
+
+/* ===== GLOBAL ===== */
+QWidget {
+    background-color: #0C1E29;
+    color: #E6F1F2;
+    font-family: "Segoe UI", "Inter", Arial;
+    font-size: 13px;
+}
+
+/* ===== MAIN WINDOW ===== */
+QMainWindow {
+    background-color: #0C1E29;
+}
+
+/* ===== TREE WIDGET (Key Vault list) ===== */
+QTreeWidget {
+    background-color: #0F2A35;
+    border: 1px solid #126063;
+    border-radius: 6px;
+    color: #DDEEEE;
+    alternate-background-color: #0C1E29; /* important if alternating rows are enabled */
+    outline: 0;
+}
+
+QTreeWidget::viewport {
+    background-color: #0F2A35;
+}
+
+/* Individual rows */
+QTreeWidget::item {
+    padding: 6px 8px;
+    background-color: #0F2A35;
+    color: #DDEEEE;
+}
+
+/* Alternate rows (if alternatingRowColors is on) */
+QTreeWidget::item:alternate {
+    background-color: #0C1E29;
+    color: #DDEEEE;
+}
+
+/* Hover */
+QTreeWidget::item:hover {
+    background-color: #0C1E29;
+}
+
+/* Selected row */
+QTreeWidget::item:selected {
+    background-color: #126063;
+    color: #E6F1F2;
+}
+
+/* Selected row when inactive */
+QTreeWidget::item:selected:!active {
+    background-color: #0E4F52;
+    color: #E6F1F2;
+}
+
+/* Disabled row */
+QTreeWidget::item:disabled {
+    color: #6F8F95;
+}
+
+/* ===== TEXT BROWSERS / RICH TEXT ===== */
+QTextBrowser, QTextEdit, QPlainTextEdit {
+    background-color: #0F2A35;
+    border: 1px solid #126063;
+    border-radius: 6px;
+    padding: 8px;
+    color: #E6F1F2;
+    selection-background-color: #43B273;
+}
+
+/* Links inside QTextBrowser */
+QTextBrowser {
+    qproperty-openExternalLinks: true;
+}
+
+/* Optional: make scrollbars consistent */
+QTextBrowser QScrollBar:vertical {
+    background: #0C1E29;
+    width: 10px;
+}
+
+QTextBrowser QScrollBar::handle:vertical {
+    background: #126063;
+    border-radius: 4px;
+}
+
+QTextBrowser QScrollBar::handle:vertical:hover {
+    background: #43B273;
+}
+
+/* ===== ITEM VIEWS (QListWidget, QTreeWidget, QTableView, etc.) ===== */
+QAbstractItemView {
+    background-color: #0F2A35;
+    border: 1px solid #126063;
+    border-radius: 6px;
+    color: #DDEEEE;
+    selection-background-color: #126063;  /* fallback if ::item:selected not applied */
+    selection-color: #E6F1F2;
+    outline: 0;
+}
+
+/* Important: some views paint on the viewport */
+QAbstractItemView::viewport {
+    background-color: #0F2A35;
+}
+
+/* Rows/items */
+QAbstractItemView::item {
+    padding: 6px 8px;
+    border: 0;
+}
+
+/* Hover */
+QAbstractItemView::item:hover {
+    background-color: #0C1E29;
+}
+
+/* Selected row */
+QAbstractItemView::item:selected {
+    background-color: #126063;
+    color: #E6F1F2;
+}
+
+/* Selected row when widget is inactive (prevents odd palette changes) */
+QAbstractItemView::item:selected:!active {
+    background-color: #0E4F52;
+    color: #E6F1F2;
+}
+
+/* Disabled items */
+QAbstractItemView::item:disabled {
+    color: #6F8F95;
+}
+
+/* ===== GROUP BOX ===== */
+QGroupBox {
+    border: 1px solid #126063;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 6px;
+    color: #43B273;
+    font-weight: bold;
+}
+
+/* ===== LABELS ===== */
+QLabel {
+    color: #DDEEEE;
+}
+
+/* ===== BUTTONS ===== */
+QPushButton {
+    background-color: #126063;
+    border: 1px solid #126063;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #E6F1F2;
+}
+
+QPushButton:hover {
+    background-color: #178074;
+    border-color: #43B273;
+}
+
+QPushButton:pressed {
+    background-color: #0E4F52;
+}
+
+QPushButton:disabled {
+    background-color: #1B3A40;
+    color: #6F8F95;
+}
+
+/* ===== PRIMARY ACTION BUTTON ===== */
+QPushButton#primaryButton {
+    background-color: #43B273;
+    border: 1px solid #43B273;
+    color: #0C1E29;
+    font-weight: bold;
+}
+
+QPushButton#primaryButton:hover {
+    background-color: #5AC88C;
+}
+
+/* ===== DANGER BUTTON ===== */
+QPushButton#dangerButton {
+    background-color: #8B2E2E;
+    border: 1px solid #8B2E2E;
+}
+
+QPushButton#dangerButton:hover {
+    background-color: #B03A3A;
+}
+
+/* ===== INPUT FIELDS ===== */
+QLineEdit,
+QTextEdit,
+QPlainTextEdit {
+    background-color: #0F2A35;
+    border: 1px solid #126063;
+    border-radius: 6px;
+    padding: 6px;
+    selection-background-color: #43B273;
+}
+
+QLineEdit:focus,
+QTextEdit:focus,
+QPlainTextEdit:focus {
+    border-color: #43B273;
+}
+
+/* ===== COMBO BOX ===== */
+QComboBox {
+    background-color: #0F2A35;
+    border: 1px solid #126063;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+QComboBox:hover {
+    border-color: #43B273;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #0F2A35;
+    border: 1px solid #126063;
+    selection-background-color: #43B273;
+}
+
+/* ===== TABS ===== */
+QTabWidget::pane {
+    border: 1px solid #126063;
+    border-radius: 6px;
+}
+
+QTabBar::tab {
+    background-color: #0F2A35;
+    border: 1px solid #126063;
+    border-bottom: none;
+    padding: 6px 14px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:selected {
+    background-color: #126063;
+    color: #43B273;
+    font-weight: bold;
+}
+
+QTabBar::tab:hover {
+    background-color: #178074;
+}
+
+/* ===== TABLES ===== */
+QTableWidget {
+    background-color: #0F2A35;
+    gridline-color: #126063;
+}
+
+QHeaderView::section {
+    background-color: #126063;
+    border: 1px solid #0C1E29;
+    padding: 4px;
+    font-weight: bold;
+    color: #E6F1F2;
+}
+
+/* ===== SCROLLBARS ===== */
+QScrollBar:vertical {
+    background: #0C1E29;
+    width: 10px;
+}
+
+QScrollBar::handle:vertical {
+    background: #126063;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #43B273;
+}
+
+/* ===== MESSAGE BOX ===== */
+QMessageBox {
+    background-color: #0C1E29;
+}
+
+QMessageBox QLabel {
+    color: #E6F1F2;
+}
