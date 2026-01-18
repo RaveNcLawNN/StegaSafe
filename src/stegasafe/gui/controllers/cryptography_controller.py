@@ -86,14 +86,14 @@ class CryptoTabController:
                 filtered = [
                     k for k in all_keys
                     if str(k.get('algorithm', '')).upper() == "X25519"
-                       and k.get('type') == "public"
+                       and k.get('role') == "public"
                 ]
             else:
                 # SYMMETRISCH: Wir nehmen ALLE symmetrischen Keys.
                 # Egal ob da "AES" steht. Ein AES-256 Key ist auch ein ChaCha20 Key.
                 filtered = [
                     k for k in all_keys
-                    if k.get('kind') == "symmetric" or k.get('type') == "symmetric"
+                    if k.get('kind') == "symmetric"
                 ]
 
             fill(self.ui.cbChooseEncKey, filtered)
@@ -105,13 +105,13 @@ class CryptoTabController:
                 filtered = [
                     k for k in all_keys
                     if str(k.get('algorithm', '')).upper() == "X25519"
-                       and k.get('type') == "private"
+                       and k.get('role') == "private"
                 ]
             else:
                 # SYMMETRISCH
                 filtered = [
                     k for k in all_keys
-                    if k.get('kind') == "symmetric" or k.get('type') == "symmetric"
+                    if k.get('kind') == "symmetric"
                 ]
 
             fill(self.ui.cbChooseDecKey, filtered)
