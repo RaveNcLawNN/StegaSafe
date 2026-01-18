@@ -1,0 +1,2118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1102</width>
+    <height>812</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>StegaSafe</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabHome">
+       <attribute name="title">
+        <string>Info</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="gbQuickStart">
+          <property name="title">
+           <string>Quick Start Guide</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_29">
+           <item>
+            <widget class="QTextBrowser" name="textBrowser">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; font-weight:700; color:#43b273;&quot;&gt;Welcome to StegaSafe&lt;/span&gt;&lt;/h2&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;StegaSafe is a local security tool for encrypting files, hiding information inside images,and managing cryptographic keys in a secure offline environment.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Navigate through the tabs at the top of the application to access each part of the workflow.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Application Tabs&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;1. Key Generation&lt;/span&gt;&lt;br /&gt;Create symmetric keys for personal encryption or asymmetric keypairs for secure sharingand digital signatures. Generated keys are stored in the local Vault.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;2. Cryptography&lt;/span&gt;&lt;br /&gt;Encrypt files to protect their contents or decrypt files previously secured usingsymmetric or hybrid encryption modes.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;3. Steganography&lt;/span&gt;&lt;br /&gt;Hide text or data inside PNG images using embedding techniques and retrieve it laterusing the correct parameters and seed.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;4. Signatures &amp;amp; Hashes&lt;/span&gt;&lt;br /&gt;Verify data integrity with cryptographic hashes or prove authenticity usingdigital signatures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;5. Key Vault&lt;/span&gt;&lt;br /&gt;View, rename, export, or delete stored keys in the secure local key vault.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Pro Tip&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Always remember your &lt;span style=&quot; font-weight:700;&quot;&gt;Master Password&lt;/span&gt;. It is never stored and cannot be recovered if lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbGlossary">
+          <property name="minimumSize">
+           <size>
+            <width>518</width>
+            <height>627</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Glossary</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_30">
+           <item>
+            <widget class="QToolBox" name="toolBox">
+             <property name="currentIndex">
+              <number>4</number>
+             </property>
+             <widget class="QWidget" name="tbpKeyGen">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>98</width>
+                <height>89</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Key Generation</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_32">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_2">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Key Generation is the starting point for all security operations.A key is a unique piece of data used by algorithms to encrypt, decrypt,or sign your information.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Key Categories&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Keys&lt;/span&gt;&lt;br /&gt;A single secret key used for both encryption and decryption.Both the sender and receiver must possess the same key.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Asymmetric Keypair (Public &amp;amp; Private)&lt;/span&gt;&lt;br /&gt;A pair of mathematically linked keys.The public key is used to encrypt data or verify signatures,while the private key is kept secret and used for decryption or signing.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES (Advanced Encryption Standard)&lt;/span&gt;&lt;br /&gt;Industry-standard symmetric encryption algorithm.Supported key sizes are 128, 192, and 256 bits.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RSA (Rivest–Shamir–Adleman)&lt;/span&gt;&lt;br /&gt;Traditional asymmetric algorithm based on the difficulty of factoring large integers.Used for encryption and digital signatures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ECC (Elliptic Curve Cryptography)&lt;/span&gt;&lt;br /&gt;Modern asymmetric approach offering high security with smaller key sizesthan RSA, improving performance and efficiency.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;X25519&lt;/span&gt;&lt;br /&gt;Elliptic Curve algorithm optimized for fast and secure key exchange.Primarily used in Hybrid encryption mode.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ed25519&lt;/span&gt;&lt;br /&gt;Elliptic Curve algorithm designed specifically for fast and securedigital signature creation.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Details&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Key Length (Bits)&lt;/span&gt;&lt;br /&gt;The size of the cryptographic key.Larger key sizes generally offer stronger protectionbut require more computational effort.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Key Alias / Name&lt;/span&gt;&lt;br /&gt;A user-defined identifier used to distinguish keyswithin the local Key Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpStega">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>98</width>
+                <height>89</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Steganography</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_33">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_3">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Steganography is the practice of concealing a secret message within an ordinary file so that its existence is hidden. Below are the terms and methods used in this tool.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Embedding Methods&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Least Significant Bit)&lt;/span&gt;&lt;br /&gt;A technique that hides data by making microscopic changes to individual image pixels.These changes are visually imperceptible for the human eye.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata Hiding&lt;/span&gt;&lt;br /&gt;Embeds text into hidden metadata fields of a file (EXIF description field) without altering any pixel data in the process.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Terms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cover Image&lt;/span&gt;&lt;br /&gt;The original PNG, JPG, JPEG, BMP or TIFF image used as the carrier for the hidden message.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Payload&lt;/span&gt;&lt;br /&gt;The secret information (text or binary data) that is embedded inside the image.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Seed / Secret&lt;/span&gt;&lt;br /&gt;A value used to randomize embedding locations across the image,making detection significantly harder.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Custom Delimiter&lt;/span&gt;&lt;br /&gt;A special character sequence marking the end of the hidden message.It prevents extraction from continuing into random image data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Settings&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Target Channel&lt;/span&gt;&lt;br /&gt;Selects which color channel (Red, Green, or Blue) carries the hidden data.Using only the Blue channel is often the most visually secure.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Zlib Compression&lt;/span&gt;&lt;br /&gt;Reduces the size of the secret message before embedding,allowing more data to fit into the image.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Capacity Check&lt;/span&gt;&lt;br /&gt;Ensures the message size does not exceed the image’s capacity,preventing visible distortion.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpCrypto">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>98</width>
+                <height>89</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Cryptography</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_34">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_4">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Cryptography converts readable data into an unreadable format using a secret key. This ensures that only authorized individuals with the correct key can access the information.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Encryption Methods&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Encryption&lt;/span&gt;&lt;br /&gt;Uses a single, shared key for both encryption and decryption. It is highly efficient for large files but requires a secure method to exchange the key between parties.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Hybrid Encryption&lt;/span&gt;&lt;br /&gt;Combines the best of both worlds: Asymmetric encryption for secure key exchange and Symmetric encryption for fast data processing. This is the industry standard for secure communication.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-GCM&lt;/span&gt;&lt;br /&gt;The modern gold standard for AES. It provides both confidentiality and integrity protection, meaning it instantly detects if the encrypted file has been tampered with.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CBC (Cipher Block Chaining)&lt;/span&gt;&lt;br /&gt;A classic mode where each block depends on the previous one. While secure, it is slower than GCM and does not provide built-in protection against data manipulation.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CTR (Counter Mode)&lt;/span&gt;&lt;br /&gt;Turns the AES block cipher into a stream cipher, allowing for parallel processing and high speed. However, it lacks built-in integrity protection.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CFB (Cipher Feedback)&lt;/span&gt;&lt;br /&gt;Operates simirarly to a stream cipher and it self-synchronizing. Useful for specific data streams, but less commonly used for standard file encryption today compared to GCM or CBC.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-OFB (Output Feedback)&lt;/span&gt;&lt;br /&gt;Generates a keystream independent of the plaintext. It is robust against transmission errors but, like other raw encryption modes, vulnerable to undetected data manipulation.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-ECB&lt;/span&gt;&lt;br /&gt;The simplest and least secure mode. Identical data blocks produce identical ciphertext, leaving patterns visible in the encrypted data.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20-Poly1305&lt;/span&gt;&lt;br /&gt;A modern, extremely fast algorithm with built-in tamper protection (AEAD). It is particurarly efficient on systems without dedicated hardware acceleration (e.g., mobile devices).&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20 (Raw Stream)&lt;/span&gt;&lt;br /&gt;The raw stream cipher variant without the Poly1305 integrity check. While very fast, it offers no protection against manipulation - an attacker could alter data without detection.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Keys&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Key&lt;/span&gt;&lt;br /&gt;A single code used to both lock (encrypt) and unlock (decrypt) the data. Anyone posessing this key has full access to the file's content.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Asymmetric Keypair (Public &amp;amp; Private)&lt;/span&gt;&lt;br /&gt;Consists of two mathematically linked keys: A Public Key for encryption (shareable) and a Private Key for decryption (kept secret). Enables secure data exchange without sharing a password beforehand.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpHashes">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>98</width>
+                <height>89</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Hashes</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_35">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_5">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;A hash is a mathematical function that transforms data of any sizeinto a fixed-length value. It acts as a digital fingerprint for a file.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Core Functions&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Integrity Verification&lt;/span&gt;&lt;br /&gt;If even a single bit of a file changes, the resulting hash changes completely.This allows detection of tampering or accidental corruption.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Deterministic Property&lt;/span&gt;&lt;br /&gt;The same input file will always produce the exact same hashwhen processed with the same algorithm.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-2 (Secure Hash Algorithm 2)&lt;/span&gt;&lt;br /&gt;Current industry standard for secure hashing.Includes variants such as SHA-256 and SHA-512,commonly used for file verification and digital signatures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-3 (Secure Hash Algorithm 3)&lt;/span&gt;&lt;br /&gt;Newest generation of hashing standards.Uses a different mathematical construction than SHA-2to provide strong resistance against modern attacks.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-1&lt;/span&gt;&lt;br /&gt;Older hashing algorithm.Still used for legacy purposes but generally not recommendedfor protecting critical data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Terms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Reference Hash&lt;/span&gt;&lt;br /&gt;A known, trusted hash value provided by a file’s creator.Used to compare against a locally calculated hashto verify authenticity.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;FIPS 180-4 / FIPS 202&lt;/span&gt;&lt;br /&gt;Official standards defining the SHA-1, SHA-2, and SHA-3hashing families to ensure mathematical correctness and security.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpSignatures">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>507</width>
+                <height>518</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Signatures</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_36">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_6">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Digital signatures prove that a file is authentic and has not been altered.They act as a mathematical seal that verifies the identity of the signerand the integrity of the data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Core Concepts&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Authentication&lt;/span&gt;&lt;br /&gt;Proves that a file was signed by the person who claims to have signed it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Non-Repudiation&lt;/span&gt;&lt;br /&gt;Ensures a signer cannot plausibly deny signing the file,because the signature is uniquely tied to their private key.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RSA Signatures&lt;/span&gt;&lt;br /&gt;A widely compatible approach where a file hash is signed using a private RSA key.Commonly used as a standard method for digital signing.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ed25519 (ECC)&lt;/span&gt;&lt;br /&gt;Modern elliptic-curve signature scheme optimized for speed and strong security.Produces smaller signatures than RSA while maintaining high protection.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Terms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Detached Signature&lt;/span&gt;&lt;br /&gt;A signature stored in a separate file (often with a .sig extension)instead of being embedded into the original file.Verification requires both the original file and the signature file.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Signing (Private Key)&lt;/span&gt;&lt;br /&gt;Creating a signature using a private key.The private key must remain secret and should never be shared.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Verification (Public Key)&lt;/span&gt;&lt;br /&gt;Validating a signature using the signer’s public keyto confirm that the signature matches the file and the signer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabKeyVault">
+       <attribute name="title">
+        <string>Key Vault</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QGroupBox" name="gbKeyVault">
+          <property name="title">
+           <string>Key Vault</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QStackedWidget" name="swKeyVault">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="pgePassword">
+              <layout class="QVBoxLayout" name="verticalLayout_14">
+               <item>
+                <widget class="QWidget" name="rowVaultStatus" native="true">
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  <item>
+                   <widget class="QLabel" name="lblVaultStatus">
+                    <property name="text">
+                     <string>The Key Vault is locked. Enter Password to unlock.</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="rowVaultPassword" native="true">
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <item>
+                   <widget class="QLabel" name="lblVaultPassword">
+                    <property name="text">
+                     <string>Password:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="leVaultPassword">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Master Password:&lt;br/&gt;&lt;/span&gt;This password is the only way to unlock your keys. It is used to derive a 256-bit AES key through PBKDF2 (200,000 iterations), ensuring that even if your vault file is stolen, your keys remain protected against brute-force attacks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="echoMode">
+                     <enum>QLineEdit::Normal</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Enter Password</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btnUnlockVault">
+                    <property name="text">
+                     <string>Unlock</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="pgeUnlocked">
+              <layout class="QVBoxLayout" name="verticalLayout_13">
+               <item>
+                <widget class="QWidget" name="rowKeys" native="true">
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <item>
+                   <widget class="QTreeWidget" name="twKeys">
+                    <property name="editTriggers">
+                     <set>QAbstractItemView::NoEditTriggers</set>
+                    </property>
+                    <property name="alternatingRowColors">
+                     <bool>false</bool>
+                    </property>
+                    <property name="headerHidden">
+                     <bool>true</bool>
+                    </property>
+                    <column>
+                     <property name="text">
+                      <string notr="true">1</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbKeyDetails">
+          <property name="title">
+           <string>Key Details</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <item>
+            <widget class="QLabel" name="lblSelectedKey">
+             <property name="text">
+              <string>Selected Key:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="leSelectedKey">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QFormLayout" name="formKeyDetails">
+             <item row="0" column="0">
+              <widget class="QLabel" name="lblKeyType">
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="lblKeyAlgorithms">
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="lblKeyVisibility">
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="lblKeyID">
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="lblKeyLength">
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowActionButtons" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <widget class="QPushButton" name="btnDelete">
+                <property name="text">
+                 <string>Delete</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnExport">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Export Key:&lt;br/&gt;&lt;/span&gt;Saves the selected key to a file. Asymmetric keys are exported in standard PEM format, while symmetric keys can be saved as raw binary or hexadecimal text. &lt;b&gt;Warning:&lt;/b&gt; Exported keys are no longer protected by StegaSafe encryption.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Export</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnImport">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Import External Key:&lt;br/&gt;&lt;/span&gt;Allows you to add existing cryptographic keys (PEM or raw bytes) into your secure vault. The system automatically detects the algorithm and bit size before encrypting it with your master password.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Import</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnRename">
+                <property name="text">
+                 <string>Rename</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabKeyGeneration">
+       <attribute name="title">
+        <string>Key Generation</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QGroupBox" name="gbSymmKeyGen">
+          <property name="title">
+           <string>Symmetric Key Generation</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_17">
+           <item>
+            <widget class="QWidget" name="rowSymmKeyAlgSelect" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <widget class="QLabel" name="lblSymmKeyAlgSelect">
+                <property name="text">
+                 <string>Algorithm:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbSymmKeyAlgSelect">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Symmetric (AES) Selection:&lt;br/&gt;&lt;/span&gt;Generates a single secret key used for both encryption and decryption. Higher bit sizes (e.g., 256-bit) provide maximum security against future computing threats but may be slightly slower on older hardware.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowSymmKeyName" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QLabel" name="lblSymmKeyName">
+                <property name="text">
+                 <string>Key Name:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leSymmKeyName"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowGenSymmKeyAction" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <spacer name="spcGenSymmKeyLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>318</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnGenSymmKey">
+                <property name="text">
+                 <string>Generate Key</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcGenSymmKeyRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbKeypairGen">
+          <property name="title">
+           <string>Asymmetric Key Generation</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_18">
+           <item>
+            <widget class="QWidget" name="rowKeypairAlgSelect" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QLabel" name="lblKeypairAlgSelect">
+                <property name="text">
+                 <string>Algorithm:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbKeypairAlgSelect">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Asymmetric Algorithms:&lt;br/&gt;&lt;/span&gt;Choose between RSA and Elliptic Curve (ECC) pairs.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RSA:&lt;/span&gt; Industry standard for compatibility.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;X25519:&lt;/span&gt; Modern ECC used for high-speed secure key exchange.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ed25519:&lt;/span&gt; Specialized for creating fast, secure digital signatures.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowKeypairName" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_22">
+              <item>
+               <widget class="QLabel" name="lblKeypairName">
+                <property name="text">
+                 <string>Keypair Name:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leKeypairName"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowKeypairGenAction" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_23">
+              <item>
+               <spacer name="spcAsymmKeyGenLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>312</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnKeypairGen">
+                <property name="text">
+                 <string>Generate Keypair</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcAsymmKeyGenRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabLSBSteganography">
+       <attribute name="title">
+        <string>Steganography</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="gbEmbed">
+          <property name="title">
+           <string>Embed</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QWidget" name="colSettings" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_22">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QWidget" name="rowCover" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <property name="bottomMargin">
+                  <number>9</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lblCover">
+                   <property name="text">
+                    <string>Cover File:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leCoverPath">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Select a File</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnBrowseCover">
+                   <property name="text">
+                    <string>Browse</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="rowSettings_2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_33">
+                 <property name="topMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="cbEmbedMethod">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Steganography Method:&lt;br/&gt;&lt;/span&gt;Choose the technique used to embed your data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Uses the Least Significant Bit to hide data inside the pixels themselves.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Hides text in the file attribute &amp;quot;Description&amp;quot; (EXIF tag).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>LSB (Pixel Manipulation)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Metadata (Header Injection)</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="rowSettings" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_32">
+                 <property name="topMargin">
+                  <number>3</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="cbInputFormat">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Input Interpretation:&lt;/span&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;Determines how the text in the message box is converted to bytes before embedding.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UTF-8&lt;/span&gt;: &lt;br/&gt;Use for standard text messages. The text is hidden exactly as written.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Base64 / Hex&lt;/span&gt;:&lt;br/&gt;Use if your input is already an encoded string (e.g., a file or key). The app will decode this string into raw binary data before hiding it.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="currentText">
+                    <string>UTF-8</string>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>UTF-8</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Base64</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Hex</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="cbChannel">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Target Channel:&lt;br/&gt;&lt;/span&gt;Selects which color channel(s) will carry the hidden data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RGB (All Channels):&lt;br/&gt;&lt;/span&gt;Maximum capacity. Hides data in Red, Green, and Blue pixels.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Blue Channel Only: &lt;br/&gt;&lt;/span&gt;Best stealth. The human eye is least sensitive to changes in blue, making the steganography harder to detect visually. But reduces capacity by 66%.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Red / Green Channel Only: &lt;br/&gt;&lt;/span&gt;Hides data exclusively in that specific color channel. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>RGB (All Channels)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Red Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Green Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Blue Channel Only</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkCompress">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Compress Data (Zlib):&lt;br/&gt;&lt;/span&gt;Reduces the size of your payload using zlib compression (level=9) before embedding. This allows you to hide larger amounts of data within the same cover image, though it may slightly increase processing time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Compress Data (Zlib)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkCleanMetadata">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Remove Image Metadata (EXIF):&lt;br/&gt;&lt;/span&gt;Strips all existing metadata (such as GPS coordinates, camera model, and timestamps) from the cover image. Use this to ensure maximum privacy and anonymity for the resulting image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Remove Image Metadata (EXIF)</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>150</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leEmbedSeed">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Custom Secret / Seed:&lt;br/&gt;&lt;/span&gt;Initializes the pseudo-random number generator for non-sequential pixel selection.&lt;br/&gt;This scatters your message randomly across the image pixels instead of filling them linearly, making the hidden data significantly harder to detect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter Secret / Seed</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leEmbedCustomDelimiter">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Custom Delimiter:&lt;br/&gt;&lt;/span&gt;Defines a custom string appended to your data to mark its end. This acts as a stop-signal for the receiver to prevent reading random data after the actual message.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Default&lt;/span&gt;: The system calculates the hidden message length and stores it within the first 32 bits of the image. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter a Custom Delimiter</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowEmbedMessage" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QWidget" name="colEmbedMessage_2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_34">
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lblMessage">
+                   <property name="text">
+                    <string>Message:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>800</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lblUsage">
+                   <property name="text">
+                    <string>Usage: 0 / 0 Bytes</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="colEmbedMessage" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_31">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QPlainTextEdit" name="pteEmbedMessage">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowEmbedActions" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <spacer name="spcEmbedLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnEmbed">
+                <property name="text">
+                 <string>Embed</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcEmbedRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbExtract">
+          <property name="title">
+           <string>Extract</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QWidget" name="rowExtractSettings" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_23">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QWidget" name="rowChooseStego" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_35">
+                 <item>
+                  <widget class="QLabel" name="lblStego">
+                   <property name="text">
+                    <string>Stego File:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leStegoPath">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Select a File</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnBrowseStego">
+                   <property name="text">
+                    <string>Browse</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="rowChooseStego2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_36">
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="cbExtractMethod">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Extraction Method:&lt;br/&gt;&lt;/span&gt;Selects where the application should look for hidden data.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Pixel Manipulation):&lt;br/&gt;&lt;/span&gt;Scans the pixel values (bits) of the image. &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata (Header Injection):&lt;br/&gt;&lt;/span&gt;Reads the file header &amp;quot;Description&amp;quot; (EXIF tags).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="sizeAdjustPolicy">
+                    <enum>QComboBox::AdjustToContents</enum>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>LSB (Pixel Manipulation)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Metadata (Header Injection)</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="colChooseStegoSettings" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <property name="topMargin">
+                  <number>3</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="cbExtractFormat">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Output Presentation:&lt;/span&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;Determines how the raw data found in the image is converted for display.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UTF-8&lt;/span&gt;: &lt;br/&gt;Tries to display the data as readable text.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Base64 / Hex&lt;/span&gt;:&lt;br/&gt;Encodes the raw data into a safe text string. Ideal for extracting binary data (files, keys) to copy-paste without formatting errors.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>UTF-8</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Hex</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Base64</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="cbExtractChannel">
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Source Channel:&lt;br/&gt;&lt;/span&gt;Selects which color channel to scan for hidden data.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Important&lt;/span&gt;: You must select the exact same channel mode that was used when the message was embedded. If the channels do not match, the extracted data will be unreadable random noise.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>RGB (All Channels)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Red Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Green Channel Only</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Blue Channel Only</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkExtractCompress">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decompress Data (Zlib):&lt;br/&gt;&lt;/span&gt;Reverses the zlib compression, if it was applied during the embedding process. You must enable this if the original data was compressed; otherwise, the output will remain unreadable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Decompress Data (Zlib)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkDebugDump">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Debug Dump:&lt;br/&gt;&lt;/span&gt;Bypasses all protocol checks (headers, length, delimiters) and blindly extracts the raw Least Significant Bit (LSB) from the entire pixel sequence. &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use this to:&lt;br/&gt;&lt;/span&gt;Inspect the raw binary content of an image (Stegananalysis). Troubleshoot failed extractions (e.g., to check if any data patterns are visible even if the header is missing). &lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Note&lt;/span&gt;: This produces a large amount of data/noise for large images.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Debug Dump</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="chkAutoSave">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Save as .txt:&lt;br/&gt;&lt;/span&gt;Automatically saves the extracted content to a .txt file immediately after processing. Useful for archiving messages or handling text that is too long for the preview window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Save as .txt</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>150</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leExtractSeed">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Extraction Secret / Seed:&lt;/span&gt;&lt;br/&gt;Requires the exact seed value used during the embedding process. The system needs this to reconstruct the specific non-sequential pixel path to correctly locate and reassemble the hidden message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter Secret / Seed</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="leExtractCustomDelimiter">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Custom Delimiter:&lt;/span&gt;&lt;br/&gt;Specify the custom delimiter used during embedding. The extraction process will stop immediately upon finding this sequence, ensuring a clean ouput without garbage data.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Default&lt;/span&gt;: The system attempts to extract the hidden message length from the first 32 bits of the image.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="inputMask">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Enter a Custom Delimiter</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowExtract" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="spacing">
+               <number>10</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <spacer name="spcExtractLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnExtract">
+                <property name="text">
+                 <string>Extract</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcExtractRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowExtractedMessage" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="lblExtractedMessage">
+                <property name="text">
+                 <string>Extracted Message:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextBrowser" name="tbExtractedMessage"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabCryptography">
+       <attribute name="title">
+        <string>Cryptography</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <item>
+         <widget class="QGroupBox" name="gbEncrypt">
+          <property name="title">
+           <string>Encrypt</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QWidget" name="colChooseEncryptMode" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_39">
+              <item>
+               <widget class="QRadioButton" name="rbModeSym">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Symmetric Encryption:&lt;br/&gt;&lt;/span&gt;Uses a single secret key to both lock (encrypt) and unlock (decrypt) your data. It is highly efficient and ideal for securing personal files where you are the only one holding the key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Symmetric (AES / ChaCha20)</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbModeAsym">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Hybrid Encryption (ECC + AES):&lt;br/&gt;&lt;/span&gt;Combines the security of Elliptic Curves with the speed of AES. It uses a recipient's &lt;b&gt;Public Key&lt;/b&gt; to safely transport a temporary secret key, which then encrypts the actual file. This allows for secure file sharing without needing to exchange a password beforehand.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Hybrid (ECC + AES)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowChooseFileToEncrypt" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_17">
+              <item>
+               <widget class="QLabel" name="lblChooseFileToEncrypt">
+                <property name="text">
+                 <string>File to Encrypt:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leChooseFileToEncrypt">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Select a File</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseFileToEncrypt">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowChooseEncAlgorithm" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_18">
+              <item>
+               <widget class="QLabel" name="lblChooseAlgorithm">
+                <property name="text">
+                 <string>Choose Algorithm:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbChooseEncAlgorithm">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Algorithm Selection:&lt;br/&gt;&lt;/span&gt;Choose the mathematical method for encryption.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-GCM:&lt;/span&gt; Recommended. High security with built-in tamper detection (Authenticated Encryption).&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20-Poly1305:&lt;/span&gt; A modern, fast alternative to AES.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CBC / CFB / OFB:&lt;/span&gt; Classic modes that require padding to process data blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowChooseEncKey" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_16">
+              <item>
+               <widget class="QLabel" name="lblChooseEncKey">
+                <property name="text">
+                 <string>Choose Key:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbChooseEncKey">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Key Selection:&lt;br/&gt;&lt;/span&gt;Select a compatible key from your Vault. For Symmetric mode, use an AES secret key. For Hybrid mode, you must select the &lt;b&gt;Public Key&lt;/b&gt; belonging to the intended recipient.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowEncryptAction" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_19">
+              <item>
+               <spacer name="spcEncryptLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnEncrypt">
+                <property name="text">
+                 <string>Encrypt</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcEncryptRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbDecrypt">
+          <property name="title">
+           <string>Decrypt</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QWidget" name="colChooseDecryptMode" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_40">
+              <item>
+               <widget class="QRadioButton" name="rbDecModeSym">
+                <property name="text">
+                 <string>Symmetric</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbDecModeAsym">
+                <property name="text">
+                 <string>Hybrid</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowChooseFileToDecrypt" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <item>
+               <widget class="QLabel" name="lblChooseFileToDecrypt">
+                <property name="text">
+                 <string>File to Decrypt:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leChooseFileToDecrypt">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Select a File</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseFileToDecrypt">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowChooseDecAlgorithm" native="true">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decryption Algorithm:&lt;br/&gt;&lt;/span&gt;&lt;b&gt;CRITICAL:&lt;/b&gt; You must select the identical algorithm used for encryption. While modes like AES-GCM will warn you if the selection is wrong, legacy modes like CBC will produce a corrupted file without warning if mismatched.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_20">
+              <item>
+               <widget class="QLabel" name="lblChooseDecAlgorithm">
+                <property name="text">
+                 <string>Choose Algorithm:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbChooseDecAlgorithm">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decryption Algorithm:&lt;br/&gt;&lt;/span&gt;You must select the &lt;b&gt;exact same&lt;/b&gt; algorithm and mode used when the file was encrypted. If the algorithm or mode (like GCM vs. CBC) does not match, the decryption will fail to protect your data.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowChooseDecKey" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_21">
+              <item>
+               <widget class="QLabel" name="lblChooseDecKey">
+                <property name="text">
+                 <string>Choose Key:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbChooseDecKey">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Decryption Key:&lt;br/&gt;&lt;/span&gt;Select the key required to unlock the file. In Hybrid mode, this must be your own &lt;b&gt;Private Key&lt;/b&gt; that matches the Public Key the sender used to encrypt the file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowDecryptAction" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_15">
+              <item>
+               <spacer name="spcDecryptLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnDecrypt">
+                <property name="text">
+                 <string>Decrypt</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcDecryptRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabHashes">
+       <attribute name="title">
+        <string>Hashes</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_19">
+        <item>
+         <widget class="QGroupBox" name="gbComputeHash">
+          <property name="title">
+           <string>Compute Hash</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_20">
+           <item>
+            <widget class="QWidget" name="rowHashFile" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_24">
+              <item>
+               <widget class="QLabel" name="lblHashFile">
+                <property name="text">
+                 <string>File:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leHashFile">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnBrowseHashFile">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowHashAlgo" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_25">
+              <item>
+               <widget class="QLabel" name="lblHashAlgo">
+                <property name="text">
+                 <string>Algorithm:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbHashAlgo">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Hashing Algorithms:&lt;br/&gt;&lt;/span&gt;Select the mathematical 'fingerprint' method. StegaSafe supports all standard FIPS 180-4 and FIPS 202 algorithms.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-256:&lt;/span&gt; The current industry standard.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-3:&lt;/span&gt; The newest generation of hashing, offering maximum security.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowHashAction" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_26">
+              <item>
+               <spacer name="spcHashActionRight">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Compute Hash:&lt;br/&gt;&lt;/span&gt;Generates a unique digital fingerprint of the selected file. The result is automatically copied to your clipboard so you can easily share it or use it for validation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Compute Hash</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcHascActionLeft">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbValidateHash">
+          <property name="title">
+           <string>Validate Hash</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_21">
+           <item>
+            <widget class="QWidget" name="rowValidationHashFile" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_29">
+              <item>
+               <widget class="QLabel" name="lblValidationHashFile">
+                <property name="text">
+                 <string>File:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leValidationHashFile">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnValidationHashFile">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowValidationHashAlgo" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_28">
+              <item>
+               <widget class="QLabel" name="lblValidationHashAlgo">
+                <property name="text">
+                 <string>Algorithm:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbValidationHashAlgo">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Hashing Algorithms:&lt;br/&gt;&lt;/span&gt;Select the mathematical 'fingerprint' method. StegaSafe supports all standard FIPS 180-4 and FIPS 202 algorithms.&lt;br/&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-256:&lt;/span&gt; The current industry standard.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-3:&lt;/span&gt; The newest generation of hashing, offering maximum security.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowExpectedHash" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_30">
+              <item>
+               <widget class="QLabel" name="lblExpectedHash">
+                <property name="text">
+                 <string>Expected Hash:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leExpectedHash">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Expected Hash:&lt;br/&gt;&lt;/span&gt;Paste the hash value provided by the file's creator here. The system will compare it bit-by-bit against your file to ensure it hasn't been modified or corrupted.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="placeholderText">
+                 <string>Paste expected Hash here</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnExpectedHash">
+                <property name="text">
+                 <string>Validate Hash</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowValidationResult" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_27">
+              <item>
+               <widget class="QLabel" name="lblResult">
+                <property name="text">
+                 <string>Result</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabSignatures">
+       <attribute name="title">
+        <string>Signatures</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_24">
+        <item>
+         <widget class="QGroupBox" name="gbSigning">
+          <property name="title">
+           <string>Sign a file</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_25">
+           <item>
+            <widget class="QWidget" name="rowChooseFileToSign" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_38">
+              <item>
+               <widget class="QLabel" name="lblChooseFileToSign">
+                <property name="text">
+                 <string>File to Sign</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leChooseFileToSign">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Select a File</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseFileToSign">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowSigPrivKSelection" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_37">
+              <item>
+               <widget class="QLabel" name="lblSigPrivKSelection">
+                <property name="text">
+                 <string>Private Key:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbSigPrivKSelection">
+                <property name="minimumSize">
+                 <size>
+                  <width>400</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Private Key Selection:&lt;br/&gt;&lt;/span&gt;Choose your private RSA or Ed25519 key to 'sign' the file. This creates a digital seal that only you can produce, proving the file's authenticity.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcSigPrivKSelection">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnSigPrivKSelection">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Sign File:&lt;br/&gt;&lt;/span&gt;Calculates a hash of your file and encrypts it with your private key. This produces a detached signature string that proves you are the sender.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Generate</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowSignProgress" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_27">
+              <item>
+               <widget class="QProgressBar" name="pbSign">
+                <property name="value">
+                 <number>24</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowShowSignature" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_42">
+              <item>
+               <widget class="QLabel" name="lblShowSignature">
+                <property name="text">
+                 <string>File Signature:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leShowSignature"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnCopySignature">
+                <property name="text">
+                 <string>Copy to Clipboard</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnSaveSignature">
+                <property name="text">
+                 <string>Save Signature File</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbVerification">
+          <property name="title">
+           <string>Verify a Signature</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_26">
+           <item>
+            <widget class="QWidget" name="rowChooseFileToVerify" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_43">
+              <item>
+               <widget class="QLabel" name="lblChooseFileToVerify">
+                <property name="text">
+                 <string>File to Verify</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leChooseFileToVerify">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="placeholderText">
+                 <string>Select a File</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseFileToVerify">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowShowSignature_2" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_44">
+              <item>
+               <widget class="QLabel" name="lblShowSignature_2">
+                <property name="text">
+                 <string>Signature:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="leShowSignature_2">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Signature to Verify:&lt;br/&gt;&lt;/span&gt;Paste the hexadecimal signature string here, or click 'Browse' to select a .sig file. The system will use this to verify if the file is original.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="placeholderText">
+                 <string>Paste hex signature or file path</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnChooseSignatureFile">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowSigPubKSelection" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_45">
+              <item>
+               <widget class="QLabel" name="lblSigPubKSelection">
+                <property name="text">
+                 <string>Public Key:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbSigPubKSelection">
+                <property name="minimumSize">
+                 <size>
+                  <width>400</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;Public Key Selection:&lt;br/&gt;&lt;/span&gt;Select the Public Key belonging to the person who signed the file. This key is used to mathematically verify that the signature matches the file content.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spcSigPubKSelection">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnSigPubKSelection">
+                <property name="text">
+                 <string>Check</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowVerificationProgress" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_28">
+              <item>
+               <widget class="QProgressBar" name="pbVerification">
+                <property name="value">
+                 <number>24</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="rowShowFileValidity" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_46">
+              <item>
+               <widget class="QLabel" name="lblFileValidityText">
+                <property name="text">
+                 <string>File Validity:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblFileValiditShow">
+                <property name="text">
+                 <string>Choose File, Signature, and Public Key, then press &quot;Check&quot; to show Signature Validity.</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1102</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
+</ui>
