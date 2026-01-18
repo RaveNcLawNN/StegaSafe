@@ -89,10 +89,10 @@ def validate_asymmetric_key_pem(pem_bytes: bytes) -> tuple[str, str, int | None]
                     raise ValidationError(f"Unsupported public key type: {type(public_key).__name__}")
                     
             except (ValueError, TypeError) as e:
-                raise ValidationError(f"Failed to parse PEM key. The file does not appear to be a valid RSA, Ed25519, or X25519 key: {str(e)}")
+                raise ValidationError(f"Failed to parse PEM key. The file does not appear to be a valid RSA, Ed25519, or X25519 key.")
                 
     except Exception as e:
-        raise ValidationError(f"Key validation failed: {str(e)}")
+        raise ValidationError(f"Key validation failed.")
 
 
 def detect_and_validate_key(file_contents: bytes) -> tuple[str, bytes, str, str, int | None]:

@@ -9,5 +9,5 @@ def clean_metadata(image_path, output_path):
         image_without_exif.putdata(data)
         image_without_exif.save(output_path, "PNG")
         return True
-    except Exception as e:
-        raise SteganographyError(f"Metadata cleaning failed: {str(e)}")
+    except Exception:
+        raise SteganographyError(f"Metadata cleaning failed.")

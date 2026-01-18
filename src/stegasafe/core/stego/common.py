@@ -13,8 +13,8 @@ def load_image_data(image_path):
             img = img.convert('RGB')
             pixels = np.array(img)
             return pixels.shape, pixels.flatten()
-    except Exception as e:
-        raise SteganographyError(f"Failed to load image data: {str(e)}")
+    except Exception:
+        raise SteganographyError(f"Failed to load image data.")
 
 """Converts the NumPy array into an RGB image.png and saves it"""
 def save_image_from_pixels(pixels_array, original_shape, output_path):
@@ -22,8 +22,8 @@ def save_image_from_pixels(pixels_array, original_shape, output_path):
         encoded_pixels = pixels_array.reshape(original_shape)
         encoded_img = Image.fromarray(encoded_pixels.astype('uint8'), 'RGB')
         encoded_img.save(output_path, "PNG")
-    except Exception as e:
-        raise SteganographyError(f"Failed to save processed image to disk: {str(e)}")
+    except Exception:
+        raise SteganographyError(f"Failed to save processed image to disk.")
 
 # """Calculates the maximum capacity of bytes that can be used to hide something - channel_count: 3 for full RGB, 1 for single channel"""
 # def get_max_bytes_pure(image_path, channel_count=3):

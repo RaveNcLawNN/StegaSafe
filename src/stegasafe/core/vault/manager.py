@@ -66,7 +66,7 @@ class KeyVault:
             self._data = json.loads(plaintext.decode("utf-8"))
             self._unlocked = True
             return False, "Vault unlocked successfully"
-            
+
         except VaultError as e:
             error_msg = str(e)
             
@@ -99,9 +99,9 @@ class KeyVault:
             else:
                 # Wrong password or other non-corruption errors - re-raise
                 raise
-        except Exception as e:
+        except Exception:
             # Wrap unexpected JSON or system errors
-            raise VaultError(f"Failed to load or decrypt the vault: {str(e)}")
+            raise VaultError(f"Failed to load or decrypt the vault.")
 
     def lock(self) -> None:
         """Lock the vault (prevents list/add/get until unlock() is called again)."""
@@ -185,9 +185,9 @@ class KeyVault:
             plaintext = json.dumps(self._data, indent=2).encode("utf-8")
             blob = encrypt_json_bytes(plaintext, password)
             write_bytes(self.vault_path, blob)
-        except Exception as e:
+        except Exception:
             # Provide clear feedback if file writing fails
-            raise VaultError(f"Failed to save vault to disk: {str(e)}")
+            raise VaultError(f"Failed to save vault to disk.")
 
     def _find(self, key_id: str):
         """Find a key entry dict by its ID."""

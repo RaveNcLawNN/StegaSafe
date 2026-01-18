@@ -281,8 +281,8 @@ class CryptoTabController:
             write_bytes(out_path, plaintext)
             QMessageBox.information(self.ui, "Decryption complete", f"Saved to:\n{out_path}")
 
-        except Exception as e:
+        except Exception:
             p = Path(out_path)
             if p.exists():
                 p.unlink()
-            raise CryptographyError(f"Decryption failed: {str(e)}")
+            raise CryptographyError(f"Decryption failed.")

@@ -7,6 +7,7 @@ from stegasafe.core.stego import lsb, capacity, metadata_cleaner, metadata_stego
 from stegasafe.utils.converter import DataConverter
 from stegasafe.utils.compressor import Compressor
 from stegasafe.utils.decorators import handle_ui_errors
+from stegasafe.utils.exceptions import SteganographyError
 
 """Controller for LSB & Metadata steganography"""
 
@@ -14,6 +15,7 @@ class SteganographyTabController:
     def __init__(self, ui):
         self.ui = ui
         self.current_max_bytes = 0
+        self.current_payload_bytes = 0
         self._init_ui_defaults()
         self._wire_events()
 
@@ -185,9 +187,10 @@ class SteganographyTabController:
         return None
 
     """Runs everytime the payload changes. Checks whether image is loaded, simulates compression, adds overhead, calculates current size / max capacity and updates visuals"""
+
     def _update_usage_display(self):
         if self._is_metadata_mode(is_extract=False):
-            self.ui.lblUsage.setText("Mode: Metadata Header (No Size Limit displayed")
+            self.ui.lblUsage.setText("Mode: Metadata Header (No Size Limit displayed)")
             return
 
         if self.current_max_bytes == 0:
@@ -199,7 +202,8 @@ class SteganographyTabController:
             mode = self._get_channel_mode(is_extract=False)
             try:
                 self.current_max_bytes = capacity.get_max_bytes_pure(cover_path, mode)
-            except: pass
+            except:
+                pass
 
         text = self.ui.pteEmbedMessage.toPlainText()
         input_format = self.ui.cbInputFormat.currentText().lower()
@@ -208,26 +212,22 @@ class SteganographyTabController:
 
         try:
             if not text:
-                current_bytes = 0
+                self.current_payload_bytes = 0
             else:
                 payload = DataConverter.to_bytes(text, input_format)
                 if use_compression:
                     payload = Compressor.compress(payload)
 
-                if delimiter:
-                    overhead = len(delimiter.encode('utf-8'))
-                else:
-                    overhead = 4
+                overhead = len(delimiter.encode('utf-8')) if delimiter else 4
+                self.current_payload_bytes = len(payload) + overhead
 
-                current_bytes = len(payload) + overhead
-
-            curr_str = self._format_size(current_bytes)
+            curr_str = self._format_size(self.current_payload_bytes)
             max_str = self._format_size(self.current_max_bytes)
-            percent = (current_bytes / self.current_max_bytes) * 100
+            percent = (self.current_payload_bytes / self.current_max_bytes) * 100
 
             self.ui.lblUsage.setText(f"Usage: {curr_str} / {max_str} ({percent:.1f}%)")
 
-            if current_bytes > self.current_max_bytes:
+            if self.current_payload_bytes > self.current_max_bytes:
                 self.ui.lblUsage.setStyleSheet("color: red; font-weight: bold;")
             elif percent > 90:
                 self.ui.lblUsage.setStyleSheet("color: orange; font-weight: bold;")
@@ -265,12 +265,19 @@ class SteganographyTabController:
             seed = self._get_seed(is_extract=False)
             channel_mode = self._get_channel_mode(is_extract=False)
 
-            # Raises CapacityError if data is too big
-            capacity.validate_capacity(cover_path, message, input_format, use_compression, custom_delimiter=delimiter, channel_mode=channel_mode)
+            capacity.validate_capacity(
+                cover_path,
+                message,
+                input_format,
+                use_compression,
+                custom_delimiter=delimiter,
+                channel_mode=channel_mode
+            )
 
             p = Path(cover_path)
             default_out = str(p.with_stem(p.stem + "_payload").with_suffix(".png"))
-            output_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Stego (LSB) Image", default_out, "PNG Image (*.png)")
+            output_path, _ = QFileDialog.getSaveFileName(self.ui, "Save Stego (LSB) Image", default_out,
+                                                         "PNG Image (*.png)")
 
             if not output_path:
                 return
@@ -378,8 +385,8 @@ class SteganographyTabController:
             if file_path:
                 with open(file_path, "w", encoding="utf-8") as f:
                     f.write(text_data)
-        except Exception as e:
-            self._show_error("Save Error", str(e))
+        except Exception:
+            raise SteganographyError("Failed to save the extracted data")
 
     """A helper that checks whether a file path is valid."""
     def _require_file(self, path_str: str) -> str:

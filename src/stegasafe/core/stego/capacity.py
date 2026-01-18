@@ -17,16 +17,19 @@ def get_max_bytes(image_path, channel_mode="all"):
 
 def validate_capacity(image_path, text_data, input_format="utf-8", use_compression=False, custom_delimiter=None, channel_mode="all"):
     try:
-        full_data, _, _ = protocol.prepare_payload(image_path, input_format, use_compression, custom_delimiter)
+        full_data, _, _ = protocol.prepare_payload(image_path, text_data, input_format, use_compression, custom_delimiter)
         required_bytes = len(full_data)
 
         available_bytes = get_max_bytes_pure(image_path, channel_mode)
 
         if required_bytes > available_bytes:
-            raise CapacityError(f"The message is too large for the selected carrier. "
-                                f"Required: {required_bytes} bytes, Available: {available_bytes} bytes.")
-        return True, "Capacity OK"
+            raise CapacityError(
+                f"The message is too large for the selected carrier.\n\n"
+                f"Required: {required_bytes} bytes\n"
+                f"Available: {available_bytes} bytes."
+            )
+        return True
     except CapacityError:
         raise
-    except Exception as e:
-        raise SteganographyError(f"Capacity validation failed: {str(e)}")
+    except Exception:
+        raise SteganographyError(f"Capacity exceeded. Use a shorter message.")

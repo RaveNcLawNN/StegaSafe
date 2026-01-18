@@ -20,9 +20,9 @@ class SymmetricKeyGen:
 
         try:
             return os.urandom(bit_size // 8)
-        except Exception as e:
+        except Exception:
             # Catch-all for unexpected system entropy issues
-            raise KeyGenerationError(f"Symmetric key generation failed: {str(e)}")
+            raise KeyGenerationError(f"Symmetric key generation failed.")
 
 """
 klasse für erstellung eines RSA/ECC key pairs.
@@ -46,8 +46,8 @@ class AsymmetricKeyGen:
                 key_size=key_size
             )
             return private_key
-        except Exception as e:
-            raise KeyGenerationError(f"RSA key generation failed: {str(e)}")
+        except Exception:
+            raise KeyGenerationError(f"RSA key generation failed")
 
     @staticmethod
     def generate_ecc_key(algorithm: str = "X25519") -> Union[x25519.X25519PrivateKey, ed25519.Ed25519PrivateKey]:
@@ -64,9 +64,9 @@ class AsymmetricKeyGen:
         except KeyGenerationError:
             # Re-raise error
             raise
-        except Exception as e:
+        except Exception:
             # Generic wrapper for library-level failures
-            raise KeyGenerationError(f"ECC key generation failed: {str(e)}")
+            raise KeyGenerationError(f"ECC key generation failed")
 
 
 """
@@ -89,9 +89,9 @@ class KeySerializer:
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=encryption_algorithm
             )
-        except Exception as e:
+        except Exception:
             # Formatting errors are wrapped to provide clear UI feedback
-            raise KeyGenerationError(f"Failed to serialize private key to PEM format: {str(e)}")
+            raise KeyGenerationError(f"Failed to serialize private key to PEM format.")
 
     @staticmethod
     def public_key_to_pem(public_key) -> bytes:
@@ -100,5 +100,5 @@ class KeySerializer:
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PublicFormat.SubjectPublicKeyInfo
             )
-        except Exception as e:
-            raise KeyGenerationError(f"Failed to serialize public key to PEM format: {str(e)}")
+        except Exception:
+            raise KeyGenerationError(f"Failed to serialize public key to PEM format.")

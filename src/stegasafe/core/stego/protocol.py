@@ -29,18 +29,18 @@ def prepare_payload(text, input_format, use_compression, custom_delimiter=None):
             overhead = HEADER_SIZE
 
         return full_message, payload_len, overhead
-    except Exception as e:
-        raise ProcessingError(f"Payload preparation failed: {str(e)}")
+    except Exception:
+        raise ProcessingError(f"Payload preparation failed.")
 
 """Converts, decompresses and formats raw bytes"""
 def process_raw_data(raw_data, output_format, use_compression):
     if use_compression:
         try:
             raw_data = Compressor.decompress(raw_data)
-        except Exception as e:
-            raise ProcessingError(f"Decompression failed: {str(e)}. Data corrupted or settings mismatch.")
+        except Exception:
+            raise ProcessingError(f"Decompression failed. Data corrupted or settings mismatch.")
 
     try:
         return DataConverter.from_bytes(raw_data, output_format)
-    except Exception as e:
-        raise ProcessingError(f"Data conversion failed: {str(e)}")
+    except Exception:
+        raise ProcessingError(f"Data conversion failed.")

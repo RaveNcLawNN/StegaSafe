@@ -14,8 +14,8 @@ class MetadataStego:
             print(exif)
 
             return True, f"Saved to metadata header in {output_path}"
-        except Exception as e:
-            raise SteganographyError(f"Metadata Error: {str(e)}")
+        except Exception:
+            raise SteganographyError(f"Metadata Error.")
 
     @staticmethod
     def extract(image_path):
@@ -27,5 +27,5 @@ class MetadataStego:
                 return str(exif[MetadataStego.TAG_ID])
 
             return None
-        except Exception as e:
-            raise SteganographyError(f"Metadata Extraction Error: {str(e)}")
+        except Exception:
+            raise SteganographyError(f"Metadata Extraction Error.")

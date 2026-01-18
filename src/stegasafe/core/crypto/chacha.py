@@ -1,11 +1,12 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 from .primitives import CryptoPackage, IVGenerator
+from stegasafe.utils.exceptions import CryptographyError
 
 class ChaChaCipher:
     def __init__(self, key: bytes):
         if len(key) != 32:
-            raise ValueError("ChaCha20 key must be exactly 32 bytes.")
+            raise CryptographyError("ChaCha20 key must be exactly 32 bytes (256 bits) Choose a correct AES key.")
         self.key = key
         self.algo = ChaCha20Poly1305(key)
 
@@ -23,14 +24,14 @@ class ChaChaCipher:
         try:
             return self.algo.decrypt(package.iv, data_to_decrypt, None)
         except Exception:
-            raise ValueError("ChaCha20-Poly1305 Decryption failed (Invalid Tag or Key)")
+            raise CryptographyError("ChaCha20-Poly1305 Decryption failed (Invalid Tag or Key)")
 
 
 class ChaChaStreamCipher:
 
     def __init__(self, key: bytes):
         if len(key) != 32:
-            raise ValueError("ChaCha20 key must be exactly 256 bits long (32 bytes).")
+            raise CryptographyError("ChaCha20 key must be exactly 256 bits long (32 bytes).")
         self.key = key
 
     def encrypt(self, data: bytes) -> bytes:

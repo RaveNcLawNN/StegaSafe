@@ -44,8 +44,8 @@ class AESCipher:
 
             package = CryptoPackage(ciphertext=ciphertext, tag=tag, iv=iv)
             return package.to_bytes(mode)
-        except Exception as e:
-            raise CryptographyError(f"Encryption failed: {str(e)}")
+        except Exception:
+            raise CryptographyError(f"Encryption failed.")
 
     def decrypt(self, raw_data: bytes, mode: str = "GCM") -> bytes:
         package = CryptoPackage.from_bytes(raw_data, mode)
@@ -62,8 +62,8 @@ class AESCipher:
             plaintext = decryptor.update(package.ciphertext) + decryptor.finalize()
         except InvalidTag:
             raise CryptographyError("Decryption failed: Invalid authentication tag. The key might be wrong or the data tampered.")
-        except Exception as e:
-            raise CryptographyError(f"Decryption failed: {str(e)}")
+        except Exception:
+            raise CryptographyError(f"Decryption failed.")
 
         if mode in ["CBC", "ECB"]:
             try:

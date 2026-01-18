@@ -65,8 +65,8 @@ def create_signature(data: bytes, private_key_pem: bytes) -> bytes:
     except SignatureError:
         # Re-raise our custom domain error
         raise
-    except Exception as e:
-        raise SignatureError(f"Failed to create digital signature: {str(e)}")
+    except Exception:
+        raise SignatureError(f"Failed to create digital signature.")
 
 
 def verify_signature(data: bytes, signature: bytes, public_key_pem: bytes) -> bool:
@@ -120,7 +120,7 @@ def verify_signature(data: bytes, signature: bytes, public_key_pem: bytes) -> bo
         raise
     except Exception as e:
         # Catch-all for corruption or wrong formats
-        raise SignatureError(f"Signature verification failed: {str(e)}")
+        raise SignatureError(f"Signature verification failed.")
 
 
 def sign_file(file_path: str, private_key_pem: bytes) -> bytes:

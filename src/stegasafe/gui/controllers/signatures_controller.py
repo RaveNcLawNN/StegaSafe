@@ -202,11 +202,11 @@ class SignatureTabController:
             self.ui.pbVerification.setValue(0)
             self.ui.lblFileValiditShow.setText("")
             raise ValueError("The provided signature is not valid hexadecimal text or a valid file path.")
-        except Exception as e:
+        except Exception:
             # Reset UI state before raising error
             self.ui.pbVerification.setValue(0)
             self.ui.lblFileValiditShow.setText("")
-            raise ValueError(f"Failed to load signature file: {str(e)}")
+            raise ValueError(f"Failed to load signature file.")
 
         self.ui.pbVerification.setValue(70)
         is_authentic = verify_file_signature(target_file, signature_bytes, public_key_pem)

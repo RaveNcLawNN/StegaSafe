@@ -56,8 +56,8 @@ def encode_text(image_path, output_path, text, input_format="utf-8", use_compres
         print(f"Saved image to {output_path}. Mode: {mode_info}. Payload: {payload_len} bytes.")
     except (CapacityError, SteganographyError):
         raise
-    except Exception as e:
-        raise SteganographyError(f"Embedding failed: {str(e)}")
+    except Exception:
+        raise SteganographyError(f"Embedding failed.")
 
 """Extracts the payload out of the selected image"""
 def decode_text(image_path, output_format="utf-8", use_compression=False, custom_delimiter=None, seed=None, channel_mode="all"):
@@ -109,10 +109,8 @@ def decode_text(image_path, output_format="utf-8", use_compression=False, custom
 
         return protocol.process_raw_data(raw_data, output_format, use_compression)
 
-    except Exception as e:
-        if isinstance(e, SteganographyError):
-            raise
-        raise SteganographyError(f"Extraction failed: {str(e)}")
+    except Exception:
+        raise SteganographyError(f"Extraction failed.")
 
 """Reads and dumps LSB content of the entire image file"""
 def debug_dump_raw(image_path, limit_bytes=None):

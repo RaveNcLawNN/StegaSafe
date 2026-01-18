@@ -88,7 +88,7 @@ def hash_file(path: str, algorithm: str = "sha256") -> str:
         raise
     except Exception as e:
         # Catch-all for file access or unexpected issues during the hashing process
-        raise IntegrityError(f"Failed to compute hash for the selected file: {str(e)}")
+        raise IntegrityError(f"Failed to compute hash for the selected file.") from e
 
 
 def verify_file_hash(path: str, expected_hex: str, algorithm: str = "sha256") -> bool:
