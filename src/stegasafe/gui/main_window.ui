@@ -16,27 +16,23 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="lblTitle">
-      <property name="text">
-       <string>StegaSafe</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabHome">
        <attribute name="title">
-        <string>Home</string>
+        <string>Info</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QWidget" name="rowInfo" native="true">
-          <layout class="QVBoxLayout" name="verticalLayout_4">
+         <widget class="QGroupBox" name="gbQuickStart">
+          <property name="title">
+           <string>Quick Start Guide</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_29">
            <item>
-            <widget class="QTextBrowser" name="tbInfo">
+            <widget class="QTextBrowser" name="textBrowser">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -45,8 +41,217 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; font-weight:700; color:#43b273;&quot;&gt;Welcome to StegaSafe&lt;/span&gt;&lt;/h2&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;StegaSafe is a local security tool for encrypting files, hiding information inside images,and managing cryptographic keys in a secure offline environment.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Navigate through the tabs at the top of the application to access each part of the workflow.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Application Tabs&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;1. Key Generation&lt;/span&gt;&lt;br /&gt;Create symmetric keys for personal encryption or asymmetric keypairs for secure sharingand digital signatures. Generated keys are stored in the local Vault.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;2. Cryptography&lt;/span&gt;&lt;br /&gt;Encrypt files to protect their contents or decrypt files previously secured usingsymmetric or hybrid encryption modes.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;3. Steganography&lt;/span&gt;&lt;br /&gt;Hide text or data inside PNG images using embedding techniques and retrieve it laterusing the correct parameters and seed.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;4. Signatures &amp;amp; Hashes&lt;/span&gt;&lt;br /&gt;Verify data integrity with cryptographic hashes or prove authenticity usingdigital signatures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;5. Key Vault&lt;/span&gt;&lt;br /&gt;View, rename, export, or delete stored keys in the secure local key vault.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Pro Tip&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Always remember your &lt;span style=&quot; font-weight:700;&quot;&gt;Master Password&lt;/span&gt;. It is never stored and cannot be recovered if lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbGlossary">
+          <property name="minimumSize">
+           <size>
+            <width>518</width>
+            <height>627</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Glossary</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_30">
+           <item>
+            <widget class="QToolBox" name="toolBox">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tbpKeyGen">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>512</width>
+                <height>536</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Key Generation</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_32">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_2">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Key Generation is the starting point for all security operations.A key is a unique piece of data used by algorithms to encrypt, decrypt,or sign your information.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Key Categories&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Keys&lt;/span&gt;&lt;br /&gt;A single secret key used for both encryption and decryption.Both the sender and receiver must possess the same key.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Asymmetric Keypair (Public &amp;amp; Private)&lt;/span&gt;&lt;br /&gt;A pair of mathematically linked keys.The public key is used to encrypt data or verify signatures,while the private key is kept secret and used for decryption or signing.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES (Advanced Encryption Standard)&lt;/span&gt;&lt;br /&gt;Industry-standard symmetric encryption algorithm.Supported key sizes are 128, 192, and 256 bits.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RSA (Rivest–Shamir–Adleman)&lt;/span&gt;&lt;br /&gt;Traditional asymmetric algorithm based on the difficulty of factoring large integers.Used for encryption and digital signatures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ECC (Elliptic Curve Cryptography)&lt;/span&gt;&lt;br /&gt;Modern asymmetric approach offering high security with smaller key sizesthan RSA, improving performance and efficiency.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;X25519&lt;/span&gt;&lt;br /&gt;Elliptic Curve algorithm optimized for fast and secure key exchange.Primarily used in Hybrid encryption mode.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ed25519&lt;/span&gt;&lt;br /&gt;Elliptic Curve algorithm designed specifically for fast and securedigital signature creation.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Details&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Key Length (Bits)&lt;/span&gt;&lt;br /&gt;The size of the cryptographic key.Larger key sizes generally offer stronger protectionbut require more computational effort.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Key Alias / Name&lt;/span&gt;&lt;br /&gt;A user-defined identifier used to distinguish keyswithin the local Key Vault.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpStega">
+              <attribute name="label">
+               <string>Steganography</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_33">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_3">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Steganography is the practice of concealing a secret message within an ordinary fileso that its existence is hidden. Below are the terms and methods used in this tool.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Embedding Methods&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LSB (Least Significant Bit)&lt;/span&gt;&lt;br /&gt;A technique that hides data by making microscopic changes to individual image pixels.These changes are visually imperceptible.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Metadata Hiding&lt;/span&gt;&lt;br /&gt;Embeds text into hidden metadata fields of a file, such as the description fieldin JPEG or TIFF headers, without altering pixel data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Terms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cover Image&lt;/span&gt;&lt;br /&gt;The original PNG, JPEG, or TIFF image used as the carrier for the hidden message.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Payload&lt;/span&gt;&lt;br /&gt;The secret information (text or binary data) that is embedded inside the image.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Seed / Secret&lt;/span&gt;&lt;br /&gt;A value used to randomize embedding locations across the image,making detection significantly harder.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Custom Delimiter&lt;/span&gt;&lt;br /&gt;A special character sequence marking the end of the hidden message.It prevents extraction from continuing into random image data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Settings&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Target Channel&lt;/span&gt;&lt;br /&gt;Selects which color channel (Red, Green, or Blue) carries the hidden data.Using only the Blue channel is often the most visually secure.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Zlib Compression&lt;/span&gt;&lt;br /&gt;Reduces the size of the secret message before embedding,allowing more data to fit into the image.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Capacity Check&lt;/span&gt;&lt;br /&gt;Ensures the message size does not exceed the image’s capacity,preventing visible distortion.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpCrypto">
+              <attribute name="label">
+               <string>Cryptography</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_34">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_4">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Cryptography is the process of transforming information so that only someonewith the correct key can read it. Below are the methods and algorithmsused in this tool.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Encryption Methods&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Encryption&lt;/span&gt;&lt;br /&gt;Uses the same secret key for both encryption and decryption.This is the fastest method for protecting personal files.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Hybrid Encryption&lt;/span&gt;&lt;br /&gt;Combines asymmetric and symmetric techniques.A public key is used to securely exchange a temporary secret key,which then encrypts the actual file data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-GCM&lt;/span&gt;&lt;br /&gt;Recommended modern standard.Provides both encryption and built-in integrity protectionto detect tampering or corruption.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20-Poly1305 (AEAD)&lt;/span&gt;&lt;br /&gt;Fast modern alternative to AES.Also includes authentication to ensure data integrity.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-CBC / AES-CTR / AES-CFB / AES-OFB&lt;/span&gt;&lt;br /&gt;Classic encryption modes.These do not include integrity checking, meaning corrupted datamay go undetected when using an incorrect key.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-ECB&lt;/span&gt;&lt;br /&gt;Simplest encryption mode.Generally not recommended, as it can reveal patternsin the encrypted data.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ChaCha20 (Raw Stream)&lt;/span&gt;&lt;br /&gt;High-performance stream cipher without integrity protection.Cannot detect whether encrypted data has been modified.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Keys&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Symmetric Key&lt;/span&gt;&lt;br /&gt;A single secret key used for both encryption and decryption.It must be kept confidential at all times.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Asymmetric Keypair (Public &amp;amp; Private)&lt;/span&gt;&lt;br /&gt;A pair of mathematically linked keys used in RSA or ECC.The public key enables encryption, while the private keyis required to decrypt the data.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpHashes">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>512</width>
+                <height>516</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Hashes</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_35">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_5">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;A hash is a mathematical function that transforms data of any sizeinto a fixed-length value. It acts as a digital fingerprint for a file.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Core Functions&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Integrity Verification&lt;/span&gt;&lt;br /&gt;If even a single bit of a file changes, the resulting hash changes completely.This allows detection of tampering or accidental corruption.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Deterministic Property&lt;/span&gt;&lt;br /&gt;The same input file will always produce the exact same hashwhen processed with the same algorithm.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-2 (Secure Hash Algorithm 2)&lt;/span&gt;&lt;br /&gt;Current industry standard for secure hashing.Includes variants such as SHA-256 and SHA-512,commonly used for file verification and digital signatures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-3 (Secure Hash Algorithm 3)&lt;/span&gt;&lt;br /&gt;Newest generation of hashing standards.Uses a different mathematical construction than SHA-2to provide strong resistance against modern attacks.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA-1&lt;/span&gt;&lt;br /&gt;Older hashing algorithm.Still used for legacy purposes but generally not recommendedfor protecting critical data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Terms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Reference Hash&lt;/span&gt;&lt;br /&gt;A known, trusted hash value provided by a file’s creator.Used to compare against a locally calculated hashto verify authenticity.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;FIPS 180-4 / FIPS 202&lt;/span&gt;&lt;br /&gt;Official standards defining the SHA-1, SHA-2, and SHA-3hashing families to ensure mathematical correctness and security.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tbpSignatures">
+              <attribute name="label">
+               <string>Signatures</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_36">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_6">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;Digital signatures prove that a file is authentic and has not been altered.They act as a mathematical seal that verifies the identity of the signerand the integrity of the data.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Core Concepts&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Authentication&lt;/span&gt;&lt;br /&gt;Proves that a file was signed by the person who claims to have signed it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Non-Repudiation&lt;/span&gt;&lt;br /&gt;Ensures a signer cannot plausibly deny signing the file,because the signature is uniquely tied to their private key.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Algorithms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RSA Signatures&lt;/span&gt;&lt;br /&gt;A widely compatible approach where a file hash is signed using a private RSA key.Commonly used as a standard method for digital signing.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ed25519 (ECC)&lt;/span&gt;&lt;br /&gt;Modern elliptic-curve signature scheme optimized for speed and strong security.Produces smaller signatures than RSA while maintaining high protection.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:12px; margin-bottom:4px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#43b273; text-transform:uppercase;&quot;&gt;Technical Terms&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Detached Signature&lt;/span&gt;&lt;br /&gt;A signature stored in a separate file (often with a .sig extension)instead of being embedded into the original file.Verification requires both the original file and the signature file.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Signing (Private Key)&lt;/span&gt;&lt;br /&gt;Creating a signature using a private key.The private key must remain secret and should never be shared.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:140%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Verification (Public Key)&lt;/span&gt;&lt;br /&gt;Validating a signature using the signer’s public keyto confirm that the signature matches the file and the signer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -131,7 +336,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                     </property>
                     <property name="alternatingRowColors">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="headerHidden">
                      <bool>true</bool>
@@ -176,49 +381,35 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <item>
             <layout class="QFormLayout" name="formKeyDetails">
              <item row="0" column="0">
-              <widget class="QLabel" name="lblKeyName">
-               <property name="text">
-                <string>-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
               <widget class="QLabel" name="lblKeyType">
                <property name="text">
                 <string>-</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+             <item row="1" column="0">
               <widget class="QLabel" name="lblKeyAlgorithms">
                <property name="text">
                 <string>-</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
+             <item row="2" column="0">
               <widget class="QLabel" name="lblKeyVisibility">
                <property name="text">
                 <string>-</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
+             <item row="3" column="0">
               <widget class="QLabel" name="lblKeyID">
                <property name="text">
                 <string>-</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
+             <item row="4" column="0">
               <widget class="QLabel" name="lblKeyLength">
-               <property name="text">
-                <string>-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="lblKeySize">
                <property name="text">
                 <string>-</string>
                </property>
